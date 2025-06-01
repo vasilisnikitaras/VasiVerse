@@ -1,130 +1,29 @@
-/* Global Styling */
+/* Default light mode styles */
 body {
-    background: linear-gradient(to bottom, #f7f7f7, #e0e0e0);
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 0;
-    transition: background 0.3s ease, color 0.3s ease;
+    background-color: #FFFFFF; /* White background for light mode */
+    color: #000000; /* Black text */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
 }
 
-/* Dark Mode */
+/* Dark mode styles */
 body.dark-mode {
-    background: #222;
-    color: #f5f5f5;
+    background-color: #2E2E2E; /* Soft dark gray */
+    color: #FFFFFF; /* White text */
 }
 
-.container.dark-mode {
-    background: rgba(50, 50, 50, 0.9);
-    color: #f5f5f5;
+/* Optional: Style elements that need better contrast in dark mode */
+header, footer {
+    background-color: #1E1E1E; /* Slightly darker gray */
 }
 
-/* Header */
-header {
-    background: #0288d1;
-    color: white;
-    padding: 20px;
-    font-size: 24px;
-}
-
-/* Dark Mode Button */
-#dark-mode-toggle {
-    background: #444;
-    color: white;
+button {
+    background-color: #444444;
+    color: #FFFFFF;
+    border: none;
     padding: 10px;
-    border-radius: 5px;
     cursor: pointer;
-    margin-top: 10px;
 }
 
-#dark-mode-toggle:hover {
-    background: #555;
-}
-
-/* Navigation Bar */
-nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 15px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    font-size: 18px;
-    color: #0288d1;
-    padding: 10px;
-    border-radius: 5px;
-    background: #e0f7fa;
-}
-
-nav ul li a:hover {
-    background: #0288d1;
-    color: white;
-}
-
-/* Sections */
-section {
-    padding: 20px;
-    background: #ffffff;
-    border-radius: 10px;
-}
-
-/* Back to Top Button */
-#back-to-top {
-    display: block;
-    background: #ffcc00;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-#back-to-top:hover {
-    background: #ffaa00;
-}
-
-/* Footer */
-footer {
-    background: #333;
-    color: white;
-    padding: 15px;
-    margin-top: 20px;
-}
-
-/* Weather Icon Animations */
-.weather-icon {
-    width: 50px;
-    height: 50px;
-    display: inline-block;
-}
-
-.sunny {
-    animation: sun-glow 3s infinite ease-in-out;
-}
-
-@keyframes sun-glow {
-    0% { filter: brightness(100%); }
-    50% { filter: brightness(120%); }
-    100% { filter: brightness(100%); }
-}
-
-.cloudy {
-    animation: cloud-drift 4s infinite linear;
-}
-
-@keyframes cloud-drift {
-    0% { transform: translateX(0px); }
-    100% { transform: translateX(10px); }
-}
-
-.rainy {
-    animation: rain-fall 2s infinite linear;
-}
-
-@keyframes rain-fall {
-    0% { transform: translateY(0px); opacity: 1; }
-    100% { transform: translateY(15px); opacity: 0; }
+button:hover {
+    background-color: #666666;
 }
