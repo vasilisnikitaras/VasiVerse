@@ -130,7 +130,7 @@ footer {
 }
 /* Dark Mode - Only Changes Background */
 body.dark-mode {
-    background-color: #2E2E2E; /* Soft dark gray */
+    background-color: #222; /* Soft dark gray */
 }
 /* Default Light Mode */
 body {
