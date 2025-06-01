@@ -150,6 +150,11 @@ body.dark-mode {
 body.dark-mode {
     background-color: #2E2E2E !important; /* Ensures it applies */
 }
+/* Dark Mode - Fix Background Visibility */
+body.dark-mode {
+    background: #3A6EA5 !important; /* Light blue for better readability */
+    color: #FFFFFF !important; /* White text to ensure visibility */
+}
 
 
 
