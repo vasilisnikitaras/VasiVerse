@@ -132,3 +132,14 @@ footer {
 body.dark-mode {
     background-color: #2E2E2E; /* Soft dark gray */
 }
+/* Default Light Mode */
+body {
+    background-color: #FFFFFF; /* Light mode background */
+    color: #000000;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Dark Mode - Fix Background */
+body.dark-mode {
+    background-color: #2E2E2E !important; /* Ensures it applies */
+}
