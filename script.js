@@ -72,6 +72,9 @@ function loadAds() {
         </script>
     `;
 }
+document.getElementById("toggleDarkMode").addEventListener("click", function () {
+    document.body.classList.toggle("dark-mode");
+});
 
 // Run ad loading function & auto-load weather on page load
 document.addEventListener("DOMContentLoaded", () => {
