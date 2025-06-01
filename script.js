@@ -12,7 +12,7 @@ async function fetchWeather() {
     }
 
     try {
-        let apiKey = "YOUR_VALID_API_KEY"; // Replace this with your actual OpenWeatherMap API Key
+        let apiKey = "1f1742f46396f018ec07cab6f270841a"; // Your OpenWeatherMap API Key
         let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
         let data = await response.json();
 
@@ -57,5 +57,4 @@ function loadAds() {
 // Run ad loading function on page load
 document.addEventListener("DOMContentLoaded", () => {
     loadAds();
-    fetchWeather(); // Ensure weather loads dynamically if needed
 });
