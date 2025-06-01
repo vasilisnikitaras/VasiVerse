@@ -12,7 +12,7 @@ async function fetchWeather() {
     }
 
     try {
-        let apiKey = "YOUR_API_KEY";
+        let apiKey = "YOUR_VALID_API_KEY"; // Replace this with your actual OpenWeatherMap API Key
         let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
         let data = await response.json();
 
@@ -23,7 +23,7 @@ async function fetchWeather() {
                 <p>🌤️ Condition: ${data.weather[0].description}</p>
             `;
         } else {
-            document.getElementById("weather-output").innerHTML = "❌ City not found!";
+            document.getElementById("weather-output").innerHTML = `❌ City not found! Try another.`;
         }
     } catch (error) {
         document.getElementById("weather-output").innerHTML = "⚠️ Failed to retrieve data.";
@@ -55,5 +55,7 @@ function loadAds() {
 }
 
 // Run ad loading function on page load
-document.addEventListener("DOMContentLoaded", loadAds);
-
+document.addEventListener("DOMContentLoaded", () => {
+    loadAds();
+    fetchWeather(); // Ensure weather loads dynamically if needed
+});
