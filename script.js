@@ -12,8 +12,15 @@ async function fetchWeather() {
     }
 
     try {
-        let apiKey = "1f1742f46396f018ec07cab6f270841a"; // Your OpenWeatherMap API Key
-        let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
+        let apiKey = "1f1742f46396f018ec07cab6f270841a"; // OpenWeatherMap API Key
+        let url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric`;
+
+        let response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.status} - ${response.statusText}`);
+        }
+
         let data = await response.json();
 
         if (data.cod === 200) {
@@ -23,10 +30,12 @@ async function fetchWeather() {
                 <p>🌤️ Condition: ${data.weather[0].description}</p>
             `;
         } else {
-            document.getElementById("weather-output").innerHTML = `❌ City not found! Try another.`;
+            document.getElementById("weather-output").innerHTML = `❌ City not found! Try another location.`;
         }
+
     } catch (error) {
-        document.getElementById("weather-output").innerHTML = "⚠️ Failed to retrieve data.";
+        console.error("Weather API Error:", error);
+        document.getElementById("weather-output").innerHTML = "⚠️ Failed to retrieve weather data.";
     }
 }
 
