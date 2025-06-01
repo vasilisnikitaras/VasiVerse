@@ -40,7 +40,51 @@ async function fetchWeather() {
 }
 
 // Add event listener to search button
-document.getElementById("search-btn").addEventListener("click", fetchWeather);
+// document.getElementById("search-btn").addEventListener("click", fetchWeather); //
+
+async function fetchWeather() {
+    let city = document.getElementById("city-input").value.trim();
+    if (!city) {
+        document.getElementById("weather-output").innerHTML = "⚠️ Please enter a city name.";
+        return;
+    }
+
+    try {
+        let apiKey = "1f1742f46396f018ec07cab6f270841a"; // Your OpenWeatherMap API Key
+        let response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
+
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.status} - ${response.statusText}`);
+        }
+
+        let data = await response.json();
+        let weatherCondition = data.weather[0].main.toLowerCase();
+        let weatherIcon = "";
+
+        // Assign icons based on weather condition
+        if (weatherCondition.includes("clear")) {
+            weatherIcon = `<div class="weather-icon sunny">☀️</div>`;
+        } else if (weatherCondition.includes("clouds")) {
+            weatherIcon = `<div class="weather-icon cloudy">☁️</div>`;
+        } else if (weatherCondition.includes("rain")) {
+            weatherIcon = `<div class="weather-icon rainy">🌧️</div>`;
+        } else {
+            weatherIcon = `<div class="weather-icon">🌍</div>`;
+        }
+
+        document.getElementById("weather-output").innerHTML = `
+            <h3>🌍 ${data.name}, ${data.sys.country}</h3>
+            ${weatherIcon}
+            <p>🌡️ Temperature: ${data.main.temp}°C</p>
+            <p>🌤️ Condition: ${data.weather[0].description}</p>
+        `;
+
+    } catch (error) {
+        console.error("Weather API Error:", error);
+        document.getElementById("weather-output").innerHTML = "⚠️ Failed to retrieve weather data.";
+    }
+}
+
 
 // Smooth scrolling for Back to Top
 document.getElementById("back-to-top").addEventListener("click", () => {
