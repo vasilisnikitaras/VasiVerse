@@ -56,3 +56,4 @@ function loadAds() {
 
 // Run ad loading function on page load
 document.addEventListener("DOMContentLoaded", loadAds);
+
