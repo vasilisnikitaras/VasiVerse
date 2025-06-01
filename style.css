@@ -128,3 +128,7 @@ footer {
     0% { transform: translateY(0px); opacity: 1; }
     100% { transform: translateY(15px); opacity: 0; }
 }
+/* Dark Mode - Only Changes Background */
+body.dark-mode {
+    background-color: #2E2E2E; /* Soft dark gray */
+}
