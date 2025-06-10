@@ -141,3 +141,18 @@ section.dark-mode, .container.dark-mode {
     background: rgba(50, 50, 50, 0.9);
     color: #f5f5f5;
 }
+/* Trim extra space below the footer */
+body {
+    margin-bottom: 0;
+}
+
+footer {
+    margin-bottom: 0;
+    padding-bottom: 15px;
+}
+
+/* Remove any extra margin/padding from the last section */
+section:last-of-type {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
