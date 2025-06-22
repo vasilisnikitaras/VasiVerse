@@ -207,3 +207,15 @@ section:last-of-type {
   background-color: #666 !important;
 }
 
+/* === Fix: Button Visibility in Dark Mode === */
+.dark-mode button,
+.dark-mode #dark-mode-toggle {
+  background-color: #444 !important;
+  color: #f5f5f5 !important;
+  border: none;
+}
+
+.dark-mode button:hover,
+.dark-mode #dark-mode-toggle:hover {
+  background-color: #666 !important;
+}
