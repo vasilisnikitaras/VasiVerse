@@ -204,3 +204,8 @@ body.dark-mode * {
   color: #f5f5f5 !important;
   opacity: 1 !important;
 }
+/* === Fix: Section Background in Dark Mode === */
+body.dark-mode section {
+  background-color: #1e1e1e !important;
+  color: #f5f5f5 !important;
+}
