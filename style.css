@@ -1,20 +1,16 @@
+/* === VasiVerse - Full style.css with dark mode fixed === */
+
 /* Global Styling */
 body {
   background: linear-gradient(to bottom, #f7f7f7, #e0e0e0);
   font-family: Arial, sans-serif;
   text-align: center;
   margin: 0;
-  margin-bottom: 0;
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Dark Mode */
 body.dark-mode {
   background: #2E2E2E;
-  color: #f5f5f5;
-}
-.container.dark-mode {
-  background: rgba(50, 50, 50, 0.9);
   color: #f5f5f5;
 }
 
@@ -34,6 +30,7 @@ header {
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
+  border: none;
 }
 #dark-mode-toggle:hover {
   background: #555;
@@ -61,11 +58,71 @@ nav ul li a:hover {
   color: white;
 }
 
+body.dark-mode nav ul li a {
+  background: #333 !important;
+  color: #f5f5f5 !important;
+}
+body.dark-mode nav ul li a:hover {
+  background: #0288d1 !important;
+  color: white !important;
+}
+
 /* Sections */
 section {
   padding: 20px;
   background: #ffffff;
   border-radius: 10px;
+  margin: 1.5rem auto;
+  max-width: 900px;
+}
+body.dark-mode section {
+  background-color: #1e1e1e !important;
+  color: #f5f5f5;
+}
+
+/* VaultVerse QR Section */
+#vaultverse img {
+  margin: 1rem 0;
+  border: 3px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+body.dark-mode #vaultverse img {
+  border-color: #333;
+}
+
+/* VaultVerse Featured Card */
+.featured-card {
+  background: #f5f5f5;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+.featured-card:hover {
+  transform: scale(1.015);
+}
+.featured-card h3 {
+  color: #2e3a59;
+  margin-top: 0;
+}
+.featured-card a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  color: #3367d6;
+  text-decoration: none;
+}
+.featured-card a:hover {
+  text-decoration: underline;
+}
+body.dark-mode .featured-card {
+  background: #1a1a1a;
+  color: #eee;
+}
+body.dark-mode .featured-card h3 {
+  color: #9db6ff;
 }
 
 /* Footer */
@@ -74,7 +131,6 @@ footer {
   color: white;
   padding: 15px;
   margin-top: 20px;
-  margin-bottom: 0;
   padding-bottom: 15px;
 }
 
@@ -120,107 +176,34 @@ footer {
   100% { transform: translateY(15px); opacity: 0; }
 }
 
-/* VaultVerse Featured Card */
-.featured-card {
-  background: #f5f5f5;
-  padding: 1rem;
-  margin-top: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
-}
-.featured-card:hover {
-  transform: scale(1.015);
-}
-.featured-card h3 {
-  color: #2e3a59;
-  margin-top: 0;
-}
-.featured-card a {
-  display: inline-block;
-  margin-top: 0.5rem;
-  font-weight: bold;
-  color: #3367d6;
-  text-decoration: none;
-}
-.featured-card a:hover {
-  text-decoration: underline;
-}
-.dark-mode .featured-card {
-  background: #1a1a1a;
-  color: #eee;
-}
-.dark-mode .featured-card h3 {
-  color: #9db6ff;
-}
-
-/* VaultVerse QR Section */
-#vaultverse {
-  padding: 20px;
-  background: #ffffff;
-  border-radius: 10px;
-  margin-top: 2rem;
-}
-#vaultverse img {
-  margin: 1rem 0;
-  border: 3px solid #eee;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-.dark-mode #vaultverse {
-  background: #1a1a1a;
-  color: #eee;
-}
-.dark-mode #vaultverse img {
-  border-color: #333;
-}
-
 /* Button Interactions */
+button {
+  background: #444;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  background: #555;
+}
 button:active {
   transform: scale(0.97);
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
   transition: transform 0.1s ease;
 }
 
-/* Layout Cleanup */
-section:last-of-type {
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
-/* === Dark Mode Fix for Buttons === */
-.dark-mode button,
-.dark-mode #dark-mode-toggle {
-  background-color: #444 !important;
-  color: #f5f5f5 !important;
-  border: none;
-}
-.dark-mode button:hover,
-.dark-mode #dark-mode-toggle:hover {
-  background-color: #666 !important;
-}
-/* === Force Full Text Visibility in Dark Mode === */
+/* Final Dark Mode Fixes */
 body.dark-mode * {
   color: #f5f5f5 !important;
   opacity: 1 !important;
+  background: transparent;
 }
-/* === Fix: Section Background in Dark Mode === */
-body.dark-mode section {
-  background-color: #1e1e1e !important;
-  color: #f5f5f5 !important;
-}
-
-/* === Final Dark Mode Text & Link Fix === */
-body.dark-mode {
-  color: #f5f5f5 !important;
-}
-
 body.dark-mode a {
   color: #9db6ff !important;
   text-decoration: underline;
 }
-
 body.dark-mode a:hover {
   color: #ffffff !important;
 }
-
