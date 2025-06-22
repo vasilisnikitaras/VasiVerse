@@ -150,6 +150,32 @@ footer {
     background: #1a1a1a;
     color: #eee;
 }
+
+
+#vaultverse {
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+
+#vaultverse img {
+  margin: 1rem 0;
+  border: 3px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.dark-mode #vaultverse {
+  background: #1a1a1a;
+  color: #eee;
+}
+
+.dark-mode #vaultverse img {
+  border-color: #333;
+}
+
+
 .dark-mode .featured-card h3 {
     color: #9db6ff;
 }
