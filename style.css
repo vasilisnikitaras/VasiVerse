@@ -1,220 +1,200 @@
 /* Global Styling */
 body {
-    background: linear-gradient(to bottom, #f7f7f7, #e0e0e0);
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 0;
-    margin-bottom: 0;
-    transition: background 0.3s ease, color 0.3s ease;
+  background: linear-gradient(to bottom, #f7f7f7, #e0e0e0);
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 0;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* Dark Mode */
 body.dark-mode {
-    background: #2E2E2E;
-    color: #f5f5f5;
+  background: #2E2E2E;
+  color: #f5f5f5;
 }
 .container.dark-mode {
-    background: rgba(50, 50, 50, 0.9);
-    color: #f5f5f5;
+  background: rgba(50, 50, 50, 0.9);
+  color: #f5f5f5;
 }
 
 /* Header */
 header {
-    background: #0288d1;
-    color: white;
-    padding: 20px;
-    font-size: 24px;
+  background: #0288d1;
+  color: white;
+  padding: 20px;
+  font-size: 24px;
 }
 
-/* Dark Mode Button */
+/* Dark Mode Toggle */
 #dark-mode-toggle {
-    background: #444;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
+  background: #444;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
 }
 #dark-mode-toggle:hover {
-    background: #555;
+  background: #555;
 }
 
-/* Navigation Bar */
+/* Navigation */
 nav ul {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 nav ul li {
-    display: inline;
-    margin: 15px;
+  display: inline;
+  margin: 15px;
 }
 nav ul li a {
-    text-decoration: none;
-    font-size: 18px;
-    color: #0288d1;
-    padding: 10px;
-    border-radius: 5px;
-    background: #e0f7fa;
+  text-decoration: none;
+  font-size: 18px;
+  color: #0288d1;
+  padding: 10px;
+  border-radius: 5px;
+  background: #e0f7fa;
 }
 nav ul li a:hover {
-    background: #0288d1;
-    color: white;
+  background: #0288d1;
+  color: white;
 }
 
 /* Sections */
 section {
-    padding: 20px;
-    background: #ffffff;
-    border-radius: 10px;
-}
-
-/* Back to Top Button */
-#back-to-top {
-    display: block;
-    background: #ffcc00;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-}
-#back-to-top:hover {
-    background: #ffaa00;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
 }
 
 /* Footer */
 footer {
-    background: #333;
-    color: white;
-    padding: 15px;
-    margin-top: 20px;
-    margin-bottom: 0;
-    padding-bottom: 15px;
+  background: #333;
+  color: white;
+  padding: 15px;
+  margin-top: 20px;
+  margin-bottom: 0;
+  padding-bottom: 15px;
 }
 
-/* Weather Icon Animations */
+/* Back to Top */
+#back-to-top {
+  display: block;
+  background: #ffcc00;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+#back-to-top:hover {
+  background: #ffaa00;
+}
+
+/* Weather Icons */
 .weather-icon {
-    width: 50px;
-    height: 50px;
-    display: inline-block;
+  width: 50px;
+  height: 50px;
+  display: inline-block;
 }
 .sunny {
-    animation: sun-glow 3s infinite ease-in-out;
+  animation: sun-glow 3s infinite ease-in-out;
 }
 @keyframes sun-glow {
-    0% { filter: brightness(100%); }
-    50% { filter: brightness(120%); }
-    100% { filter: brightness(100%); }
+  0% { filter: brightness(100%); }
+  50% { filter: brightness(120%); }
+  100% { filter: brightness(100%); }
 }
 .cloudy {
-    animation: cloud-drift 4s infinite linear;
+  animation: cloud-drift 4s infinite linear;
 }
 @keyframes cloud-drift {
-    0% { transform: translateX(0px); }
-    100% { transform: translateX(10px); }
+  0% { transform: translateX(0px); }
+  100% { transform: translateX(10px); }
 }
 .rainy {
-    animation: rain-fall 2s infinite linear;
+  animation: rain-fall 2s infinite linear;
 }
 @keyframes rain-fall {
-    0% { transform: translateY(0px); opacity: 1; }
-    100% { transform: translateY(15px); opacity: 0; }
+  0% { transform: translateY(0px); opacity: 1; }
+  100% { transform: translateY(15px); opacity: 0; }
 }
 
 /* VaultVerse Featured Card */
 .featured-card {
-    background: #f5f5f5;
-    padding: 1rem;
-    margin-top: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    transition: transform 0.2s ease;
+  background: #f5f5f5;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
 }
 .featured-card:hover {
-    transform: scale(1.015);
+  transform: scale(1.015);
 }
 .featured-card h3 {
-    color: #2e3a59;
-    margin-top: 0;
+  color: #2e3a59;
+  margin-top: 0;
 }
 .featured-card a {
-    display: inline-block;
-    margin-top: 0.5rem;
-    font-weight: bold;
-    color: #3367d6;
-    text-decoration: none;
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  color: #3367d6;
+  text-decoration: none;
 }
 .featured-card a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 .dark-mode .featured-card {
-    background: #1a1a1a;
-    color: #eee;
+  background: #1a1a1a;
+  color: #eee;
+}
+.dark-mode .featured-card h3 {
+  color: #9db6ff;
 }
 
-/* === VaultVerse QR Section === */
-
+/* VaultVerse QR Section */
 #vaultverse {
   padding: 20px;
   background: #ffffff;
   border-radius: 10px;
   margin-top: 2rem;
 }
-
 #vaultverse img {
   margin: 1rem 0;
   border: 3px solid #eee;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
-
 .dark-mode #vaultverse {
   background: #1a1a1a;
   color: #eee;
 }
-
 .dark-mode #vaultverse img {
   border-color: #333;
 }
 
-
-.dark-mode .featured-card h3 {
-    color: #9db6ff;
-}
-
-/* Button Feedback */
+/* Button Interactions */
 button:active {
-    transform: scale(0.97);
-    box-shadow: 0 0 5px rgba(0,0,0,0.2);
-    transition: transform 0.1s ease;
+  transform: scale(0.97);
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  transition: transform 0.1s ease;
 }
 
-/* Cleanup layout */
+/* Layout Cleanup */
 section:last-of-type {
-    margin-bottom: 0;
-    padding-bottom: 0;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
-/* === Dark Mode Fix για Buttons & Toggle === */
+/* === Dark Mode Fix for Buttons === */
 .dark-mode button,
 .dark-mode #dark-mode-toggle {
   background-color: #444 !important;
   color: #f5f5f5 !important;
   border: none;
 }
-
-.dark-mode button:hover,
-.dark-mode #dark-mode-toggle:hover {
-  background-color: #666 !important;
-}
-
-/* === Fix: Button Visibility in Dark Mode === */
-.dark-mode button,
-.dark-mode #dark-mode-toggle {
-  background-color: #444 !important;
-  color: #f5f5f5 !important;
-  border: none;
-}
-
 .dark-mode button:hover,
 .dark-mode #dark-mode-toggle:hover {
   background-color: #666 !important;
