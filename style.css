@@ -4,15 +4,15 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 0;
+    margin-bottom: 0;
     transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* Dark Mode */
 body.dark-mode {
-    background: #222;
+    background: #2E2E2E;
     color: #f5f5f5;
 }
-
 .container.dark-mode {
     background: rgba(50, 50, 50, 0.9);
     color: #f5f5f5;
@@ -35,7 +35,6 @@ header {
     cursor: pointer;
     margin-top: 10px;
 }
-
 #dark-mode-toggle:hover {
     background: #555;
 }
@@ -45,12 +44,10 @@ nav ul {
     list-style-type: none;
     padding: 0;
 }
-
 nav ul li {
     display: inline;
     margin: 15px;
 }
-
 nav ul li a {
     text-decoration: none;
     font-size: 18px;
@@ -59,7 +56,6 @@ nav ul li a {
     border-radius: 5px;
     background: #e0f7fa;
 }
-
 nav ul li a:hover {
     background: #0288d1;
     color: white;
@@ -81,7 +77,6 @@ section {
     cursor: pointer;
     text-decoration: none;
 }
-
 #back-to-top:hover {
     background: #ffaa00;
 }
@@ -92,6 +87,8 @@ footer {
     color: white;
     padding: 15px;
     margin-top: 20px;
+    margin-bottom: 0;
+    padding-bottom: 15px;
 }
 
 /* Weather Icon Animations */
@@ -100,58 +97,71 @@ footer {
     height: 50px;
     display: inline-block;
 }
-
 .sunny {
     animation: sun-glow 3s infinite ease-in-out;
 }
-
 @keyframes sun-glow {
     0% { filter: brightness(100%); }
     50% { filter: brightness(120%); }
     100% { filter: brightness(100%); }
 }
-
 .cloudy {
     animation: cloud-drift 4s infinite linear;
 }
-
 @keyframes cloud-drift {
     0% { transform: translateX(0px); }
     100% { transform: translateX(10px); }
 }
-
 .rainy {
     animation: rain-fall 2s infinite linear;
 }
-
 @keyframes rain-fall {
     0% { transform: translateY(0px); opacity: 1; }
-    
     100% { transform: translateY(15px); opacity: 0; }
 }
 
-/* Dark Mode - Only Changes Background */
-body.dark-mode {
-    background-color: #2E2E2E; /* Soft dark gray */
-    color: #f5f5f5; /* Light text color */
+/* VaultVerse Featured Card */
+.featured-card {
+    background: #f5f5f5;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+.featured-card:hover {
+    transform: scale(1.015);
+}
+.featured-card h3 {
+    color: #2e3a59;
+    margin-top: 0;
+}
+.featured-card a {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-weight: bold;
+    color: #3367d6;
+    text-decoration: none;
+}
+.featured-card a:hover {
+    text-decoration: underline;
+}
+.dark-mode .featured-card {
+    background: #1a1a1a;
+    color: #eee;
+}
+.dark-mode .featured-card h3 {
+    color: #9db6ff;
 }
 
-/* Ensure all sections and containers are affected by dark mode */
-section.dark-mode, .container.dark-mode {
-    background: rgba(50, 50, 50, 0.9);
-    color: #f5f5f5;
-}
-/* Trim extra space below the footer */
-body {
-    margin-bottom: 0;
+/* Button Feedback */
+button:active {
+    transform: scale(0.97);
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    transition: transform 0.1s ease;
 }
 
-footer {
-    margin-bottom: 0;
-    padding-bottom: 15px;
-}
-
-/* Remove any extra margin/padding from the last section */
+/* Cleanup layout */
 section:last-of-type {
     margin-bottom: 0;
     padding-bottom: 0;
