@@ -365,6 +365,21 @@ body.dark-mode a:hover {
   font-weight: bold;
   cursor: pointer;
 }
+/* === Responsive Modal Image for Mobile === */
+@media screen and (max-width: 600px) {
+  .modal-content {
+    max-width: 95%;
+    max-height: 70vh;
+    border-radius: 6px;
+  }
+
+  .close {
+    top: 20px;
+    right: 20px;
+    font-size: 26px;
+  }
+}
+
 
 
 
