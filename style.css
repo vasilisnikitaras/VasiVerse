@@ -1,6 +1,6 @@
-/* === VasiVerse - Full style.css with dark mode fixed === */
+/* === VasiVerse - Full style.css with modular structure === */
 
-/* Global Styling */
+/* === Global Styling === */
 body {
   background: linear-gradient(to bottom, #f7f7f7, #e0e0e0);
   font-family: Arial, sans-serif;
@@ -14,7 +14,7 @@ body.dark-mode {
   color: #f5f5f5;
 }
 
-/* Header */
+/* === Header === */
 header {
   background: #0288d1;
   color: white;
@@ -22,7 +22,7 @@ header {
   font-size: 24px;
 }
 
-/* Dark Mode Toggle */
+/* === Dark Mode Toggle Button === */
 #dark-mode-toggle {
   background: #444;
   color: white;
@@ -32,19 +32,22 @@ header {
   margin-top: 10px;
   border: none;
 }
+
 #dark-mode-toggle:hover {
   background: #555;
 }
 
-/* Navigation */
+/* === Navigation === */
 nav ul {
   list-style-type: none;
   padding: 0;
 }
+
 nav ul li {
   display: inline;
   margin: 15px;
 }
+
 nav ul li a {
   text-decoration: none;
   font-size: 18px;
@@ -53,6 +56,7 @@ nav ul li a {
   border-radius: 5px;
   background: #e0f7fa;
 }
+
 nav ul li a:hover {
   background: #0288d1;
   color: white;
@@ -62,12 +66,13 @@ body.dark-mode nav ul li a {
   background: #333 !important;
   color: #f5f5f5 !important;
 }
+
 body.dark-mode nav ul li a:hover {
   background: #0288d1 !important;
   color: white !important;
 }
 
-/* Sections */
+/* === Sections === */
 section {
   padding: 20px;
   background: #ffffff;
@@ -75,23 +80,25 @@ section {
   margin: 1.5rem auto;
   max-width: 900px;
 }
+
 body.dark-mode section {
   background-color: #1e1e1e !important;
   color: #f5f5f5;
 }
 
-/* VaultVerse QR Section */
+/* === VaultVerse QR === */
 #vaultverse img {
   margin: 1rem 0;
   border: 3px solid #eee;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
+
 body.dark-mode #vaultverse img {
   border-color: #333;
 }
 
-/* VaultVerse Featured Card */
+/* === Featured Project Card === */
 .featured-card {
   background: #f5f5f5;
   padding: 1rem;
@@ -100,13 +107,16 @@ body.dark-mode #vaultverse img {
   box-shadow: 0 3px 6px rgba(0,0,0,0.1);
   transition: transform 0.2s ease;
 }
+
 .featured-card:hover {
   transform: scale(1.015);
 }
+
 .featured-card h3 {
   color: #2e3a59;
   margin-top: 0;
 }
+
 .featured-card a {
   display: inline-block;
   margin-top: 0.5rem;
@@ -114,140 +124,27 @@ body.dark-mode #vaultverse img {
   color: #3367d6;
   text-decoration: none;
 }
+
 .featured-card a:hover {
   text-decoration: underline;
 }
+
 body.dark-mode .featured-card {
   background: #1a1a1a;
   color: #eee;
 }
+
 body.dark-mode .featured-card h3 {
   color: #9db6ff;
 }
 
-/* Footer */
-footer {
-  background: #333;
-  color: white;
-  padding: 15px;
-  margin-top: 20px;
-  padding-bottom: 15px;
-}
-
-/* Back to Top */
-#back-to-top {
-  display: block;
-  background: #ffcc00;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-}
-#back-to-top:hover {
-  background: #ffaa00;
-}
-
-/* Weather Icons */
-.weather-icon {
-  width: 50px;
-  height: 50px;
-  display: inline-block;
-}
-.sunny {
-  animation: sun-glow 3s infinite ease-in-out;
-}
-@keyframes sun-glow {
-  0% { filter: brightness(100%); }
-  50% { filter: brightness(120%); }
-  100% { filter: brightness(100%); }
-}
-.cloudy {
-  animation: cloud-drift 4s infinite linear;
-}
-@keyframes cloud-drift {
-  0% { transform: translateX(0px); }
-  100% { transform: translateX(10px); }
-}
-.rainy {
-  animation: rain-fall 2s infinite linear;
-}
-@keyframes rain-fall {
-  0% { transform: translateY(0px); opacity: 1; }
-  100% { transform: translateY(15px); opacity: 0; }
-}
-
-/* Button Interactions */
-button {
-  background: #444;
-  color: white;
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-}
-button:hover {
-  background: #555;
-}
-button:active {
-  transform: scale(0.97);
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
-  transition: transform 0.1s ease;
-}
-
-/* Final Dark Mode Fixes */
-body.dark-mode * {
-  color: #f5f5f5 !important;
-  opacity: 1 !important;
-  background: transparent;
-}
-body.dark-mode a {
-  color: #9db6ff !important;
-  text-decoration: underline;
-}
-body.dark-mode a:hover {
-  color: #ffffff !important;
-}
-
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  padding-top: 1rem;
-}
-
-.project-card {
-  background-color: #1f1f1f;
-  border-radius: 12px;
-  padding: 1rem;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 0 12px #00ffffaa;
-}
-
-.project-card img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-}
-
-.project-card h3 {
-  margin: 0.5rem 0;
-  color: #00ffff;
-}
-
-/* 🎨 VasiVerse Gallery Styles */
+/* === Gallery Cards === */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 1rem;
+  padding-top: 1rem;
 }
 
 .project-card {
@@ -275,3 +172,96 @@ body.dark-mode a:hover {
   color: #00ffff;
 }
 
+/* === Weather Icons === */
+.weather-icon {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+}
+
+.sunny {
+  animation: sun-glow 3s infinite ease-in-out;
+}
+
+@keyframes sun-glow {
+  0% { filter: brightness(100%); }
+  50% { filter: brightness(120%); }
+  100% { filter: brightness(100%); }
+}
+
+.cloudy {
+  animation: cloud-drift 4s infinite linear;
+}
+
+@keyframes cloud-drift {
+  0% { transform: translateX(0px); }
+  100% { transform: translateX(10px); }
+}
+
+.rainy {
+  animation: rain-fall 2s infinite linear;
+}
+
+@keyframes rain-fall {
+  0% { transform: translateY(0px); opacity: 1; }
+  100% { transform: translateY(15px); opacity: 0; }
+}
+
+/* === Buttons === */
+button {
+  background: #444;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #555;
+}
+
+button:active {
+  transform: scale(0.97);
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  transition: transform 0.1s ease;
+}
+
+/* === Back to Top === */
+#back-to-top {
+  display: block;
+  background: #ffcc00;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#back-to-top:hover {
+  background: #ffaa00;
+}
+
+/* === Footer === */
+footer {
+  background: #333;
+  color: white;
+  padding: 15px;
+  margin-top: 20px;
+  padding-bottom: 15px;
+}
+
+/* === Final Dark Mode Fixes === */
+body.dark-mode * {
+  color: #f5f5f5 !important;
+  opacity: 1 !important;
+  background: transparent;
+}
+
+body.dark-mode a {
+  color: #9db6ff !important;
+  text-decoration: underline;
+}
+
+body.dark-mode a:hover {
+  color: #ffffff !important;
+}
