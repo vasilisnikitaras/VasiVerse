@@ -314,3 +314,24 @@ body.dark-mode a:hover {
     grid-template-columns: 1fr;
   }
 }
+#back-to-top {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #ffcc00;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: opacity 0.4s ease;
+}
+
+#back-to-top.visible {
+  display: block;
+}
+
+
