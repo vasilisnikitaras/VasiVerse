@@ -78,3 +78,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     loadAds(); // Run on page load
 });
+// === Show/Hide Back to Top Button on Scroll ===
+window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY || document.documentElement.scrollTop;
+    const backToTop = document.getElementById("back-to-top");
+
+    if (scrollY > 400) {
+        backToTop.classList.add("visible");
+    } else {
+        backToTop.classList.remove("visible");
+    }
+});
