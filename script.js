@@ -89,3 +89,12 @@ window.addEventListener("scroll", () => {
         backToTop.classList.remove("visible");
     }
 });
+// Allow closing modal with Escape key
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    const modal = document.getElementById("image-modal");
+    if (modal.style.display === "block") {
+      modal.style.display = "none";
+    }
+  }
+});
