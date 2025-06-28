@@ -109,3 +109,31 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.sunny {
+  animation: pulse 2s infinite ease-in-out;
+  color: #ffd700;
+  font-size: 48px;
+}
+
+.cloudy {
+  animation: floatCloud 4s infinite alternate;
+}
+
+@keyframes floatCloud {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(6px); }
+}
+
+.rainy {
+  animation: rainDrop 1.2s infinite linear;
+}
+
+@keyframes rainDrop {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(8px); opacity: 0; }
+}
