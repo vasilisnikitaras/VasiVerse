@@ -7,13 +7,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // === Restore Dark Mode from LocalStorage ===
   if (localStorage.getItem("darkMode") === "enabled") {
     document.body.classList.add("dark-mode");
-    document.querySelectorAll('section, .container').forEach(el => el.classList.add("dark-mode"));
+    document.querySelectorAll("section, .container").forEach(el => el.classList.add("dark-mode"));
   }
 
   // === Dark Mode Toggle ===
   toggleDarkMode.addEventListener("click", function () {
     document.body.classList.toggle("dark-mode");
-    document.querySelectorAll('section, .container').forEach(el => el.classList.toggle("dark-mode"));
+    document.querySelectorAll("section, .container").forEach(el => el.classList.toggle("dark-mode"));
     const mode = document.body.classList.contains("dark-mode") ? "enabled" : "disabled";
     localStorage.setItem("darkMode", mode);
   });
@@ -29,21 +29,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // === Back to Top Button
+  // === Back to Top Scroll
   backToTopButton.addEventListener("click", function () {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
-  // === Show/Hide Back to Top Button on Scroll
   window.addEventListener("scroll", () => {
     const scrollY = window.scrollY || document.documentElement.scrollTop;
     backToTopButton.classList.toggle("visible", scrollY > 400);
   });
 
-  // === Weather Fetch by City Name
-  
-  document.getElementById("search-btn").addEventListener("click", fetchWeather);
-
+  // === Weather Fetch Function
   async function fetchWeather() {
     const city = document.getElementById("city-input").value.trim();
     if (!city) {
@@ -52,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     try {
-      const apiKey = "1f1742f46396f018ec07cab6f270841a"; // ✅ Replace with your real API key
+      const apiKey = "1f1742f46396f018ec07cab6f270841a";
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric`;
 
       const response = await fetch(url);
@@ -106,54 +102,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  loadAds(); // 📢 Trigger ads on load
+  loadAds();
 });
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-}
-
-.sunny {
-  animation: pulse 2s infinite ease-in-out;
-  color: #ffd700;
-  font-size: 48px;
-}
-
-@keyframes floatCloud {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(6px); }
-}
-
-.cloudy {
-  animation: floatCloud 4s infinite alternate;
-  font-size: 48px;
-}
-
-@keyframes rainDrop {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(8px); opacity: 0; }
-}
-
-.rainy {
-  animation: rainDrop 1.2s infinite linear;
-  font-size: 48px;
-}
-#back-to-top {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: yellow;
-  color: black;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-  z-index: 999;
-  transition: opacity 0.3s ease;
-}
-
-#back-to-top.visible {
-  display: block;
-}
