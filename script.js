@@ -74,6 +74,8 @@ document.addEventListener("DOMContentLoaded", function () {
         <p>🌤️ Condition: ${data.weather[0].description}</p>
       `;
       weatherOutput.classList.add("show");
+
+      fetchForecast(data.name); // NEW: fetch 3-day forecast
     } catch (error) {
       console.error("Weather Fetch Error:", error);
       weatherOutput.innerHTML = "⚠️ Failed to retrieve weather data.";
@@ -96,11 +98,11 @@ document.addEventListener("DOMContentLoaded", function () {
           if (!response.ok) throw new Error("Weather fetch failed");
 
           const data = await response.json();
+          if (data.cod === "404" || data.cod === "400") {
+            weatherOutput.innerHTML = "⚠️ City not found. Please check the spelling.";
+            return;
+          }
 
-if (data.cod === "404" || data.cod === "400") {
-  weatherOutput.innerHTML = "⚠️ City not found. Please check the spelling.";
-  return;
-}  
           const condition = data.weather[0].main.toLowerCase();
           let icon = "🌍";
           if (condition.includes("clear")) icon = `<div class="weather-icon sunny">☀️</div>`;
@@ -114,6 +116,8 @@ if (data.cod === "404" || data.cod === "400") {
             <p>🌤️ Condition: ${data.weather[0].description}</p>
           `;
           weatherOutput.classList.add("show");
+
+          fetchForecast(data.name); // NEW: show forecast on auto-load too
         } catch (err) {
           console.warn("🌐 Auto-location failed:", err);
         }
@@ -124,7 +128,55 @@ if (data.cod === "404" || data.cod === "400") {
     );
   }
 
-  // === Escape Key Closes Modal
+  // === 3-Day Forecast Function ===
+  async function fetchForecast(city) {
+    const forecastContainer = document.getElementById("forecast-container");
+    if (!forecastContainer) return;
+    forecastContainer.innerHTML = "⏳ Loading forecast...";
+
+    try {
+      const apiKey = "1f1742f46396f018ec07cab6f270841a";
+      const url = `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error("Forecast fetch failed");
+      const data = await response.json();
+
+      const days = {};
+      data.list.forEach(item => {
+        const date = item.dt_txt.split(" ")[0];
+        if (!days[date]) days[date] = [];
+        days[date].push(item);
+      });
+
+      const dayKeys = Object.keys(days).slice(1, 4);
+      let html = '<div class="forecast-grid">';
+      dayKeys.forEach(date => {
+        const day = days[date][0];
+        const condition = day.weather[0].main.toLowerCase();
+        let icon = "🌍";
+        if (condition.includes("clear")) icon = "☀️";
+        else if (condition.includes("cloud")) icon = "☁️";
+        else if (condition.includes("rain")) icon = "🌧️";
+
+        html += `
+          <div class="forecast-card">
+            <h4>${new Date(date).toDateString()}</h4>
+            <div class="forecast-icon">${icon}</div>
+            <p>${day.main.temp.toFixed(1)}°C</p>
+            <p style="font-size: 14px;">${day.weather[0].description}</p>
+          </div>
+        `;
+      });
+
+      html += "</div>";
+      forecastContainer.innerHTML = html;
+    } catch (err) {
+      console.error("Forecast error:", err);
+      forecastContainer.innerHTML = "⚠️ Unable to load forecast.";
+    }
+  }
+
+  // === Escape Key Closes Modal ===
   window.addEventListener("keydown", e => {
     if (e.key === "Escape") {
       const modal = document.getElementById("image-modal");
