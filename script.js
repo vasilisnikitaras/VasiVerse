@@ -41,6 +41,9 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // === Weather Fetch by City Name
+  
+  document.getElementById("search-btn").addEventListener("click", fetchWeather);
+
   async function fetchWeather() {
     const city = document.getElementById("city-input").value.trim();
     if (!city) {
