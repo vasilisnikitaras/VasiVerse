@@ -390,5 +390,14 @@ body.dark-mode a:hover {
   animation: fadeInModal 0.35s ease;
 }
 
+/* ✅ Ensure visibility of the Google Translate dropdown in dark mode */
+body.dark-mode select.goog-te-combo {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+  border: 1px solid #555;
+  border-radius: 5px;
+  padding: 6px 10px;
+  font-size: 14px;
+}
 
 
