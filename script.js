@@ -7,51 +7,19 @@ document.addEventListener("DOMContentLoaded", function () {
   // === Restore Dark Mode from LocalStorage ===
   if (localStorage.getItem("darkMode") === "enabled") {
     document.body.classList.add("dark-mode");
-    document.querySelectorAll("section, .container").forEach(el => el.classList.add("dark-mode"));
+    document.querySelectorAll("section, .container").forEach(el =>
+      el.classList.add("dark-mode")
+    );
   }
 
   // === Dark Mode Toggle ===
   toggleDarkMode.addEventListener("click", function () {
     document.body.classList.toggle("dark-mode");
-    document.querySelectorAll("section, .container").forEach(el => el.classList.toggle("dark-mode"));
+    document.querySelectorAll("section, .container").forEach(el =>
+      el.classList.toggle("dark-mode")
+    );
     const mode = document.body.classList.contains("dark-mode") ? "enabled" : "disabled";
     localStorage.setItem("darkMode", mode);
-
-// === Auto-Detect Location & Fetch Weather ===
-if ("geolocation" in navigator) {
-  navigator.geolocation.getCurrentPosition(async position => {
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
-
-    try {
-      const apiKey = "1f1742f46396f018ec07cab6f270841a"; // Your API key
-      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-      const response = await fetch(url);
-      if (!response.ok) throw new Error("Weather fetch failed");
-      const data = await response.json();
-
-      const condition = data.weather[0].main.toLowerCase();
-      let icon = "🌍";
-      if (condition.includes("clear")) icon = `<div class="weather-icon sunny">☀️</div>`;
-      else if (condition.includes("cloud")) icon = `<div class="weather-icon cloudy">☁️</div>`;
-      else if (condition.includes("rain")) icon = `<div class="weather-icon rainy">🌧️</div>`;
-
-      const output = document.getElementById("weather-output");
-      output.innerHTML = `
-        <h3>📍 ${data.name}, ${data.sys.country}</h3>
-        ${icon}
-        <p>🌡️ Temperature: ${data.main.temp}°C</p>
-        <p>🌤️ Condition: ${data.weather[0].description}</p>
-      `;
-      output.classList.add("show"); // Add fade-in if you're using CSS animation
-    } catch (err) {
-      console.warn("🌐 Auto-location failed:", err);
-    }
-  }, error => {
-    console.log("📍 User denied location access.");
-  });
-}
-
   });
 
   // === Smooth Scroll for Nav Links ===
@@ -75,7 +43,7 @@ if ("geolocation" in navigator) {
     backToTopButton.classList.toggle("visible", scrollY > 400);
   });
 
-  // === Weather Fetch Function
+  // === Weather Fetch by City Name ===
   async function fetchWeather() {
     const city = document.getElementById("city-input").value.trim();
     if (!city) {
@@ -83,47 +51,11 @@ if ("geolocation" in navigator) {
       return;
     }
 
-// === Auto-Detect Location & Fetch Weather ===
-if ("geolocation" in navigator) {
-  navigator.geolocation.getCurrentPosition(async position => {
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
-
-    try {
-      const apiKey = "1f1742f46396f018ec07cab6f270841a"; // Your OpenWeather key
-      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-      const response = await fetch(url);
-      if (!response.ok) throw new Error("Weather fetch failed");
-      const data = await response.json();
-
-      const condition = data.weather[0].main.toLowerCase();
-      let icon = "🌍";
-      if (condition.includes("clear")) icon = `<div class="weather-icon sunny">☀️</div>`;
-      else if (condition.includes("cloud")) icon = `<div class="weather-icon cloudy">☁️</div>`;
-      else if (condition.includes("rain")) icon = `<div class="weather-icon rainy">🌧️</div>`;
-
-      const output = document.getElementById("weather-output");
-      output.innerHTML = `
-        <h3>📍 ${data.name}, ${data.sys.country}</h3>
-        ${icon}
-        <p>🌡️ Temperature: ${data.main.temp}°C</p>
-        <p>🌤️ Condition: ${data.weather[0].description}</p>
-      `;
-    } catch (err) {
-      console.warn("🌐 Auto-location failed:", err);
-    }
-  }, error => {
-    console.log("📍 User denied location access.");
-  });
-} else {
-  console.warn("Geolocation not supported");
-}
-
-    
-
     try {
       const apiKey = "1f1742f46396f018ec07cab6f270841a";
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric`;
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
+        city
+      )}&appid=${apiKey}&units=metric`;
 
       const response = await fetch(url);
       if (!response.ok) throw new Error("Network response error");
@@ -141,17 +73,54 @@ if ("geolocation" in navigator) {
         <p>🌡️ Temperature: ${data.main.temp}°C</p>
         <p>🌤️ Condition: ${data.weather[0].description}</p>
       `;
+      weatherOutput.classList.add("show");
     } catch (error) {
       console.error("Weather Fetch Error:", error);
       weatherOutput.innerHTML = "⚠️ Failed to retrieve weather data.";
     }
   }
 
-  // === Trigger Button for Weather
   searchBtn.addEventListener("click", fetchWeather);
 
+  // === Auto-Fetch Weather by Geolocation ===
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      async position => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+
+        try {
+          const apiKey = "1f1742f46396f018ec07cab6f270841a";
+          const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+          const response = await fetch(url);
+          if (!response.ok) throw new Error("Weather fetch failed");
+
+          const data = await response.json();
+          const condition = data.weather[0].main.toLowerCase();
+          let icon = "🌍";
+          if (condition.includes("clear")) icon = `<div class="weather-icon sunny">☀️</div>`;
+          else if (condition.includes("cloud")) icon = `<div class="weather-icon cloudy">☁️</div>`;
+          else if (condition.includes("rain")) icon = `<div class="weather-icon rainy">🌧️</div>`;
+
+          weatherOutput.innerHTML = `
+            <h3>📍 ${data.name}, ${data.sys.country}</h3>
+            ${icon}
+            <p>🌡️ Temperature: ${data.main.temp}°C</p>
+            <p>🌤️ Condition: ${data.weather[0].description}</p>
+          `;
+          weatherOutput.classList.add("show");
+        } catch (err) {
+          console.warn("🌐 Auto-location failed:", err);
+        }
+      },
+      error => {
+        console.log("📍 User denied location access.");
+      }
+    );
+  }
+
   // === Escape Key Closes Modal
-  window.addEventListener("keydown", (e) => {
+  window.addEventListener("keydown", e => {
     if (e.key === "Escape") {
       const modal = document.getElementById("image-modal");
       if (modal && modal.style.display === "block") {
@@ -160,7 +129,7 @@ if ("geolocation" in navigator) {
     }
   });
 
-  // === Load AdSense (Optional – Customize IDs)
+  // === Load AdSense (Optional – Customize IDs) ===
   function loadAds() {
     const adContainer = document.getElementById("ad-container");
     if (adContainer) {
