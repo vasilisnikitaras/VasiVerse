@@ -16,6 +16,42 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll("section, .container").forEach(el => el.classList.toggle("dark-mode"));
     const mode = document.body.classList.contains("dark-mode") ? "enabled" : "disabled";
     localStorage.setItem("darkMode", mode);
+
+// === Auto-Detect Location & Fetch Weather ===
+if ("geolocation" in navigator) {
+  navigator.geolocation.getCurrentPosition(async position => {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+
+    try {
+      const apiKey = "1f1742f46396f018ec07cab6f270841a"; // Your API key
+      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error("Weather fetch failed");
+      const data = await response.json();
+
+      const condition = data.weather[0].main.toLowerCase();
+      let icon = "🌍";
+      if (condition.includes("clear")) icon = `<div class="weather-icon sunny">☀️</div>`;
+      else if (condition.includes("cloud")) icon = `<div class="weather-icon cloudy">☁️</div>`;
+      else if (condition.includes("rain")) icon = `<div class="weather-icon rainy">🌧️</div>`;
+
+      const output = document.getElementById("weather-output");
+      output.innerHTML = `
+        <h3>📍 ${data.name}, ${data.sys.country}</h3>
+        ${icon}
+        <p>🌡️ Temperature: ${data.main.temp}°C</p>
+        <p>🌤️ Condition: ${data.weather[0].description}</p>
+      `;
+      output.classList.add("show"); // Add fade-in if you're using CSS animation
+    } catch (err) {
+      console.warn("🌐 Auto-location failed:", err);
+    }
+  }, error => {
+    console.log("📍 User denied location access.");
+  });
+}
+
   });
 
   // === Smooth Scroll for Nav Links ===
