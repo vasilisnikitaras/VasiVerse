@@ -471,5 +471,40 @@ body.dark-mode #team strong {
   opacity: 1;
 }
 
+#forecast-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.forecast-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.forecast-card {
+  background: #f4f4f4;
+  border-radius: 10px;
+  padding: 12px;
+  width: 150px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.forecast-card:hover {
+  transform: scale(1.04);
+}
+
+.forecast-icon {
+  font-size: 32px;
+  margin: 8px 0;
+}
+
+body.dark-mode .forecast-card {
+  background: #1e1e1e;
+  color: #f5f5f5;
+}
 
 
