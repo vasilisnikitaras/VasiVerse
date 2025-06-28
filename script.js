@@ -96,6 +96,11 @@ document.addEventListener("DOMContentLoaded", function () {
           if (!response.ok) throw new Error("Weather fetch failed");
 
           const data = await response.json();
+
+if (data.cod === "404" || data.cod === "400") {
+  weatherOutput.innerHTML = "⚠️ City not found. Please check the spelling.";
+  return;
+}  
           const condition = data.weather[0].main.toLowerCase();
           let icon = "🌍";
           if (condition.includes("clear")) icon = `<div class="weather-icon sunny">☀️</div>`;
