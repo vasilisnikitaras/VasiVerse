@@ -399,5 +399,18 @@ body.dark-mode select.goog-te-combo {
   padding: 6px 10px;
   font-size: 14px;
 }
+/* 🌙 Styling for the Team Section in Dark Mode */
+body.dark-mode #team {
+  background-color: #1a1a1a;
+  border: 1px solid #444;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.1);
+  color: #f0f0f0;
+  border-radius: 10px;
+  padding: 20px;
+}
+body.dark-mode #team strong {
+  color: #9db6ff;
+}
+
 
 
