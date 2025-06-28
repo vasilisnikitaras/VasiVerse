@@ -138,3 +138,22 @@ document.addEventListener("DOMContentLoaded", function () {
   animation: rainDrop 1.2s infinite linear;
   font-size: 48px;
 }
+#back-to-top {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: yellow;
+  color: black;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 999;
+  transition: opacity 0.3s ease;
+}
+
+#back-to-top.visible {
+  display: block;
+}
