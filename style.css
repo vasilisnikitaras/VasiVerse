@@ -831,4 +831,28 @@ body.dark .site-footer {
     width: 90%;
   }
 }
+.home-button {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.75rem 1.2rem;
+  background-color: #0077cc;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.home-button:hover {
+  background-color: #005fa3;
+}
+
+body.dark .home-button {
+  background-color: #3399ff;
+  color: #111;
+}
+
+body.dark .home-button:hover {
+  background-color: #66b2ff;
+}
 
