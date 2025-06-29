@@ -5,37 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About – VasiVerse</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <script src="https://unpkg.com/scrollreveal"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script defer src="https://unpkg.com/scrollreveal"></script>
 </head>
 <body>
-  <!-- 🌙/☀️ Dark Mode Toggle -->
-  <button id="theme-toggle">🌙</button>
+  <!-- 🌗 Theme Toggle -->
+  <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
 
   <header>
-    <h1>👋 Hello! I'm <span id="typed"></span></h1>
+    <h1>👋 Hello! I'm <span id="typed">Vasilis</span></h1>
     <p>Full-stack developer from Montreal, passionate about tools & creative code.</p>
   </header>
 
   <main>
     <section class="section fade-in">
       <h2>🧠 Who I Am</h2>
-      <p>I'm Vasilis — I craft web apps that solve problems and look great doing it. I believe in intuitive design, fast performance, and fun UI.</p>
+      <p>
+        I'm Vasilis — I craft digital tools that solve real-world problems with simple code and thoughtful UI.
+      </p>
     </section>
 
     <section class="section fade-in">
       <h2>🚀 What I Build</h2>
       <ul>
-        <li>🌤️ Real-time weather app with API integration</li>
-        <li>🔐 VaultVerse: QR-based secure manager</li>
-        <li>📱 Responsive layouts + mobile-first design</li>
-        <li>⚙️ GitHub Pages + SEO-ready static sites</li>
+        <li>🌤️ Weather App with API integration</li>
+        <li>🔐 VaultVerse: secure QR-based access manager</li>
+        <li>📱 Responsive, mobile-first layouts</li>
+        <li>⚙️ GitHub-hosted SEO-ready sites</li>
       </ul>
     </section>
 
     <section class="section fade-in">
       <h2>🎯 Why I Created VasiVerse</h2>
-      <p>To experiment, explore ideas, and bring creative solutions to life. This is where I learn and share — one project at a time.</p>
+      <p>
+        VasiVerse is my creative lab — a place to build, test, and share ideas I care about.
+      </p>
     </section>
 
     <section class="section fade-in contact-section">
@@ -57,50 +61,47 @@
     </section>
   </main>
 
-  <!-- 🔝 Scroll-to-top -->
-  <button id="back-to-top" title="Back to top">🔝</button>
+  <!-- 🔝 Back to top -->
+  <button id="back-to-top" title="Scroll to top">🔝</button>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <p>Made with ❤️ by <a href="https://github.com/vasilisnikitaras" target="_blank">Vasilis Nikitaras</a></p>
   </footer>
 
   <!-- Scripts -->
   <script>
-    // Typed Text
-    new Typed("#typed", {
-      strings: ["Vasilis", "a Developer", "a Creator", "a Problem Solver"],
-      typeSpeed: 80,
-      backSpeed: 40,
-      loop: true
-    });
+    // Typed text
+    document.addEventListener("DOMContentLoaded", () => {
+      new Typed("#typed", {
+        strings: ["Vasilis", "a Developer", "a Creator", "a Problem Solver"],
+        typeSpeed: 80,
+        backSpeed: 40,
+        loop: true
+      });
 
-    // Scroll Reveal
-    ScrollReveal().reveal('.fade-in', {
-      delay: 200,
-      distance: '40px',
-      origin: 'bottom',
-      duration: 800,
-      easing: 'ease-in-out',
-      reset: false
-    });
+      ScrollReveal().reveal(".fade-in", {
+        delay: 150,
+        distance: "30px",
+        origin: "bottom",
+        duration: 800,
+        reset: false
+      });
 
-    // Back to top
-    const scrollBtn = document.getElementById("back-to-top");
-    scrollBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+      document.getElementById("back-to-top").onclick = () =>
+        window.scrollTo({ top: 0, behavior: "smooth" });
 
-    // 🌙/☀️ Dark Mode Toggle
-    const themeToggle = document.getElementById("theme-toggle");
-    const currentTheme = localStorage.getItem("theme");
-    if (currentTheme === "dark") document.body.classList.add("dark");
-
-    themeToggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark");
-      const theme = document.body.classList.contains("dark") ? "dark" : "light";
-      localStorage.setItem("theme", theme);
-      themeToggle.textContent = theme === "dark" ? "☀️" : "🌙";
+      const themeToggle = document.getElementById("theme-toggle");
+      const current = localStorage.getItem("theme");
+      if (current === "dark") {
+        document.body.classList.add("dark");
+        themeToggle.textContent = "☀️";
+      }
+      themeToggle.onclick = () => {
+        document.body.classList.toggle("dark");
+        const isDark = document.body.classList.contains("dark");
+        themeToggle.textContent = isDark ? "☀️" : "🌙";
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+      };
     });
   </script>
 </body>
