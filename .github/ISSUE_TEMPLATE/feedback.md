@@ -8,16 +8,16 @@ assignees: vasilisnikitaras
 
 ## ✨ What would you like to suggest?
 
-<!-- Be as specific as possible! -->
+<!-- Be as specific and constructive as possible -->
 
 ---
 
 ## 🧠 Why is this valuable?
 
-<!-- Who would benefit and how? -->
+<!-- Who will benefit, and how will it improve the project? -->
 
 ---
 
 ## 📸 Screenshot (if applicable)
 
-<!-- You can drag and drop an image here -->
+<!-- Drop your image here or drag into this box -->
