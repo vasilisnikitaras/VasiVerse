@@ -581,3 +581,27 @@ nav a:hover {
 html {
   scroll-behavior: smooth;
 }
+
+#back-to-top {
+  display: none; /* Αρχικά κρυφό */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: opacity 0.4s ease;
+  opacity: 0;
+}
+
+#back-to-top.show {
+  display: block;
+  opacity: 1;
+}
+
