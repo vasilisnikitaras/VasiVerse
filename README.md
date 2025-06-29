@@ -1,6 +1,12 @@
 # 🌌 VasiVerse
 
 <p align="center">
+  <a href="https://vasilisnikitaras.github.io/VasiVerse" target="_blank">
+    <img src="https://img.shields.io/badge/🔗 Live Demo-VasiVerse-blue?style=for-the-badge&logo=github" alt="Live Demo Badge" />
+  </a>
+</p>
+
+<p align="center">
   <img src="assets/vasiverse-preview.jpeg" width="100%" alt="VasiVerse Screenshot Banner" />
 </p>
 
