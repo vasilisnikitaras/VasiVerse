@@ -26,6 +26,21 @@
 - 🌓 Dark/light toggle theme  
 - 📬 Contact & About pages with personality  
 - ⚖️ Privacy-first: AdSense-ready, GDPR-aware, and 100% static
+- ## 🖼️ Feature Previews
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="assets/weather-preview.jpeg" width="300" alt="Weather App Preview" /><br />
+      <sub>🌤️ Real-time Weather App</sub>
+    </td>
+    <td align="center">
+      <img src="assets/vaultverse-preview.jpeg" width="300" alt="VaultVerse Preview" /><br />
+      <sub>🔐 VaultVerse – QR Secure Manager</sub>
+    </td>
+  </tr>
+</table>
+
 
 ---
 
