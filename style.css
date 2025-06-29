@@ -856,3 +856,7 @@ body.dark .home-button:hover {
   background-color: #66b2ff;
 }
 
+.no-scrollreveal .fade-in {
+  opacity: 1 !important;
+  transform: none !important;
+}
