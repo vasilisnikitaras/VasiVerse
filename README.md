@@ -46,6 +46,20 @@
     </td>
   </tr>
 </table>
+---
+
+## 📅 Roadmap
+
+- [x] Deploy site via GitHub Pages  
+- [x] Add preview banner and mini gallery  
+- [x] Integrate Weather App with real-time API  
+- [x] Add VaultVerse QR access  
+- [ ] Animate dark/light theme toggle  
+- [ ] Add mobile splash screen + custom favicon  
+- [ ] Create sitemap.xml for SEO  
+- [ ] Netlify deployment with custom domain  
+- [ ] Translate content (EN ↔ GR)  
+- [ ] Add “Tips” blog page for VasiTools ✍️  
 
 
 ---
