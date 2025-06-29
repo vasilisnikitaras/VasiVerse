@@ -311,7 +311,7 @@
   });
 </script>
 -->
-
+<!--
 <script>
   function toggleMenu() {
     const menu = document.getElementById("mobile-menu");
@@ -324,6 +324,35 @@
       top: 0,
       behavior: "smooth"
     });
+  });
+</script>
+-->
+
+
+
+  <script>
+  function toggleMenu() {
+    const menu = document.getElementById("mobile-menu");
+    menu.classList.toggle("active");
+  }
+
+  // 🔝 Back to Top behavior
+  const backToTopBtn = document.getElementById("back-to-top");
+
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+
+  // 👀 Show/Hide on scroll
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      backToTopBtn.classList.add("show");
+    } else {
+      backToTopBtn.classList.remove("show");
+    }
   });
 </script>
 
