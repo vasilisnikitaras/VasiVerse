@@ -2,196 +2,106 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Vasilis Nikitaras</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>
-    <h1>👋 About Me — Vasilis Nikitaras</h1>
-    <p>Developer. Maker. Problem Solver. Montreal-based & weather-obsessed ☁️</p>
-  </header>
-  
-<!-- <h2>I’m a <span id="typed"></span></h2> -->
-
-  <section class="section">
-  <h2>🚀 What I Build</h2>
-  <ul>...</ul>
-</section>
-
-
-<section class="about-full">
-  <h2>🧠 Who I Am</h2>
-  <p>
-    I'm Vasilis, a web developer from Montreal who builds functional, lightweight front-end tools.  
-    From weather forecasts to QR managers, my focus is clear: solve everyday problems through creativity.
-  </p>
-
-  <h2>🚀 What I Build</h2>
-  <ul>
-    <li>🌤️ Real-time Weather App with external API integration</li>
-    <li>🔐 VaultVerse — QR-secured password access system</li>
-    <li>📱 Responsive UI layouts in light & dark mode</li>
-  </ul>
-
-  <h2>🎯 Why I Created VasiVerse</h2>
-  <p>
-    VasiVerse is more than a portfolio — it’s my personal universe.  
-    It’s where I test, learn, and share what I love building.
-  </p>
-</section>
-
-  <section class="contact-section">
-  <h1>📬 Get in Touch</h1>
-  <p>Have feedback, ideas, or just want to say hi? I'm always open to connect.</p>
-
-  <div class="contact-cards">
-    <div class="card">
-      <h3>✉️ Email</h3>
-      <p><a href="mailto:vasilis@example.com">vasilis@example.com</a></p>
-    </div>
-    <div class="card">
-      <h3>🌐 GitHub</h3>
-      <p><a href="https://github.com/vasilisnikitaras" target="_blank">github.com/vasilisnikitaras</a></p>
-    </div>
-    <div class="card">
-      <h3>💼 LinkedIn</h3>
-      <p><a href="https://www.linkedin.com/in/vasilisnikitaras" target="_blank">/in/vasilisnikitaras</a></p>
-    </div>
-  </div>
-
-  <p style="margin-top:2rem;">
-    Want to contribute? → <a href="https://github.com/vasilisnikitaras/VasiVerse/issues">Open an Issue</a>  
-    or read the <a href="https://github.com/vasilisnikitaras/VasiVerse/blob/main/CONTRIBUTING.md">Contributing Guide</a>.
-  </p>
-</section>
-
-
-  
-<main>
-  <section class="fade-in">
-    <img src="assets/vasilis-avatar.png" alt="Vasilis Nikitaras" width="120" style="border-radius: 50%; margin-bottom: 1rem;" />
-
-    <h2>👨‍💻 Who I Am</h2>
-    <p>I’m Vasilis, a full-stack developer based in Montreal. I build digital tools like VasiVerse to blend design, function, and innovation.</p>
-
-    <h2>🛠️ What I Do</h2>
-    <ul>
-      <li>Weather & forecasting apps with API integrations</li>
-      <li>Secure tools like VaultVerse</li>
-      <li>Responsive UI/UX for mobile-first design</li>
-      <li>SEO-aware static websites and GitHub Pages deployment</li>
-    </ul>
-
-    <h2>🚀 Why I Built VasiVerse</h2>
-    <p>To create a space where I can launch ideas, test new concepts, and help others build tech that matters.</p>
-  </section>
-</main>
-
-
-
-
-  
-<!--
-  <main>
-    <section class="fade-in">
-      <h2>🎯 Mission</h2>
-      <p>I built VasiVerse to bring together my creative tools, real-time tech experiments, and a love for intuitive UI.</p>
-
-      <h2>🛠️ Skills & Focus</h2>
-      <ul>
-        <li>Full-stack Web Development (HTML, CSS, JS)</li>
-        <li>API Integrations (like OpenWeather)</li>
-        <li>User-First Design & Mobile Optimization</li>
-        <li>Project Deployment & SEO Basics</li>
-      </ul>
-
-      <h2>💬 Always Building</h2>
-      <p>If you love building cool stuff on the web or want to collaborate, let’s connect!</p>
-    </section>
-  </main>
--->
-  <footer>
-    <p>© 2025 VasiVerse | <a href="index.html">Home</a> | <a href="privacy.html">Privacy</a> | <a href="terms.html">Terms</a></p>
-    <button id="back-to-top">🔝 Back to Top</button>
-  </footer>
-
-  <script>
-    document.getElementById("back-to-top").addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  </script>
-</body>
-</html>
-
-
-
-
-
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About – VasiVerse</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
 </head>
 <body>
+  <!-- 🌙/☀️ Dark Mode Toggle -->
+  <button id="theme-toggle">🌙</button>
+
   <header>
-    <h1>👤 About VasiVerse</h1>
-    <p>Discover the soul behind the source code.</p>
+    <h1>👋 Hello! I'm <span id="typed"></span></h1>
+    <p>Full-stack developer from Montreal, passionate about tools & creative code.</p>
   </header>
 
   <main>
-    <section>
-      <h2>Hi, I'm Vasilis 👨‍💻</h2>
-      <p>I'm a developer, designer, and lifelong learner based in Montreal. VasiVerse is my personal tech playground — a collection of tools, experiments, and ideas built with care using HTML, CSS, JavaScript, and open APIs.</p>
-      <p>I believe in creating things that are <strong>simple</strong>, <strong>useful</strong>, and <strong>fun</strong>.</p>
+    <section class="section fade-in">
+      <h2>🧠 Who I Am</h2>
+      <p>I'm Vasilis — I craft web apps that solve problems and look great doing it. I believe in intuitive design, fast performance, and fun UI.</p>
     </section>
 
-    <section>
-      <h2>What VasiVerse Offers 🚀</h2>
+    <section class="section fade-in">
+      <h2>🚀 What I Build</h2>
       <ul>
-        <li>Real-time weather forecasting tools</li>
-        <li>AI-enhanced user experiences</li>
-        <li>Open-source side projects</li>
-        <li>Custom-built solutions for real-world needs</li>
+        <li>🌤️ Real-time weather app with API integration</li>
+        <li>🔐 VaultVerse: QR-based secure manager</li>
+        <li>📱 Responsive layouts + mobile-first design</li>
+        <li>⚙️ GitHub Pages + SEO-ready static sites</li>
       </ul>
     </section>
 
-    <section>
-      <h2>Mission 🧭</h2>
-      <p>To make useful, creative, and accessible tech that empowers everyday users and inspires future builders.</p>
+    <section class="section fade-in">
+      <h2>🎯 Why I Created VasiVerse</h2>
+      <p>To experiment, explore ideas, and bring creative solutions to life. This is where I learn and share — one project at a time.</p>
+    </section>
+
+    <section class="section fade-in contact-section">
+      <h2>📬 Get in Touch</h2>
+      <div class="contact-cards">
+        <div class="card">
+          <h3>✉️ Email</h3>
+          <p><a href="mailto:vasilis@example.com">vasilis@example.com</a></p>
+        </div>
+        <div class="card">
+          <h3>🌐 GitHub</h3>
+          <p><a href="https://github.com/vasilisnikitaras" target="_blank">github.com/vasilisnikitaras</a></p>
+        </div>
+        <div class="card">
+          <h3>💼 LinkedIn</h3>
+          <p><a href="https://linkedin.com/in/vasilisnikitaras" target="_blank">/in/vasilisnikitaras</a></p>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer>
-    <p><a href="index.html">← Back to Home</a></p>
-    <p>© 2025 VasiVerse | Built by Vasilis Nikitaras</p>
+  <!-- 🔝 Scroll-to-top -->
+  <button id="back-to-top" title="Back to top">🔝</button>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>Made with ❤️ by <a href="https://github.com/vasilisnikitaras" target="_blank">Vasilis Nikitaras</a></p>
   </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-<script>
-  new Typed("#typed", {
-    strings: ["Developer.", "Problem Solver.", "Weather Nerd.", "QR Whisperer."],
-    typeSpeed: 70,
-    backSpeed: 40,
-    loop: true
-  });
-</script>
-<script src="https://unpkg.com/scrollreveal"></script>
-<script>
-  ScrollReveal().reveal('.section', {
-    delay: 200,
-    distance: '40px',
-    origin: 'bottom',
-    duration: 800,
-    easing: 'ease',
-    reset: false
-  });
-</script>
+  <!-- Scripts -->
+  <script>
+    // Typed Text
+    new Typed("#typed", {
+      strings: ["Vasilis", "a Developer", "a Creator", "a Problem Solver"],
+      typeSpeed: 80,
+      backSpeed: 40,
+      loop: true
+    });
 
+    // Scroll Reveal
+    ScrollReveal().reveal('.fade-in', {
+      delay: 200,
+      distance: '40px',
+      origin: 'bottom',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: false
+    });
 
+    // Back to top
+    const scrollBtn = document.getElementById("back-to-top");
+    scrollBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // 🌙/☀️ Dark Mode Toggle
+    const themeToggle = document.getElementById("theme-toggle");
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme === "dark") document.body.classList.add("dark");
+
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      const theme = document.body.classList.contains("dark") ? "dark" : "light";
+      localStorage.setItem("theme", theme);
+      themeToggle.textContent = theme === "dark" ? "☀️" : "🌙";
+    });
+  </script>
 </body>
 </html>
