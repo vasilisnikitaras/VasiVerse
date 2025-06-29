@@ -1,5 +1,9 @@
 # 🌌 VasiVerse
 
+<p align="center">
+  <img src="assets/vasiverse-preview.jpeg" width="100%" alt="VasiVerse Screenshot Banner" />
+</p>
+
 > "A universe of ideas, creativity, and innovation.  
 > This repository is a space for exploration, experimentation, and building something extraordinary."
 
