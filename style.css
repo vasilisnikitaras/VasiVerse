@@ -523,4 +523,34 @@ nav a:hover {
   text-decoration: underline;
 }
 
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 10px;
+}
+
+#mobile-menu {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Mobile styling */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  #mobile-menu {
+    display: none;
+    flex-direction: column;
+    background-color: #111;
+    padding: 1rem;
+  }
+
+  #mobile-menu.active {
+    display: flex;
+  }
+}
+
 
