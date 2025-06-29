@@ -289,7 +289,7 @@
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 <script src="script.js"></script>
-
+<!--
 <script>
   function toggleMenu() {
     const menu = document.getElementById("mobile-menu");
@@ -310,7 +310,24 @@
     observer.observe(el);
   });
 </script>
+-->
 
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("mobile-menu");
+    menu.classList.toggle("active");
+  }
+
+  // Back to top button behavior
+  document.getElementById("back-to-top").addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+</script>
+
+  
   
 </body>
 </html>
