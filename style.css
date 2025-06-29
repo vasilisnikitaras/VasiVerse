@@ -552,5 +552,19 @@ nav a:hover {
     display: flex;
   }
 }
+/* Hide desktop nav by default on mobile */
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+  }
+}
+
+/* Show desktop nav on larger screens */
+@media (min-width: 769px) {
+  #mobile-menu,
+  .hamburger {
+    display: none;
+  }
+}
 
 
