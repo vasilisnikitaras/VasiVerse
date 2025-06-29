@@ -2,108 +2,86 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact VasiVerse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact – VasiVerse</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/scrollreveal"></script>
 </head>
 <body>
+  <!-- 🌙 Theme toggle -->
+  <button id="theme-toggle">🌙</button>
+
   <header>
-    <h1>📬 Contact</h1>
-    <p>Have feedback or want to connect? Drop me a message!</p>
+    <h1>📬 Let’s Connect</h1>
+    <p>I’m always open to feedback, ideas, and collaborations!</p>
   </header>
 
-
-<main>
-  <section class="fade-in">
-    <form id="contact-form" action="mailto:hello@vasiverse.com" method="post" enctype="text/plain">
-      <label for="name">👤 Your Name</label><br/>
-      <input type="text" id="name" name="name" required><br/><br/>
-
-      <label for="email">📧 Your Email</label><br/>
-      <input type="email" id="email" name="email" required><br/><br/>
-
-      <label for="message">💬 Message</label><br/>
-      <textarea id="message" name="message" rows="5" required></textarea><br/><br/>
-
-      <button type="submit">Send Message 🚀</button>
-    </form>
-
-    <p id="confirmation" style="display: none; color: green; font-weight: bold; margin-top: 1rem;">
-      ✅ Your message has been prepared! Check your email app to send it.
-    </p>
-  </section>
-</main>
-
-
-
-
-
-  
-<!--
   <main>
-    <section class="fade-in">
-      <form action="mailto:hello@vasiverse.com" method="post" enctype="text/plain">
-        <label for="name">👤 Your Name</label><br/>
-        <input type="text" id="name" name="name" required><br/><br/>
+    <!-- 📇 Contact Cards -->
+    <section class="section contact-section fade-in">
+      <div class="contact-cards">
+        <div class="card">
+          <h3>✉️ Email</h3>
+          <p><a href="mailto:vasilis@example.com">vasilis@example.com</a></p>
+        </div>
+        <div class="card">
+          <h3>🌐 GitHub</h3>
+          <p><a href="https://github.com/vasilisnikitaras" target="_blank">github.com/vasilisnikitaras</a></p>
+        </div>
+        <div class="card">
+          <h3>💼 LinkedIn</h3>
+          <p><a href="https://linkedin.com/in/vasilisnikitaras" target="_blank">/in/vasilisnikitaras</a></p>
+        </div>
+      </div>
+    </section>
 
-        <label for="email">📧 Your Email</label><br/>
-        <input type="email" id="email" name="email" required><br/><br/>
-
-        <label for="message">💬 Message</label><br/>
-        <textarea id="message" name="message" rows="5" required></textarea><br/><br/>
-
-        <button type="submit">Send Message 🚀</button>
+    <!-- 📤 Contact Form -->
+    <section class="section fade-in">
+      <h2>Or Send a Message</h2>
+      <form action="https://formspree.io/f/YOUR-ID" method="POST" class="contact-form">
+        <input type="text" name="name" placeholder="Your name" required />
+        <input type="email" name="_replyto" placeholder="Your email" required />
+        <textarea name="message" placeholder="Your message..." rows="5" required></textarea>
+        <button type="submit">Send Message</button>
       </form>
     </section>
   </main>
--->
-  <footer>
-    <p>© 2025 VasiVerse | <a href="index.html">Home</a> | <a href="privacy.html">Privacy</a> | <a href="terms.html">Terms</a></p>
-    <button id="back-to-top">🔝 Back to Top</button>
+
+  <!-- 🔝 Scroll to top -->
+  <button id="back-to-top" title="Back to top">🔝</button>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <p>Made with ❤️ by <a href="https://github.com/vasilisnikitaras" target="_blank">Vasilis Nikitaras</a></p>
   </footer>
 
+  <!-- Scripts -->
   <script>
+    // Scroll reveal
+    ScrollReveal().reveal('.fade-in', {
+      delay: 150,
+      distance: '40px',
+      origin: 'bottom',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    // Back to top
     document.getElementById("back-to-top").addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
+
+    // Dark mode
+    const toggle = document.getElementById("theme-toggle");
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme === "dark") document.body.classList.add("dark");
+    toggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      const theme = document.body.classList.contains("dark") ? "dark" : "light";
+      localStorage.setItem("theme", theme);
+      toggle.textContent = theme === "dark" ? "☀️" : "🌙";
+    });
   </script>
-</body>
-</html>
-
-
-
-<!-- !DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact – VasiVerse</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <header>
-    <h1>📬 Contact</h1>
-    <p>Let’s connect, collaborate, or just talk shop.</p>
-  </header>
-
-  <main>
-    <section>
-      <h2>Ways to Reach Me</h2>
-      <ul>
-        <li>Email: <a href="mailto:hello@vasiverse.com">hello@vasiverse.com</a></li>
-        <li>GitHub: <a href="https://github.com/vasilisnikitaras" target="_blank">github.com/vasilisnikitaras</a></li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Want to Collaborate?</h2>
-      <p>If you're building something cool or want to give feedback on a project, reach out! I'm always up for good ideas and better code.</p>
-    </section>
-  </main>
-
-  <footer>
-    <p><a href="index.html">← Back to Home</a></p>
-    <p>© 2025 VasiVerse | Built by Vasilis Nikitaras</p>
-  </footer>
 </body>
 </html>
