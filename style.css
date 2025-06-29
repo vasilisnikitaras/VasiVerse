@@ -860,3 +860,10 @@ body.dark .home-button:hover {
   opacity: 1 !important;
   transform: none !important;
 }
+/* Fallback: show fade-in content if ScrollReveal fails */
+.no-scrollreveal .fade-in {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+
