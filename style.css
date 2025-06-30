@@ -891,11 +891,18 @@ body.dark .home-button:hover {
   opacity: 1 !important;
   transform: none !important;
 }
-
+/*
 body.dark {
   background-color: #111;
   color: #f0f0f0;
 }
+*/
+
+body.dark {
+    background-color: #111;
+    color: #121212;
+}
+
 
 body.dark .card {
   background-color: #1a1a1a;
