@@ -883,4 +883,8 @@ body.dark .home-button:hover {
 }
 
 
+.no-scrollreveal .fade-in {
+  opacity: 1 !important;
+  transform: none !important;
+}
 
