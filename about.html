@@ -124,6 +124,20 @@ try {
 
 </script>
 
+<script>
+  try {
+    ScrollReveal().reveal(".fade-in", {
+      delay: 150,
+      distance: "30px",
+      origin: "bottom",
+      duration: 800,
+      reset: false
+    });
+  } catch (e) {
+    document.body.classList.add("no-scrollreveal");
+  }
+</script>
+
 
   
 </body>
