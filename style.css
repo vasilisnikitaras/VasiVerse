@@ -876,12 +876,12 @@ body.dark .home-button:hover {
 .home-button:hover {
   opacity: 0.7;
 }
-
+/*
 .no-scrollreveal .fade-in {
   opacity: 1 !important;
   transform: none !important;
 }
-
+*/
 
 .no-scrollreveal .fade-in {
   opacity: 1 !important;
