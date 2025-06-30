@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact – VasiVerse</title>
   <link rel="stylesheet" href="style.css" />
-<script defer src="https://unpkg.com/scrollreveal"></script>
+  <script defer src="https://unpkg.com/scrollreveal"></script>
 </head>
 <body>
   <!-- 🌙 Theme toggle -->
-  <button id="theme-toggle">🌙</button>
+  <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
 
   <header>
     <h1>📬 Let’s Connect</h1>
@@ -45,13 +45,15 @@
         <button type="submit">Send Message</button>
       </form>
     </section>
+
+    <!-- 🏠 Back to Home -->
+    <section class="section fade-in">
+      <a href="index.html" class="home-button">← Back to Home</a>
+    </section>
   </main>
 
   <!-- 🔝 Scroll to top -->
   <button id="back-to-top" title="Back to top">🔝</button>
-<section class="section fade-in">
-  <a href="index.html" class="home-button">← Back to Home</a>
-</section>
 
   <!-- Footer -->
   <footer class="site-footer">
@@ -60,60 +62,40 @@
 
   <!-- Scripts -->
   <script>
-    // Scroll reveal
-    ScrollReveal().reveal('.fade-in', {
-      delay: 150,
-      distance: '40px',
-      origin: 'bottom',
-      duration: 800,
-      easing: 'ease-in-out',
-      reset: false
-    });
+    document.addEventListener("DOMContentLoaded", () => {
+      // ScrollReveal + fallback
+      try {
+        ScrollReveal().reveal(".fade-in", {
+          delay: 150,
+          distance: "40px",
+          origin: "bottom",
+          duration: 800,
+          easing: "ease-in-out",
+          reset: false
+        });
+      } catch (e) {
+        document.body.classList.add("no-scrollreveal");
+      }
 
-    // Back to top
-    document.getElementById("back-to-top").addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
+      // Back to top
+      document.getElementById("back-to-top").addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
 
-    // Dark mode
-    const toggle = document.getElementById("theme-toggle");
-    const currentTheme = localStorage.getItem("theme");
-    if (currentTheme === "dark") document.body.classList.add("dark");
-    toggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark");
-      const theme = document.body.classList.contains("dark") ? "dark" : "light";
-      localStorage.setItem("theme", theme);
-      toggle.textContent = theme === "dark" ? "☀️" : "🌙";
+      // Dark mode toggle
+      const toggle = document.getElementById("theme-toggle");
+      const currentTheme = localStorage.getItem("theme");
+      if (currentTheme === "dark") {
+        document.body.classList.add("dark");
+        toggle.textContent = "☀️";
+      }
+      toggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+        const isDark = document.body.classList.contains("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+        toggle.textContent = isDark ? "☀️" : "🌙";
+      });
     });
   </script>
-  
-<script>
-try {
-  ScrollReveal().reveal(".fade-in", {
-    delay: 150,
-    distance: "40px",
-    origin: "bottom",
-    duration: 800,
-    easing: "ease-in-out",
-    reset: false
-  });
-} catch (e) {
-  document.body.classList.add("no-scrollreveal");
-}
-</script>  
-<script>
-try {
-  ScrollReveal().reveal(".fade-in", {
-    delay: 150,
-    distance: "40px",
-    origin: "bottom",
-    duration: 800,
-    easing: "ease-in-out",
-    reset: false
-  });
-} catch (e) {
-  document.body.classList.add("no-scrollreveal");
-}
-  </script  
 </body>
 </html>
