@@ -83,19 +83,21 @@
       toggle.textContent = theme === "dark" ? "☀️" : "🌙";
     });
   </script>
+  
 <script>
-
 try {
   ScrollReveal().reveal(".fade-in", {
     delay: 150,
-    distance: "30px",
+    distance: "40px",
     origin: "bottom",
     duration: 800,
+    easing: "ease-in-out",
     reset: false
   });
 } catch (e) {
   document.body.classList.add("no-scrollreveal");
 }
+
 </script>  
 </body>
 </html>
