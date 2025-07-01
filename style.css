@@ -912,3 +912,9 @@ body.dark .card {
   transform: none !important;
 }
 
+.no-scrollreveal .fade-in {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+
