@@ -849,15 +849,6 @@ body.dark .home-button:hover {
   background-color: #66b2ff;
 }
 
-.no-scrollreveal .fade-in {
-  opacity: 1 !important;
-  transform: none !important;
-}
-/* Fallback: show fade-in content if ScrollReveal fails */
-.no-scrollreveal .fade-in {
-  opacity: 1 !important;
-  transform: none !important;
-}
 .home-button {
   display: inline-block;
   margin-top: 2rem;
@@ -870,12 +861,6 @@ body.dark .home-button:hover {
   opacity: 0.7;
 }
 
-}
-.no-scrollreveal .fade-in {
-  opacity: 1 !important;
-  transform: none !important;
-}
-
 body.dark {
     background-color: #111;
     color: #121212;
@@ -886,16 +871,13 @@ body.dark .card {
   border-color: #333;
 }
 
-.no-scrollreveal .fade-in {
-  opacity: 1 !important;
-  transform: none !important;
-}
-
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
+
+/* ✅ Fallback: show content if ScrollReveal fails */
 .no-scrollreveal .fade-in {
   opacity: 1 !important;
   transform: none !important;
