@@ -730,8 +730,6 @@ html {
   color: inherit;
 }
 
-
-
 body.dark {
   background: #2E2E2E;
   color: #f5f5f5;
@@ -908,3 +906,9 @@ body.dark .card {
   background-color: #1a1a1a;
   border-color: #333;
 }
+
+.no-scrollreveal .fade-in {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
