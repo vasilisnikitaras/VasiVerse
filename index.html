@@ -60,6 +60,41 @@
     transform: translateY(0);
   }
 </style>  
+
+
+<style>
+  @media (max-width: 600px) {
+    #vaultverse-qr,
+    #vaultverse-gr-qr {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    #vaultverse-qr img,
+    #vaultverse-gr-qr img {
+      margin-top: 1em;
+    }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-out;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+
+
+
+
+
+
+  
 </head>
 <body>
   
@@ -253,10 +288,10 @@
   <img src="vault-gr.png" alt="VaultVerse GR QR Code"
        style="width: 180px; border-radius: 10px; box-shadow: 0 0 8px #b8e3c4;"> -->
 
-<section id="vaultverse-gr-qr" class="fade-in" style="...">
+<!--<section id="vaultverse-gr-qr" class="fade-in" style="...">
   ...
   <img src="vault-gr.png" alt="VaultVerse GR QR Code" style="width: 180px; ...">
-
+-->
 <img src="vault-gr.png" alt="VaultVerse GR QR Code"
      style="width: 180px; border-radius: 10px; box-shadow: 0 0 8px #b8e3c4;">
 
