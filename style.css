@@ -883,3 +883,16 @@ body.dark .card {
   transform: none !important;
 }
 
+
+
+@media (max-width: 600px) {
+  #vaultverse-qr,
+  #vaultverse-gr-qr {
+    flex-direction: column;
+    text-align: center;
+  }
+  #vaultverse-qr img,
+  #vaultverse-gr-qr img {
+    margin-top: 1em;
+  }
+}
