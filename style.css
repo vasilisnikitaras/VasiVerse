@@ -896,3 +896,10 @@ body.dark .card {
     margin-top: 1em;
   }
 }
+@media (max-width: 600px) {
+  #vaultverse-gr-qr img {
+    width: 120px;
+  }
+}
+
+
