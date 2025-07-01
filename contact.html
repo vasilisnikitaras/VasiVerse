@@ -61,7 +61,7 @@
   </footer>
 
   <!-- Scripts -->
- 
+ <!--
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     // ✅ Reveal animation with fallback
@@ -82,6 +82,29 @@
     document.getElementById("back-to-top").addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
+
+-->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    try {
+      ScrollReveal().reveal(".fade-in", {
+        delay: 150,
+        distance: "40px",
+        origin: "bottom",
+        duration: 800,
+        easing: "ease-in-out",
+        reset: false
+      });
+    } catch (e) {
+      document.body.classList.add("no-scrollreveal");
+    }
+
+    // Dark mode, back to top, etc...
+  });
+</script>
+
+
+
 
     // 🌙 Dark mode toggle
     const toggle = document.getElementById("theme-toggle");
