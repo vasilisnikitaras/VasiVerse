@@ -77,6 +77,15 @@
         document.body.classList.add("no-scrollreveal");
       }
 
+      // 🔁 Fallback failsafe: if nothing fades in after 1s, show it anyway
+setTimeout(() => {
+  const revealed = document.querySelector(".fade-in[data-sr-id]");
+  if (!revealed) {
+    document.body.classList.add("no-scrollreveal");
+  }
+}, 1000);
+
+
       // 🔝 Back to top
       document.getElementById("back-to-top").addEventListener("click", () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
