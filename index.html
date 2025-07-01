@@ -14,6 +14,34 @@
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="style.css" />
+
+<style>
+  @media (max-width: 600px) {
+    #vaultverse-qr {
+      flex-direction: column;
+      text-align: center;
+    }
+    #vaultverse-qr img {
+      margin-top: 1em;
+    }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-out;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+
+
+
+  
 </head>
 <body>
   
@@ -164,14 +192,13 @@
     <h2>💡 Featured Projects</h2>
     <p>Check out my latest web applications and interactive experiences!</p>
     <a href="https://vasilisnikitaras.github.io/Vasilis-Projects-2025A" target="_blank">🚀 View Projects</a>
+<div class="featured-card">
+  <h3>🔐 VaultVerse – Password Manager</h3>
+  <p>Ασφαλής αποθήκευση & διαχείριση κωδικών με offline υποστήριξη και mobile-ready εμπειρία.</p>
+  <a href="https://vasiverse.com/vault" target="_blank">🔑 Πρόσβαση στο VaultVerse</a>
+</div>
 
-    <div class="featured-card">
-      <h3>🔐 VaultVerse – Password Manager</h3>
-      <p>Ασφαλής αποθήκευση & διαχείριση κωδικών με offline υποστήριξη και mobile-ready εμπειρία.</p>
-      <a href="https://vasiverse.com/vault" target="_blank">🔑 Πρόσβαση στο VaultVerse</a>
-    </div>
-
-<section id="vaultverse-qr" style="
+<section id="vaultverse-qr" class="fade-in" style="
   display: flex;
   align-items: center;
   justify-content: center;
@@ -191,29 +218,8 @@
   <img src="vaultverse-qr.png" alt="VaultVerse QR Code"
        style="width: 180px; border-radius: 10px; box-shadow: 0 0 8px #84d8f6;">
 </section>
-  </section>
-<!--
-<section id="vaultverse-qr" style="
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2em;
-  background: #f6faff;
-  border-radius: 12px;
-  margin: 2em auto;
-  padding: 2em;
-  max-width: 900px;
-  box-shadow: 0 4px 16px rgba(132, 216, 246, 0.08);">
 
-  <div>
-    <h2 style="font-size: 1.6em; margin-bottom: 0.5em;">🔐 VaultVerse QR Access</h2>
-    <p style="font-size: 1.05em;">Scan to unlock the offline password manager instantly on mobile or desktop.</p>
-  </div>
 
-  <img src="vaultverse-qr.png" alt="VaultVerse QR Code"
-       style="width: 180px; border-radius: 10px; box-shadow: 0 0 8px #84d8f6;">
-</section>
--->
 
   <section id="gallery">
     <h2>🖼️ VasiVerse Gallery</h2>
@@ -232,16 +238,7 @@
       </div>
     </div>
   </section>
-<!--
-  <section id="vaultverse">
-    <h2>📲 VaultVerse QR Access</h2>
-    <p>Σκάναρε τον κωδικό με το κινητό σου για άμεση πρόσβαση στον διαχειριστή κωδικών:</p>
-    <!-- <a href="https://vasiverse.com/" target="_blank"> -->
-<!--    <a href="https://vasiverse.com/vault" target="_blank"> -->
- <!--     <img src="assets/vasiverse-qr.png" alt="QR Code to VasiVerse" width="180" height="180" />
-    </a>
-  </section>
--->
+
   <section id="ads">
     <h2>💰 Sponsored Content – Trusted Partnerships</h2>
     <p>VasiVerse collaborates with innovative brands to bring valuable content and services to our users.</p>
