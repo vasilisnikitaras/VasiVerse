@@ -572,12 +572,7 @@ nav a:hover {
   transform: translateY(20px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
-/*
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-*/
+
 html {
   scroll-behavior: smooth;
 }
@@ -874,33 +869,17 @@ body.dark .home-button:hover {
 .home-button:hover {
   opacity: 0.7;
 }
-/*
-.no-scrollreveal .fade-in {
-  opacity: 1 !important;
-  transform: none !important;
-}
-*/
 
-.no-scrollreveal .fade-in {
-  opacity: 1 !important;
-  transform: none !important;
 }
 .no-scrollreveal .fade-in {
   opacity: 1 !important;
   transform: none !important;
 }
-/*
-body.dark {
-  background-color: #111;
-  color: #f0f0f0;
-}
-*/
 
 body.dark {
     background-color: #111;
     color: #121212;
 }
-
 
 body.dark .card {
   background-color: #1a1a1a;
