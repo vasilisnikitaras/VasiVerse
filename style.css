@@ -1119,3 +1119,17 @@ body.dark .card {
   }
 }
 
+@media (prefers-color-scheme: dark) {
+  #terms-popup button,
+  .popup-window button {
+    background-color: #e0e0e0 !important;
+    color: #000 !important; /* Set text to pure black */
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  #terms-popup * {
+    color: #000 !important;
+  }
+}
+
