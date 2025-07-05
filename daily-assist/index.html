@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Assist</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+  <script src="script.js" defer></script>
+  <script src="lang.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1 id="app-title">📝 Daily Assist</h1>
+    <div class="lang-toggle">
+      <button onclick="setLanguage('en')">EN</button>
+      <button onclick="setLanguage('el')">GR</button>
+      <button id="theme-toggle" onclick="toggleTheme()">🌓</button>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2 id="todo-title">To-Do List</h2>
+      <input type="text" id="taskInput" placeholder="Add a task..." />
+      <ul id="taskList"></ul>
+    </section>
+
+    <section>
+      <h2 id="journal-title">Journal</h2>
+      <div class="prompt-box">
+        <span id="prompt-text">Loading...</span>
+        <button id="new-prompt-btn">🔄</button>
+      </div>
+      <input type="date" id="journalDate" />
+      <textarea id="journal" rows="8" placeholder="Start writing..."></textarea>
+      <div style="margin-top: 0.8rem;">
+        <button onclick="saveJournal()">💾 Save</button>
+        <button onclick="exportJournal()">📤 Export</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="quote"></div>
+
+  <footer class="site-footer">
+    <p>Made with ❤️ by 
+      <a href="https://github.com/vasilisnikitaras" target="_blank">Vasilis Nikitaras</a> 
+      & 🤖 <a href="https://www.microsoft.com/copilot" target="_blank">Copilot</a>
+    </p>
+  </footer>
+</body>
+</html>
