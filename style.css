@@ -1153,3 +1153,8 @@ body.dark .card {
     color: #000 !important;
   }
 }
+.dark-mode .popup-text {
+  color: #ffffff;
+}
+
+
