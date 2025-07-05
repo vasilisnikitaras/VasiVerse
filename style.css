@@ -1045,3 +1045,25 @@ body.dark .card {
 }
 
 
+@media (prefers-color-scheme: dark) {
+  .popup-window,
+  .modal-content,
+  .terms-modal,
+  #terms-popup {
+    background-color: #f0f0f0 !important; /* Light background */
+    color: #111 !important;               /* Dark text */
+  }
+
+  .popup-window a,
+  .modal-content a,
+  #terms-popup a {
+    color: #0077cc !important; /* Visible links */
+  }
+
+  .popup-window button,
+  .modal-content button,
+  #terms-popup button {
+    background: #e0e0e0 !important;
+    color: #111 !important;
+  }
+}
