@@ -1067,3 +1067,28 @@ body.dark .card {
     color: #111 !important;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  #terms-popup {
+    background-color: #f0f0f0 !important;
+    color: #111 !important;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  }
+
+  #terms-popup h2,
+  #terms-popup p,
+  #terms-popup li {
+    color: #111 !important;
+  }
+
+  #terms-popup button {
+    background-color: #e0e0e0 !important;
+    color: #111 !important;
+  }
+
+  #terms-popup a {
+    color: #0077cc !important;
+  }
+}
