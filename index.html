@@ -36,29 +36,6 @@
     opacity: 1;
     transform: translateY(0);
   }
-</style>
-
-<style>
-  @media (max-width: 600px) {
-    #vaultverse-qr {
-      flex-direction: column;
-      text-align: center;
-    }
-    #vaultverse-qr img {
-      margin-top: 1em;
-    }
-  }
-
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s ease-out;
-  }
-
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
 </style>  
 
 
@@ -86,7 +63,8 @@
     opacity: 1;
     transform: translateY(0);
   }
-</style>  
+</style> 
+  
 </head>
 <body>
 
@@ -105,47 +83,11 @@
   box-shadow: 0 6px 12px rgba(0,0,0,0.1);
   padding: 1em 1.4em;
   text-align: center;
-  font-family: 'Segoe UI', sans-serif;
-">
+  font-family: 'Segoe UI', sans-serif;">
   ✅ <strong>VasiVerse is safe & regularly updated.</strong> Built by 
   <a href="https://github.com/vasilisnikitaras" target="_blank" style="color: #2c7a5d; text-decoration: underline;">Vasilis</a> & Copilot with care. No data collection. No tracking. QR codes are 100% secure and link only to trusted VasiVerse pages.
   <button onclick="document.getElementById('trust-banner').style.display='none'" style="margin-left: 1em; font-size: 0.9rem; padding: 0.3em 0.8em; background: #d1f2eb; border: none; border-radius: 4px; cursor: pointer;">✖ Close</button>
 </div>
-
-
-  
-  <!--
-  <style>
-  /* Existing styles... */
-
-  @media (max-width: 600px) {
-    #vaultverse-qr,
-    #vaultverse-gr-qr {
-      flex-direction: column;
-      text-align: center;
-    }
-
-    #vaultverse-qr img,
-    #vaultverse-gr-qr img {
-      margin-top: 1em;
-      width: 120px; /* 👈 This is what you just added */
-    }
-  }
-
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s ease-out;
-  }
-
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
--->
-
-
   
 <!-- Hamburger icon -->
 <div class="hamburger" onclick="toggleMenu()">☰</div>
