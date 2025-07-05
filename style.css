@@ -995,3 +995,31 @@ body.dark .card {
   }
 }
 
+@keyframes bannerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.trust-banner {
+  animation: bannerFadeIn 0.8s ease-out;
+}
+
+
+@keyframes bannerSlideIn {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.trust-banner {
+  animation: bannerSlideIn 0.6s ease-out;
+}
