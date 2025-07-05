@@ -903,6 +903,7 @@ body.dark .card {
 }
 
 /* 🔐 Trust Banner: Default (Light Mode) */
+/*
 .trust-banner {
   background-color: #eafaf1;
   color: #2d4d3a;
@@ -918,6 +919,56 @@ body.dark .card {
   text-align: center;
   font-family: 'Segoe UI', sans-serif;
 }
+*/
+
+/* 🔐 Trust Banner – Light Theme */
+.trust-banner {
+  background-color: #f0fdf4; /* minty soft green */
+  color: #1e4634;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  padding: 1em 1.4em;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 9999;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  transition: all 0.3s ease-in-out;
+}
+
+.trust-banner button {
+  margin-left: 1em;
+  font-size: 0.9rem;
+  padding: 0.3em 0.8em;
+  background: #d4f8e8;
+  border: none;
+  border-radius: 4px;
+  color: #17432e;
+  cursor: pointer;
+}
+
+/* 🌘 Trust Banner – Dark Theme */
+@media (prefers-color-scheme: dark) {
+  .trust-banner {
+    background-color: #11291e;
+    color: #baf9e0;
+  }
+
+  .trust-banner a {
+    color: #93ffd0;
+  }
+
+  .trust-banner button {
+    background: #215845;
+    color: #fff;
+  }
+}
+
+
+
 
 .trust-banner button {
   margin-left: 1em;
