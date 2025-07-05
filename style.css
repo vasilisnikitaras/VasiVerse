@@ -1092,3 +1092,30 @@ body.dark .card {
     color: #0077cc !important;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  #terms-popup,
+  .popup-window,
+  .modal-content {
+    background-color: #f5f5f5 !important; /* Light background for contrast */
+    color: #111 !important;               /* Force black text */
+  }
+
+  #terms-popup *,
+  .popup-window *,
+  .modal-content * {
+    color: #111 !important;               /* Applies to <p>, <h2>, <li>, etc. */
+  }
+
+  #terms-popup a,
+  .popup-window a {
+    color: #0077cc !important;            /* Clear blue links */
+  }
+
+  #terms-popup button,
+  .popup-window button {
+    background-color: #e0e0e0 !important;
+    color: #111 !important;
+  }
+}
+
