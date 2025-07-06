@@ -1161,3 +1161,12 @@ body.dark .card {
 }
 
 
+#dark-mode-toggle {
+  position: relative;
+  z-index: 20;
+  margin-bottom: 2em;
+}
+
+header {
+  padding-bottom: 3em;
+}
