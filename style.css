@@ -1187,5 +1187,8 @@ section {
 #back-to-top.show {
   opacity: 1;
 }
+#dark-mode-toggle {
+  transition: opacity 0.4s ease-in-out;
+}
 
 
