@@ -1,0 +1,15 @@
+{
+  "name": "VasiVerse",
+  "short_name": "VasiVerse",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#ffcc00",
+  "icons": [
+    {
+      "src": "/vasiverse-insider-qr.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
