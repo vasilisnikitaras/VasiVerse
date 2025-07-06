@@ -525,18 +525,20 @@
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-    
-<picture>
-  <source srcset="/images/vasiverse-footer-badge-dark.png" media="(prefers-color-scheme: dark)">
-  <img src="/images/vasiverse-footer-badge-light.png" alt="Made in Montréal • Powered by Vasilis" style="max-width: 240px;" />
-</picture>
+    <footer class="site-footer" style="text-align: center; margin-top: 3em; padding: 2em 1em; background: #f8f9fb;">
 
+  <!-- 🎨 Dark/Light Badge -->
+  <picture>
+    <source srcset="/assets/vasiverse-footer-badge-dark.png" media="(prefers-color-scheme: dark)">
+    <img src="/assets/vasiverse-footer-badge-light.png" alt="Made in Montréal • Powered by Vasilis" style="max-width: 240px; margin-bottom: 1em;" />
+  </picture>
 
-  <!-- 📜 Copyright + Links -->
+  <!-- 📜 Copyright -->
   <p style="font-size: 0.9em; color: #555;">
     © 2025 <strong>VasiVerse</strong> | Created by Vasilis Nikitaras |
     <a href="privacy.html">Privacy Policy</a> |
-    <a href="terms.html">Terms of Use</a>
+    <a href="terms.html">Terms of Use</a> |
+    <a href="assets.html">🎨 Branding Assets</a>
   </p>
 
   <!-- 💬 Signature -->
@@ -549,5 +551,25 @@
   <button id="back-to-top" style="margin-top: 1em;">🔝 Back to Top</button>
 
 </footer>
+
+<script>
+  // 🔝 Smooth scroll to top
+  const backToTopBtn = document.getElementById("back-to-top");
+
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // 👀 Show/hide button on scroll
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      backToTopBtn.classList.add("show");
+    } else {
+      backToTopBtn.classList.remove("show");
+    }
+  });
+</script>
+
+
 </body>
 </html>
