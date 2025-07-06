@@ -221,5 +221,10 @@ document.querySelectorAll("nav a").forEach(link => {
     }
   }
 
-  loadAds();
+  loadAds();if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js')
+    .then(() => console.log('🛰️ VasiVerse Service Worker Registered!'))
+    .catch(err => console.error('Service Worker registration failed:', err));
+}
+
 });
