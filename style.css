@@ -1194,4 +1194,57 @@ section {
   display: flex;
 }
 
+@media (prefers-color-scheme: dark) {
+  .trust-banner {
+    background-color: #1a1a1a;
+    color: #baf9e0;
+  }
 
+  .trust-banner button {
+    background: #285c4d;
+    color: white;
+  }
+
+  .trust-banner a {
+    color: #93ffd0;
+  }
+}
+
+body.dark-mode #dark-mode-toggle {
+  background-color: #ccc;
+  color: #111;
+}
+
+body.dark-mode #dark-mode-toggle:hover {
+  background-color: #bbb;
+}
+.trust-banner {
+  transition: opacity 0.4s ease, background-color 0.4s ease;
+}
+body.dark-mode #dark-mode-toggle {
+  background-color: #e0e0e0;
+  color: #111;
+  font-weight: bold;
+  border: none;
+}
+
+body.dark-mode #dark-mode-toggle:hover {
+  background-color: #d0d0d0;
+  color: black;
+}
+@media (prefers-color-scheme: dark) {
+  .trust-banner {
+    background-color: #1e1e1e;
+    color: #baf9e0;
+    border: 1px solid #444;
+  }
+
+  .trust-banner a {
+    color: #93ffd0;
+  }
+
+  .trust-banner button {
+    background: #285c4d;
+    color: white;
+  }
+}
