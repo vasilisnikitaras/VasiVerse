@@ -525,7 +525,13 @@
     <!-- 🧭 Signature Badge -->
     <div style="text-align: center;">
       <h3>🧭 Signature Badge</h3>
-      <img src="/assets/vasiverse-footer-badge-signature.png" alt="Signature Badge" style="max-width: 180px;" />
+     <!-- <img src="/assets/vasiverse-footer-badge-signature.png" alt="Signature Badge" style="max-width: 180px;" /> -->
+
+      <img src="/assets/vasiverse-footer-badge-signature.png"
+     alt="Signature Badge"
+     style="max-width: 180px; display: block; margin: 0 auto;" />
+
+      
       <p><a href="/assets/vasiverse-footer-badge-signature.png" download>Download PNG</a></p>
     </div>
 
@@ -575,6 +581,23 @@
     }
   });
 </script>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const banner = document.getElementById("trust-banner");
+    if (banner) {
+      // Auto-dismiss after 10 seconds
+      setTimeout(() => {
+        banner.style.opacity = "0";
+        banner.style.pointerEvents = "none";
+      }, 10000);
+    }
+  });
+</script>
+
+
+
+    
 
 </body>
 </html>
