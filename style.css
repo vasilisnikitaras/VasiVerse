@@ -1179,3 +1179,13 @@ header {
 section {
   scroll-margin-top: 80px; /* Αν ο header σου είναι πιο χαμηλός, μπορείς να μειώσεις σε π.χ. 60px */
 }
+
+#back-to-top {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+#back-to-top.show {
+  opacity: 1;
+}
+
+
