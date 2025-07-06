@@ -1190,5 +1190,8 @@ section {
 #dark-mode-toggle {
   transition: opacity 0.4s ease-in-out;
 }
+#mobile-menu.active {
+  display: flex;
+}
 
 
