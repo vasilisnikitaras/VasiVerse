@@ -1170,3 +1170,12 @@ body.dark .card {
 header {
   padding-bottom: 3em;
 }
+#dark-mode-toggle {
+  position: relative;
+  z-index: 20;
+  margin-bottom: 2em;
+}
+
+section {
+  scroll-margin-top: 80px; /* Αν ο header σου είναι πιο χαμηλός, μπορείς να μειώσεις σε π.χ. 60px */
+}
