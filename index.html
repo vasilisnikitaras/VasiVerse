@@ -596,28 +596,47 @@
     }
   }
 </script>
-    
-<!-- ...before the closing </body> tag -->
-<script src="script.js" defer></script>
-  
-  <script>
-  const toggleBtn = document.querySelector('.dark-mode-toggle');
-  const body = document.body;
 
-  // Load saved preference
-  if (localStorage.getItem('darkMode') === 'enabled') {
-    body.classList.add('dark-mode');
+<script>
+  // Mobile menu toggle
+  function toggleMenu() {
+    const menu = document.getElementById("mobile-menu");
+    if (menu) {
+      menu.classList.toggle("active");
+    }
   }
 
-  toggleBtn.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    if (body.classList.contains('dark-mode')) {
-      localStorage.setItem('darkMode', 'enabled');
-    } else {
-      localStorage.setItem('darkMode', 'disabled');
+  // Dark mode toggle
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.querySelector('.dark-mode-toggle');
+    const body = document.body;
+
+    // Load saved preference
+    if (localStorage.getItem('darkMode') === 'enabled') {
+      body.classList.add('dark-mode');
+    }
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        if (body.classList.contains('dark-mode')) {
+          localStorage.setItem('darkMode', 'enabled');
+        } else {
+          localStorage.setItem('darkMode', 'disabled');
+        }
+      });
     }
   });
 </script>
+
+
+
+
+    
+    
+<!-- ...before the closing </body> tag -->
+<script src="script.js" defer></script>
+
 
 </body>
 </html>
