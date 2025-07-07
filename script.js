@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // === Register AdSense ===
+   // === Register AdSense ===
   function loadAds() {
     const adContainer = document.getElementById("ad-container");
     if (adContainer) {
@@ -209,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   loadAds();
 
-  // ✅ Register Service Worker LAST, inside DOMContentLoaded
+  // ✅ Register Service Worker inside DOMContentLoaded
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("service-worker.js")
       .then(() => console.log("🛰️ VasiVerse SW Registered!"))
