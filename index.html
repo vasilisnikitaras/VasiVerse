@@ -597,21 +597,12 @@
   }
 </script>
 
-<script>
-  // Mobile menu toggle
-  function toggleMenu() {
-    const menu = document.getElementById("mobile-menu");
-    if (menu) {
-      menu.classList.toggle("active");
-    }
-  }
-
-  // Dark mode toggle
+    <script>
   document.addEventListener('DOMContentLoaded', () => {
+    // Dark mode
     const toggleBtn = document.querySelector('.dark-mode-toggle');
     const body = document.body;
 
-    // Load saved preference
     if (localStorage.getItem('darkMode') === 'enabled') {
       body.classList.add('dark-mode');
     }
@@ -626,17 +617,20 @@
         }
       });
     }
+
+    // Mobile menu (optional)
+    window.toggleMenu = function () {
+      const menu = document.getElementById("mobile-menu");
+      if (menu) {
+        menu.classList.toggle("active");
+      }
+    };
   });
 </script>
 
-
-
-
-    
-    
+ 
 <!-- ...before the closing </body> tag -->
 <script src="script.js" defer></script>
-
 
 </body>
 </html>
