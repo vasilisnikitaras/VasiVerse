@@ -257,6 +257,7 @@ body.dark-mode * {
   background: transparent;
 }
 
+
 body.dark-mode a {
   color: #9db6ff !important;
   text-decoration: underline;
@@ -1210,11 +1211,6 @@ section {
   }
 }
 
-body.dark-mode #dark-mode-toggle {
-  background-color: #ccc;
-  color: #111;
-}
-
 body.dark-mode #dark-mode-toggle:hover {
   background-color: #bbb;
 }
@@ -1226,12 +1222,9 @@ body.dark-mode #dark-mode-toggle {
   color: #111;
   font-weight: bold;
   border: none;
+  transition: opacity 0.4s ease-in-out;
 }
 
-body.dark-mode #dark-mode-toggle:hover {
-  background-color: #d0d0d0;
-  color: black;
-}
 @media (prefers-color-scheme: dark) {
   .trust-banner {
     background-color: #1e1e1e;
@@ -1249,40 +1242,27 @@ body.dark-mode #dark-mode-toggle:hover {
   }
 }
 
-  .trust-banner a {
-    color: #93ffd0;
-  }
-
   .trust-banner button {
     background: #285c4d;
     color: white;
   }
 }
 
-
-
-
 body.dark-mode * {
    color: #f5f5f5 !important;
 
     opacity: 1 !important;
     background: transparent;
-}
-#trust-banner {
-  transition: opacity 0.5s ease-out;
-}
+
 @keyframes slideUpFade {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
-#trust-banner {
+.trust-banner {
+  transition: opacity 0.5s ease-out, background-color 0.4s ease;
   animation: slideUpFade 0.8s ease-out;
 }
 
-#trust-banner {
-  transition: opacity 0.5s ease-out;
-}
 body.dark-mode #dark-mode-toggle {
   background-color: #e0e0e0;
   color: #111;
