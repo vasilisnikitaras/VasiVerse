@@ -1248,3 +1248,19 @@ body.dark-mode #dark-mode-toggle:hover {
     color: white;
   }
 }
+
+#trust-banner {
+  transition: opacity 0.6s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .trust-banner {
+    background-color: #1a1a1a;
+    color: #baf9e0;
+    border: 1px solid #444;
+  }
+}
+
+
+
+
