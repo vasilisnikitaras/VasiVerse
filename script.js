@@ -43,30 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 3000);
   }
 
-function showToast(message) {
-  const oldToast = document.querySelector(".vasiverse-toast");
-  if (oldToast) oldToast.remove();
-
-  const toast = document.createElement("div");
-  toast.className = "vasiverse-toast";
-  toast.textContent = message;
-  document.body.appendChild(toast);
-
-  requestAnimationFrame(() => {
-    toast.style.opacity = "1";
-  });
-
-  setTimeout(() => {
-    toast.style.opacity = "0";
-    setTimeout(() => toast.remove(), 600);
-  }, 3000);
-}
-  document.addEventListener("DOMContentLoaded", function () {
-  // your code...
-});
-
-
-  
   // === Smooth Scroll for Nav Links ===
   document.querySelectorAll("nav a").forEach(link => {
     link.addEventListener("click", function (e) {
@@ -85,6 +61,7 @@ function showToast(message) {
   backToTopButton.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
+
   window.addEventListener("scroll", () => {
     const scrollY = window.scrollY || document.documentElement.scrollTop;
     backToTopButton.classList.toggle("visible", scrollY > 400);
@@ -106,11 +83,7 @@ function showToast(message) {
       const data = await response.json();
 
       const condition = data.weather[0].main.toLowerCase();
-      const icons = {
-        clear: "☀️",
-        cloud: "☁️",
-        rain: "🌧️"
-      };
+      const icons = { clear: "☀️", cloud: "☁️", rain: "🌧️" };
       const icon = icons[condition] || "🌍";
 
       weatherOutput.innerHTML = `
@@ -127,6 +100,7 @@ function showToast(message) {
       weatherOutput.innerHTML = "⚠️ Failed to retrieve weather.";
     }
   }
+
   searchBtn.addEventListener("click", fetchWeather);
 
   // === Auto-Fetch Weather by Location ===
@@ -141,11 +115,7 @@ function showToast(message) {
         if (!response.ok || !data.name) throw new Error("Invalid location");
 
         const condition = data.weather[0].main.toLowerCase();
-        const icons = {
-          clear: "☀️",
-          cloud: "☁️",
-          rain: "🌧️"
-        };
+        const icons = { clear: "☀️", cloud: "☁️", rain: "🌧️" };
         const icon = icons[condition] || "🌍";
 
         weatherOutput.innerHTML = `
@@ -188,11 +158,7 @@ function showToast(message) {
       keys.forEach(date => {
         const day = days[date][0];
         const condition = day.weather[0].main.toLowerCase();
-        const icons = {
-          clear: "☀️",
-          cloud: "☁️",
-          rain: "🌧️"
-        };
+        const icons = { clear: "☀️", cloud: "☁️", rain: "🌧️" };
         const icon = icons[condition] || "🌍";
 
         html += `
@@ -240,9 +206,9 @@ function showToast(message) {
   loadAds();
 
   // === Register Service Worker ===
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(() => console.log('🛰️ VasiVerse SW Registered!'))
-      .catch(err => console.error('Service Worker registration failed:', err));
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js")
+      .then(() => console.log("🛰️ VasiVerse SW Registered!"))
+      .catch(err => console.error("Service Worker registration failed:", err));
   }
 });
