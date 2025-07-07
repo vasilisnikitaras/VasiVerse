@@ -1528,15 +1528,21 @@ body.dark-mode input {
   margin: 10px 0 2em;
   transition: opacity 0.4s ease-in-out;
 }
-
+/*
   header {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
+*/
   body.dark-mode {
   background: #121212;
   color: #f0f0f0;
 }
 
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #000;
+    color: #eee;
+  }
+}
