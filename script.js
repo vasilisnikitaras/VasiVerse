@@ -43,6 +43,30 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 3000);
   }
 
+function showToast(message) {
+  const oldToast = document.querySelector(".vasiverse-toast");
+  if (oldToast) oldToast.remove();
+
+  const toast = document.createElement("div");
+  toast.className = "vasiverse-toast";
+  toast.textContent = message;
+  document.body.appendChild(toast);
+
+  requestAnimationFrame(() => {
+    toast.style.opacity = "1";
+  });
+
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    setTimeout(() => toast.remove(), 600);
+  }, 3000);
+}
+  document.addEventListener("DOMContentLoaded", function () {
+  // your code...
+});
+
+
+  
   // === Smooth Scroll for Nav Links ===
   document.querySelectorAll("nav a").forEach(link => {
     link.addEventListener("click", function (e) {
