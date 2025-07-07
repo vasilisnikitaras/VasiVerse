@@ -252,3 +252,29 @@ document.querySelectorAll("nav a").forEach(link => {
 }
 
 });
+
+
+showToast("🌙 Dark Mode Enabled");
+
+const mode = document.body.classList.contains("dark-mode") ? "enabled" : "disabled";
+showToast(mode === "enabled" ? "🌙 Dark Mode Enabled" : "☀️ Light Mode Enabled");
+
+
+function showToast(message) {
+  const toast = document.createElement("div");
+  toast.className = "vasiverse-toast";
+  toast.textContent = message;
+
+  document.body.appendChild(toast);
+
+  // Trigger fade-in
+  requestAnimationFrame(() => {
+    toast.style.opacity = "1";
+  });
+
+  // Auto-dismiss
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    setTimeout(() => toast.remove(), 600);
+  }, 3000);
+}
