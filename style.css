@@ -321,3 +321,24 @@ section.dark-mode,
   color: #eeeeee;
 }
 
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+header.dark-mode,
+footer.dark-mode,
+aside#sidebar.dark-mode,
+section.dark-mode,
+.container.dark-mode {
+  background-color: #1f1f1f;
+  color: #eeeeee;
+}
+
+a {
+  color: #0779e4;
+}
+
+body.dark-mode a {
+  color: #90caf9;
+}
