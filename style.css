@@ -1553,3 +1553,17 @@ body.dark-mode {
 body > .skiptranslate {
   display: none !important;
 }
+body.dark-mode,
+section.dark-mode,
+.container.dark-mode {
+  background-color: #121212 !important;
+  color: #f0f0f0 !important;
+}
+
+.dark-mode .forecast-card {
+  background: #1e1e1e;
+  color: #fafafa;
+}
+body, section, .container {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
