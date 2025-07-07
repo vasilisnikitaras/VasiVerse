@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     toast.textContent = message;
     document.body.appendChild(toast);
 
-    void toast.offsetWidth; // Force reflow to trigger transition
+    void toast.offsetWidth;
     toast.style.opacity = "1";
 
     setTimeout(() => {
@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-   // === Register AdSense ===
+  // === Register AdSense ===
   function loadAds() {
     const adContainer = document.getElementById("ad-container");
     if (adContainer) {
@@ -209,11 +209,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   loadAds();
 
-  // ✅ Register Service Worker inside DOMContentLoaded
+  // === Register Service Worker ===
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("service-worker.js")
       .then(() => console.log("🛰️ VasiVerse SW Registered!"))
       .catch(err => console.error("Service Worker registration failed:", err));
   }
 });
-
