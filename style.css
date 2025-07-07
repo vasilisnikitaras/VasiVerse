@@ -1411,24 +1411,24 @@ body:not(.dark-mode) .darkmode-toast {
   color: #111;
   border: 1px solid #ccc;
 }
-
 .vasiverse-toast {
   position: fixed;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: #1a1a1a;
-  color: #f5f5f5;
-  padding: 10px 20px;
-  border-radius: 6px;
-  font-size: 14px;
+  background: #111;              /* deep contrast for both modes */
+  color: #f0f0f0;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 15px;
   opacity: 0;
   z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
   transition: opacity 0.4s ease;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 body:not(.dark-mode) .vasiverse-toast {
-  background: #e0e0e0;
+  background: #ffffff;
   color: #111;
   border: 1px solid #ccc;
 }
+
