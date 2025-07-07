@@ -1546,3 +1546,10 @@ body.dark-mode input {
     color: #eee;
   }
 }
+body.dark-mode {
+  background: #121212 !important;
+  color: #e0e0e0 !important;
+}
+body > .skiptranslate {
+  display: none !important;
+}
