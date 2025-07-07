@@ -209,4 +209,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   loadAds();
 
-  // === Register Service Worker ===
+  // ✅ Register Service Worker LAST, inside DOMContentLoaded
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js")
+      .then(() => console.log("🛰️ VasiVerse SW Registered!"))
+      .catch(err => console.error("Service Worker registration failed:", err));
+  }
+});
+
