@@ -4,11 +4,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const searchBtn = document.getElementById("search-btn");
   const weatherOutput = document.getElementById("weather-output");
 
-  // === Dark Mode: Load from LocalStorage ===
-  if (localStorage.getItem("darkMode") === "enabled") {
+  // === Load Theme from Storage (force both directions) ===
+  const mode = localStorage.getItem("darkMode");
+  if (mode === "enabled") {
     document.body.classList.add("dark-mode");
     document.querySelectorAll("section, .container").forEach(el =>
       el.classList.add("dark-mode")
+    );
+  } else {
+    document.body.classList.remove("dark-mode");
+    document.querySelectorAll("section, .container").forEach(el =>
+      el.classList.remove("dark-mode")
     );
   }
 
@@ -18,12 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll("section, .container").forEach(el =>
       el.classList.toggle("dark-mode")
     );
+
     const mode = document.body.classList.contains("dark-mode") ? "enabled" : "disabled";
     localStorage.setItem("darkMode", mode);
     showToast(mode === "enabled" ? "🌙 Dark Mode Enabled" : "☀️ Light Mode Enabled");
   });
 
-  // ✅ Reliable Toast Generator Function (with forced reflow for smooth fade)
+  // === Toast Generator Function (with forced reflow) ===
   function showToast(message) {
     const oldToast = document.querySelector(".vasiverse-toast");
     if (oldToast) oldToast.remove();
@@ -33,8 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
     toast.textContent = message;
     document.body.appendChild(toast);
 
-    // 👇 Force reflow to enable transition
-    void toast.offsetWidth;
+    void toast.offsetWidth; // Force reflow to trigger transition
     toast.style.opacity = "1";
 
     setTimeout(() => {
@@ -50,9 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (href.startsWith("#")) {
         e.preventDefault();
         const target = document.querySelector(href);
-        if (target) {
-          target.scrollIntoView({ behavior: "smooth" });
-        }
+        if (target) target.scrollIntoView({ behavior: "smooth" });
       }
     });
   });
@@ -206,9 +210,3 @@ document.addEventListener("DOMContentLoaded", function () {
   loadAds();
 
   // === Register Service Worker ===
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("service-worker.js")
-      .then(() => console.log("🛰️ VasiVerse SW Registered!"))
-      .catch(err => console.error("Service Worker registration failed:", err));
-  }
-});
