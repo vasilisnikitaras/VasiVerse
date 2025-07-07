@@ -1,33 +1,29 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const toggleDarkMode = document.getElementById("dark-mode-toggle");
+  // === DOM Elements ===
   const backToTopButton = document.getElementById("back-to-top");
   const searchBtn = document.getElementById("search-btn");
-  const weatherOutput = document.getElementById("weather-output");
 
-const darkButtons = document.querySelectorAll('.dark-mode-toggle');
+  // === Dark Mode Toggle Buttons ===
+  const darkButtons = document.querySelectorAll(".dark-mode-toggle");
 
-darkButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
+  darkButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const isDark = document.body.classList.toggle("dark-mode");
+
+      document.querySelectorAll("section, .container").forEach(el =>
+        el.classList.toggle("dark-mode")
+      );
+
+      localStorage.setItem("darkMode", isDark ? "enabled" : "disabled");
+      showToast(isDark ? "🌙 Dark Mode Enabled" : "☀️ Light Mode Enabled");
+    });
   });
-});
 
-  
   // === Load Theme from Storage ===
   const mode = localStorage.getItem("darkMode");
   if (mode === "enabled") {
     applyDarkMode(true);
   }
-
-  // === Dark Mode Toggle with Toast ===
-  toggleDarkMode.addEventListener("click", function () {
-    const isDark = document.body.classList.toggle("dark-mode");
-    document.querySelectorAll("section, .container").forEach(el =>
-      el.classList.toggle("dark-mode")
-    );
-    localStorage.setItem("darkMode", isDark ? "enabled" : "disabled");
-    showToast(isDark ? "🌙 Dark Mode Enabled" : "☀️ Light Mode Enabled");
-  });
 
   function applyDarkMode(enable) {
     document.body.classList.toggle("dark-mode", enable);
@@ -76,4 +72,18 @@ darkButtons.forEach(btn => {
   searchBtn.addEventListener("click", fetchWeather);
 
   async function fetchWeather() {
-    const city = document.getElementById("city-input
+    const cityInput = document.getElementById("city-input");
+    const weatherOutput = document.getElementById("weather-output");
+
+    if (!cityInput || !weatherOutput) return;
+
+    const city = cityInput.value.trim();
+    if (!city) {
+      weatherOutput.textContent = "Please enter a city name.";
+      return;
+    }
+
+    // You can integrate with a real API here
+    weatherOutput.textContent = `Fetching weather for "${city}"...`;
+  }
+});
