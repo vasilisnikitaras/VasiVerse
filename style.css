@@ -1621,3 +1621,6 @@ textarea,
   transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
 
+body, section, .container {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
