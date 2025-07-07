@@ -1,0 +1,1887 @@
+/* === VasiVerse - Full style.css with modular structure === */
+
+/* === Global Styling === */
+body {
+  background: linear-gradient(to bottom, #f7f7f7, #e0e0e0);
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode {
+  background: #2E2E2E;
+  color: #f5f5f5;
+}
+
+/* === Header === */
+header {
+  background: #0288d1;
+  color: white;
+  padding: 20px;
+  font-size: 24px;
+}
+
+/* === Dark Mode Toggle Button === */
+#dark-mode-toggle {
+  background: #444;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  border: none;
+}
+
+#dark-mode-toggle:hover {
+  background: #555;
+}
+
+/* === Navigation === */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #0288d1;
+  padding: 10px;
+  border-radius: 5px;
+  background: #e0f7fa;
+}
+
+nav ul li a:hover {
+  background: #0288d1;
+  color: white;
+}
+
+body.dark-mode nav ul li a {
+  background: #333 !important;
+  color: #f5f5f5 !important;
+}
+
+body.dark-mode nav ul li a:hover {
+  background: #0288d1 !important;
+  color: white !important;
+}
+
+/* === Sections === */
+section {
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 10px;
+  margin: 1.5rem auto;
+  max-width: 900px;
+}
+
+body.dark-mode section {
+  background-color: #1e1e1e !important;
+  color: #f5f5f5;
+}
+
+/* === VaultVerse QR === */
+#vaultverse img {
+  margin: 1rem 0;
+  border: 3px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+body.dark-mode #vaultverse img {
+  border-color: #333;
+}
+
+/* === Featured Project Card === */
+.featured-card {
+  background: #f5f5f5;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.featured-card:hover {
+  transform: scale(1.015);
+}
+
+.featured-card h3 {
+  color: #2e3a59;
+  margin-top: 0;
+}
+
+.featured-card a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  color: #3367d6;
+  text-decoration: none;
+}
+
+.featured-card a:hover {
+  text-decoration: underline;
+}
+
+body.dark-mode .featured-card {
+  background: #1a1a1a;
+  color: #eee;
+}
+
+body.dark-mode .featured-card h3 {
+  color: #9db6ff;
+}
+
+/* === Gallery Cards === */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.project-card {
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 12px #00ffff88;
+}
+
+.project-card img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.project-card h3 {
+  margin-top: 0.5rem;
+  color: #00ffff;
+}
+
+/* === Weather Icons === */
+.weather-icon {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+}
+
+.sunny {
+  animation: sun-glow 3s infinite ease-in-out;
+}
+
+@keyframes sun-glow {
+  0% { filter: brightness(100%); }
+  50% { filter: brightness(120%); }
+  100% { filter: brightness(100%); }
+}
+
+.cloudy {
+  animation: cloud-drift 4s infinite linear;
+}
+
+@keyframes cloud-drift {
+  0% { transform: translateX(0px); }
+  100% { transform: translateX(10px); }
+}
+
+.rainy {
+  animation: rain-fall 2s infinite linear;
+}
+
+@keyframes rain-fall {
+  0% { transform: translateY(0px); opacity: 1; }
+  100% { transform: translateY(15px); opacity: 0; }
+}
+
+/* === Buttons === */
+button {
+  background: #444;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #555;
+}
+
+button:active {
+  transform: scale(0.97);
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  transition: transform 0.1s ease;
+}
+
+/* === Back to Top === */
+#back-to-top {
+  display: block;
+  background: #ffcc00;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#back-to-top:hover {
+  background: #ffaa00;
+}
+
+/* === Footer === */
+footer {
+  background: #333;
+  color: white;
+  padding: 15px;
+  margin-top: 20px;
+  padding-bottom: 15px;
+}
+
+
+/* === Final Dark Mode Fixes === */
+/*
+body.dark-mode * {
+  color: #f5f5f5 !important;
+  opacity: 1 !important;
+  background: transparent;
+}
+*/
+body.dark-mode a {
+  color: #9db6ff !important;
+  text-decoration: underline;
+}
+
+body.dark-mode a:hover {
+  color: #ffffff !important;
+}
+
+/* === Responsive Mobile Optimization === */
+@media screen and (max-width: 600px) {
+  header {
+    font-size: 20px;
+    padding: 15px;
+  }
+
+  nav ul li {
+    display: block;
+    margin: 10px 0;
+  }
+
+  section {
+    padding: 15px;
+    margin: 1rem auto;
+  }
+
+  .featured-card,
+  .project-card {
+    padding: 0.8rem;
+  }
+
+  .project-card h3,
+  .featured-card h3 {
+    font-size: 18px;
+  }
+
+  button,
+  #dark-mode-toggle {
+    padding: 8px 12px;
+    font-size: 15px;
+  }
+
+  #back-to-top {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  input#city-input {
+    width: 100%;
+    max-width: 320px;
+    font-size: 16px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+#back-to-top {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #ffcc00;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: opacity 0.4s ease;
+}
+
+#back-to-top.visible {
+  display: block;
+}
+/* === Image Modal Styles === */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  padding-top: 80px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.85);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 85vh;
+  border-radius: 8px;
+  box-shadow: 0 0 12px #00ffff77;
+}
+
+.close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+}
+/* === Responsive Modal Image for Mobile === */
+@media screen and (max-width: 600px) {
+  .modal-content {
+    max-width: 95%;
+    max-height: 70vh;
+    border-radius: 6px;
+  }
+
+  .close {
+    top: 20px;
+    right: 20px;
+    font-size: 26px;
+  }
+}
+
+/* === Modal Fade-in Animation === */
+@keyframes fadeInModal {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.modal-content {
+  animation: fadeInModal 0.35s ease;
+}
+
+/* ✅ Ensure visibility of the Google Translate dropdown in dark mode */
+body.dark-mode select.goog-te-combo {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+  border: 1px solid #555;
+  border-radius: 5px;
+  padding: 6px 10px;
+  font-size: 14px;
+}
+/* 🌙 Styling for the Team Section in Dark Mode */
+body.dark-mode #team {
+  background-color: #1a1a1a;
+  border: 1px solid #444;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.1);
+  color: #f0f0f0;
+  border-radius: 10px;
+  padding: 20px;
+}
+body.dark-mode #team strong {
+  color: #9db6ff;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.sunny {
+  animation: pulse 2s infinite ease-in-out;
+  color: #ffd700;
+  font-size: 48px;
+}
+
+@keyframes floatCloud {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(6px); }
+}
+
+.cloudy {
+  animation: floatCloud 4s infinite alternate;
+  font-size: 48px;
+}
+
+@keyframes rainDrop {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(8px); opacity: 0; }
+}
+
+.rainy {
+  animation: rainDrop 1.2s infinite linear;
+  font-size: 48px;
+}
+
+#back-to-top {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: yellow;
+  color: black;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 999;
+  transition: opacity 0.3s ease;
+}
+
+#back-to-top.visible {
+  display: block;
+}
+#weather-output {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+#weather-output.show {
+  opacity: 1;
+}
+
+#forecast-container {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.forecast-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.forecast-card {
+  background: #f4f4f4;
+  border-radius: 10px;
+  padding: 12px;
+  width: 150px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.forecast-card:hover {
+  transform: scale(1.04);
+}
+
+.forecast-icon {
+  font-size: 32px;
+  margin: 8px 0;
+}
+
+body.dark-mode .forecast-card {
+  background: #1e1e1e;
+  color: #f5f5f5;
+}
+/* NAVIGATION STYLES FOR TERMS PAGE */
+nav {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+nav a {
+  margin: 0 0.5rem;
+  text-decoration: none;
+  color: var(--accent-color, #337ab7); /* fallback color */
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 10px;
+}
+
+#mobile-menu {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Mobile styling */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  #mobile-menu {
+    display: none;
+    flex-direction: column;
+    background-color: #111;
+    padding: 1rem;
+  }
+
+  #mobile-menu.active {
+    display: flex;
+  }
+}
+/* Hide desktop nav by default on mobile */
+@media (max-width: 768px) {
+  nav ul {
+    display: none;
+  }
+}
+
+/* Show desktop nav on larger screens */
+@media (min-width: 769px) {
+  #mobile-menu,
+  .hamburger {
+    display: none;
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#back-to-top {
+  display: none; /* Αρχικά κρυφό */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: opacity 0.4s ease;
+  opacity: 0;
+}
+
+#back-to-top.show {
+  display: block;
+  opacity: 1;
+}
+.contact-section {
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.contact-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  width: 250px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+/* 📱 Responsive styling for About & Contact */
+
+.about-section,
+.contact-section {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.contact-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background: #f2f2f2;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 250px;
+  text-align: center;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.contact-form button {
+  background-color: #111;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+  background-color: #444;
+}
+
+/* 📱 Mobile layout adjustments */
+@media (max-width: 600px) {
+  .contact-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+  }
+
+  .about-section,
+  .contact-section {
+    padding: 1rem;
+  }
+
+  .contact-form {
+    padding: 0 1rem;
+  }
+}
+
+.site-footer {
+  background: #f2f2f2;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 2rem;
+}
+
+.site-footer a {
+  text-decoration: none;
+  color: #222;
+  font-weight: bold;
+}
+
+.site-footer a:hover {
+  color: #0077cc;
+}
+
+#typed {
+  font-weight: bold;
+  color: inherit;
+}
+
+body.dark {
+  background: #2E2E2E;
+  color: #f5f5f5;
+}
+body.dark a {
+  color: #9db6ff;
+}
+/* 🌗 Dark Mode */
+body.dark {
+  background-color: #1c1c1c;
+  color: #f5f5f5;
+}
+body.dark a {
+  color: #9db6ff;
+}
+
+#typed {
+  font-weight: bold;
+  color: inherit;
+}
+
+/* Basic layout */
+.section {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.contact-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.card {
+  background: #f3f3f3;
+  padding: 1.2rem;
+  border-radius: 10px;
+  width: 250px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+}
+body.dark .card {
+  background: #2b2b2b;
+  color: #f1f1f1;
+}
+
+#theme-toggle,
+#back-to-top {
+  position: fixed;
+  z-index: 1000;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  padding: 10px;
+  cursor: pointer;
+  opacity: 0.85;
+}
+#theme-toggle {
+  top: 16px;
+  right: 16px;
+  background: #111;
+  color: #fff;
+}
+#back-to-top {
+  bottom: 16px;
+  right: 16px;
+  background: #000;
+  color: #fff;
+}
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 1rem;
+  font-size: 0.9rem;
+  background: #f1f1f1;
+}
+body.dark .site-footer {
+  background: #1a1a1a;
+  color: #aaa;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .contact-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+  .card {
+    width: 90%;
+  }
+}
+.home-button {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.75rem 1.2rem;
+  background-color: #0077cc;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.home-button:hover {
+  background-color: #005fa3;
+}
+
+body.dark .home-button {
+  background-color: #3399ff;
+  color: #111;
+}
+
+body.dark .home-button:hover {
+  background-color: #66b2ff;
+}
+
+.home-button {
+  display: inline-block;
+  margin-top: 2rem;
+  font-size: 1rem;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+.home-button:hover {
+  opacity: 0.7;
+}
+
+body.dark {
+    background-color: #111;
+    color: #121212;
+}
+
+body.dark .card {
+  background-color: #1a1a1a;
+  border-color: #333;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* ✅ Fallback: show content if ScrollReveal fails */
+.no-scrollreveal .fade-in {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+
+
+@media (max-width: 600px) {
+  #vaultverse-qr,
+  #vaultverse-gr-qr {
+    flex-direction: column;
+    text-align: center;
+  }
+  #vaultverse-qr img,
+  #vaultverse-gr-qr img {
+    margin-top: 1em;
+  }
+}
+@media (max-width: 600px) {
+  #vaultverse-gr-qr img {
+    width: 120px;
+  }
+}
+
+/* 🔐 Trust Banner: Default (Light Mode) */
+/*
+.trust-banner {
+  background-color: #eafaf1;
+  color: #2d4d3a;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  padding: 1em 1.4em;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 9999;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+*/
+
+/* 🔐 Trust Banner – Light Theme */
+.trust-banner {
+  background-color: #f0fdf4; /* minty soft green */
+  color: #1e4634;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  padding: 1em 1.4em;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 9999;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  transition: all 0.3s ease-in-out;
+}
+
+.trust-banner button {
+  margin-left: 1em;
+  font-size: 0.9rem;
+  padding: 0.3em 0.8em;
+  background: #d4f8e8;
+  border: none;
+  border-radius: 4px;
+  color: #17432e;
+  cursor: pointer;
+}
+
+/* 🌘 Trust Banner – Dark Theme */
+@media (prefers-color-scheme: dark) {
+  .trust-banner {
+    background-color: #11291e;
+    color: #baf9e0;
+  }
+
+  .trust-banner a {
+    color: #93ffd0;
+  }
+
+  .trust-banner button {
+    background: #215845;
+    color: #fff;
+  }
+}
+
+
+
+
+.trust-banner button {
+  margin-left: 1em;
+  font-size: 0.9rem;
+  padding: 0.3em 0.8em;
+  background: #d1f2eb;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* 🌘 Auto-adjust in Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .trust-banner {
+    background-color: #1c2b25;
+    color: #d4f4e3;
+  }
+  .trust-banner a {
+    color: #8ce9c4;
+  }
+  .trust-banner button {
+    background: #285c4d;
+    color: white;
+  }
+}
+
+@keyframes bannerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.trust-banner {
+  animation: bannerFadeIn 0.8s ease-out;
+}
+
+
+@keyframes bannerSlideIn {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.trust-banner {
+  animation: bannerSlideIn 0.6s ease-out;
+}
+
+@media (prefers-color-scheme: dark) {
+  .popup-window,
+  .popup-box,
+  .modal-content {
+    background-color: #f0f0f0 !important;
+    color: #111 !important;
+  }
+
+  .popup-window a,
+  .popup-box a {
+    color: #0077cc !important;
+  }
+
+  .popup-window button,
+  .popup-box button {
+    background: #e0e0e0 !important;
+    color: #111 !important;
+  }
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .popup-window,
+  .modal-content,
+  .terms-modal,
+  #terms-popup {
+    background-color: #f0f0f0 !important; /* Light background */
+    color: #111 !important;               /* Dark text */
+  }
+
+  .popup-window a,
+  .modal-content a,
+  #terms-popup a {
+    color: #0077cc !important; /* Visible links */
+  }
+
+  .popup-window button,
+  .modal-content button,
+  #terms-popup button {
+    background: #e0e0e0 !important;
+    color: #111 !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  #terms-popup {
+    background-color: #f0f0f0 !important;
+    color: #111 !important;
+    padding: 1em;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  }
+
+  #terms-popup h2,
+  #terms-popup p,
+  #terms-popup li {
+    color: #111 !important;
+  }
+
+  #terms-popup button {
+    background-color: #e0e0e0 !important;
+    color: #111 !important;
+  }
+
+  #terms-popup a {
+    color: #0077cc !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  #terms-popup,
+  .popup-window,
+  .modal-content {
+    background-color: #f5f5f5 !important; /* Light background for contrast */
+    color: #111 !important;               /* Force black text */
+  }
+
+  #terms-popup *,
+  .popup-window *,
+  .modal-content * {
+    color: #111 !important;               /* Applies to <p>, <h2>, <li>, etc. */
+  }
+
+  #terms-popup a,
+  .popup-window a {
+    color: #0077cc !important;            /* Clear blue links */
+  }
+
+  #terms-popup button,
+  .popup-window button {
+    background-color: #e0e0e0 !important;
+    color: #111 !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  #terms-popup button,
+  .popup-window button {
+    background-color: #e0e0e0 !important;
+    color: #000 !important; /* Set text to pure black */
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  #terms-popup * {
+    color: #000 !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  #terms-popup,
+  #terms-popup *,
+  .popup-window,
+  .popup-window * {
+    color: #000 !important; /* Pure black text */
+    background-color: #f5f5f5 !important; /* Soft light background for contrast */
+  }
+
+  #terms-popup a,
+  .popup-window a {
+    color: #0077cc !important; /* Clear readable links */
+  }
+
+  #terms-popup button,
+  .popup-window button {
+    background-color: #e0e0e0 !important;
+    color: #000 !important;
+  }
+}
+.dark-mode .popup-text {
+  color: #ffffff;
+}
+.popup-text {
+  text-shadow: 0 0 3px rgba(0,0,0,0.6);
+}
+
+
+#dark-mode-toggle {
+  position: relative;
+  z-index: 20;
+  margin-bottom: 2em;
+}
+
+header {
+  padding-bottom: 3em;
+}
+#dark-mode-toggle {
+  position: relative;
+  z-index: 20;
+  margin-bottom: 2em;
+}
+
+section {
+  scroll-margin-top: 80px; /* Αν ο header σου είναι πιο χαμηλός, μπορείς να μειώσεις σε π.χ. 60px */
+}
+
+#back-to-top {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+#back-to-top.show {
+  opacity: 1;
+}
+#dark-mode-toggle {
+  transition: opacity 0.4s ease-in-out;
+}
+#mobile-menu.active {
+  display: flex;
+}
+
+@media (prefers-color-scheme: dark) {
+  .trust-banner {
+    background-color: #1a1a1a;
+    color: #baf9e0;
+  }
+
+  .trust-banner button {
+    background: #285c4d;
+    color: white;
+  }
+
+  .trust-banner a {
+    color: #93ffd0;
+  }
+}
+
+body.dark-mode #dark-mode-toggle:hover {
+  background-color: #bbb;
+}
+.trust-banner {
+  transition: opacity 0.4s ease, background-color 0.4s ease;
+}
+body.dark-mode #dark-mode-toggle {
+  background-color: #e0e0e0;
+  color: #111;
+  font-weight: bold;
+  border: none;
+  transition: opacity 0.4s ease-in-out;
+}
+
+@media (prefers-color-scheme: dark) {
+  .trust-banner {
+    background-color: #1e1e1e;
+    color: #baf9e0;
+    border: 1px solid #444;
+  }
+
+  .trust-banner a {
+    color: #93ffd0;
+  }
+
+  .trust-banner button {
+    background: #285c4d;
+    color: white;
+  }
+}
+
+  .trust-banner button {
+    background: #285c4d;
+    color: white;
+  }
+}
+
+body.dark-mode * {
+   color: #f5f5f5 !important;
+
+    opacity: 1 !important;
+    background: transparent;
+
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.trust-banner {
+  transition: opacity 0.5s ease-out, background-color 0.4s ease;
+  animation: slideUpFade 0.8s ease-out;
+}
+
+body.dark-mode #dark-mode-toggle {
+  background-color: #e0e0e0;
+  color: #111;
+  font-weight: bold;
+  border: none;
+  transition: opacity 0.4s ease-in-out;
+}
+
+body.dark-mode #dark-mode-toggle:hover {
+  background-color: #d0d0d0;
+  color: black;
+}
+/* 🧹 VasiVerse – Cleaned Styling (Dark Mode + Banner + Toggle) */
+
+/* ✨ Global Spacing & Scroll */
+section {
+  scroll-margin-top: 80px;
+}
+header {
+  padding-bottom: 3em;
+}
+#mobile-menu.active {
+  display: flex;
+}
+
+/* 🔝 Back-to-Top Button */
+#back-to-top {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+#back-to-top.show {
+  opacity: 1;
+}
+
+/* 🌗 Dark Mode Toggle Button */
+#dark-mode-toggle {
+  position: relative;
+  z-index: 20;
+  margin-bottom: 2em;
+  transition: opacity 0.4s ease-in-out;
+}
+body.dark-mode #dark-mode-toggle {
+  background-color: #e0e0e0;
+  color: #111;
+  font-weight: bold;
+  border: none;
+  transition: opacity 0.4s ease-in-out;
+}
+body.dark-mode #dark-mode-toggle:hover {
+  background-color: #d0d0d0;
+  color: black;
+}
+
+/* 🛡️ Trust Banner */
+.trust-banner {
+  transition: opacity 0.5s ease-out, background-color 0.4s ease;
+  animation: slideUpFade 0.8s ease-out;
+}
+
+/* 🌙 Dark Mode – Trust Banner */
+@media (prefers-color-scheme: dark) {
+  .trust-banner {
+    background-color: #1a1a1a;
+    color: #baf9e0;
+    border: 1px solid #444;
+  }
+  .trust-banner a {
+    color: #93ffd0;
+  }
+  .trust-banner button {
+    background: #285c4d;
+    color: white;
+  }
+}
+
+/* 🧠 Dark Mode Global Reset */
+body.dark-mode * {
+  color: #f5f5f5 !important;
+  opacity: 1 !important;
+  background: transparent;
+}
+
+/* 🎬 Trust Banner Slide-In Animation */
+@keyframes slideUpFade {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.darkmode-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  opacity: 1;
+  transition: opacity 0.4s ease-in-out;
+  z-index: 9999;
+}
+
+body:not(.dark-mode) .darkmode-toast {
+  background: #f0f0f0;
+  color: #111;
+}
+
+.darkmode-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1a1a1a; /* darker for better contrast */
+  color: #f5f5f5;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  opacity: 1;
+  transition: opacity 0.4s ease-in-out;
+  z-index: 9999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+body:not(.dark-mode) .darkmode-toast {
+  background: #f0f0f0;
+  color: #111;
+}
+
+.darkmode-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1a1a1a;       /* deeper contrast for dark mode */
+  color: #f5f5f5;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  opacity: 1;
+  transition: opacity 0.4s ease-in-out;
+  z-index: 9999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+body:not(.dark-mode) .darkmode-toast {
+  background: #e0e0e0;       /* stronger tone for visibility in light mode */
+  color: #111;
+  border: 1px solid #ccc;
+}
+.vasiverse-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111;              /* deep contrast for both modes */
+  color: #f0f0f0;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  opacity: 0;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  transition: opacity 0.4s ease;
+}
+body:not(.dark-mode) .vasiverse-toast {
+  background: #ffffff;
+  color: #111;
+  border: 1px solid #ccc;
+}
+
+.vasiverse-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111;
+  color: #f5f5f5;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+body:not(.dark-mode) .vasiverse-toast {
+  background: #fff;
+  color: #111;
+  border: 1px solid #ccc;
+}
+.vasiverse-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111;
+  color: #f5f5f5;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+body:not(.dark-mode) .vasiverse-toast {
+  background: #fff;
+  color: #111;
+  border: 1px solid #ccc;
+}
+
+/* === DARK MODE OVERRIDES === */
+
+body.dark-mode {
+  background-color: #121212;
+  color: #f5f5f5;
+}
+
+section.dark-mode,
+.container.dark-mode {
+  background-color: #1e1e1e;
+  color: #e5e5e5;
+}
+
+/* === LIGHT MODE BASE === */
+
+body {
+  background-color: #ffffff;
+  color: #111111;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+section,
+.container {
+  background-color: #f9f9f9;
+  color: #111111;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+button,
+input,
+a {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode button,
+body.dark-mode input {
+  background-color: #333;
+  color: #f5f5f5;
+  border-color: #666;
+}
+#dark-mode-toggle {
+  background: #444;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  z-index: 20;
+  margin: 10px 0 2em;
+  transition: opacity 0.4s ease-in-out;
+}
+/*
+  header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+*/
+  body.dark-mode {
+  background: #121212;
+  color: #f0f0f0;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #000;
+    color: #eee;
+  }
+}
+body.dark-mode {
+  background: #121212 !important;
+  color: #e0e0e0 !important;
+}
+body > .skiptranslate {
+  display: none !important;
+}
+body.dark-mode,
+section.dark-mode,
+.container.dark-mode {
+  background-color: #121212 !important;
+  color: #f0f0f0 !important;
+}
+
+.dark-mode .forecast-card {
+  background: #1e1e1e;
+  color: #fafafa;
+}
+body, section, .container {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+  /* === Dark Mode Styles === */
+body.dark-mode {
+  background-color: #121212 !important;
+  color: #f0f0f0 !important;
+}
+
+body.dark-mode a {
+  color: #90caf9;
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+  background-color: #1e1e1e;
+}
+
+body.dark-mode .container,
+body.dark-mode section {
+  background-color: #1a1a1a !important;
+  color: #f0f0f0;
+  border-color: #444;
+}
+
+body.dark-mode .forecast-card {
+  background: #222;
+  color: #fff;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode button,
+body.dark-mode input,
+body.dark-mode textarea {
+  background-color: #2c2c2c;
+  color: #eee;
+  border: 1px solid #555;
+}
+
+body.dark-mode .vasiverse-toast {
+  background: #2c2c2c;
+  color: #f0f0f0;
+  border: 1px solid #555;
+}
+
+/* === Smooth Transitions === */
+body,
+section,
+.container,
+.forecast-card,
+button,
+input,
+textarea,
+.vasiverse-toast {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+body, section, .container {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+/* === Dark Mode Styles === */
+body.dark-mode {
+  background-color: #222 !important;
+  color: #f5f5f5 !important;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode p,
+body.dark-mode a,
+body.dark-mode li {
+  color: #f5f5f5 !important;
+}
+
+body.dark-mode nav ul li a {
+  background: #333;
+  color: #ddd;
+}
+
+body.dark-mode nav ul li a:hover {
+  background: #555;
+  color: white;
+}
+
+body.dark-mode section,
+body.dark-mode .container {
+  background: #2a2a2a !important;
+  color: #f0f0f0;
+}
+
+/* Smooth Transitions */
+body, section, .container, nav a, footer, header {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+body.dark-mode {
+  background-color: #222 !important;
+  color: #f5f5f5 !important;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode p,
+body.dark-mode a,
+body.dark-mode li {
+  color: #f5f5f5;
+}
+
+body.dark-mode section,
+body.dark-mode .container {
+  background: #2a2a2a;
+  color: #f0f0f0;
+}
+
+body.dark-mode nav ul li a {
+  background: #333;
+  color: #ddd;
+}
+
+body.dark-mode nav ul li a:hover {
+  background: #555;
+  color: white;
+}
+
+body,
+section,
+.container {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+  /* === DARK MODE === */
+body.dark-mode {
+  background-color: #222 !important;
+  color: #f5f5f5 !important;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode p,
+body.dark-mode a,
+body.dark-mode li {
+  color: #f5f5f5 !important;
+}
+
+body.dark-mode section,
+body.dark-mode .container {
+  background-color: #2a2a2a !important;
+  color: #f0f0f0 !important;
+  border-color: #444;
+}
+
+body.dark-mode nav ul li a {
+  background: #333;
+  color: #ddd;
+}
+body.dark-mode nav ul li a:hover {
+  background: #555;
+  color: white;
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+  background-color: #1a1a1a;
+  color: #f5f5f5;
+}
+
+/* Optional – Dark Inputs */
+body.dark-mode input,
+body.dark-mode button {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+/* Smooth transitions */
+body,
+section,
+.container,
+nav a,
+footer,
+header,
+input,
+button {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+/* === FULL DARK MODE STYLING FIX === */
+body.dark-mode {
+  background-color: #222 !important;
+  color: #f5f5f5 !important;
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+  background-color: #1a1a1a;
+  color: #f5f5f5;
+}
+
+body.dark-mode section,
+body.dark-mode .container {
+  background-color: #2a2a2a;
+  color: #f5f5f5;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode p,
+body.dark-mode a,
+body.dark-mode li {
+  color: #f5f5f5;
+}
+
+body.dark-mode nav ul li a {
+  background: #333;
+  color: #ddd;
+}
+
+body.dark-mode nav ul li a:hover {
+  background: #555;
+  color: white;
+}
+
+body.dark-mode input,
+body.dark-mode button {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+body,
+section,
+.container,
+nav a,
+header,
+footer,
+input,
+button {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+  body.dark-mode {
+  background-color: #222 !important;
+  color: #f5f5f5 !important;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode p,
+body.dark-mode a {
+  color: #f5f5f5 !important;
+}
+
+body.dark-mode section,
+body.dark-mode .container {
+  background-color: #2a2a2a !important;
+}
+
+body.dark-mode nav a {
+  background: #333;
+  color: #ddd;
+}
+
+body.dark-mode nav a:hover {
+  background: #555;
+  color: #fff;
+}
+/* === DARK MODE FULL FIX === */
+body.dark-mode {
+  background-color: #222 !important;
+  color: #f5f5f5 !important;
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+  background-color: #1a1a1a !important;
+  color: #f5f5f5 !important;
+}
+
+body.dark-mode section,
+body.dark-mode .container {
+  background-color: #2a2a2a !important;
+  color: #f5f5f5 !important;
+  border-color: #444;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode p,
+body.dark-mode a,
+body.dark-mode li {
+  color: #f5f5f5 !important;
+}
+
+body.dark-mode nav ul li a {
+  background: #333 !important;
+  color: #ddd !important;
+}
+
+body.dark-mode nav ul li a:hover {
+  background: #555 !important;
+  color: white !important;
+}
+
+body.dark-mode input,
+body.dark-mode button {
+  background-color: #333 !important;
+  color: #fff !important;
+  border: 1px solid #555;
+}
+
+/* Smooth Transitions */
+body, section, .container, nav a, footer, header, input, button {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
