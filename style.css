@@ -1453,3 +1453,23 @@ body:not(.dark-mode) .vasiverse-toast {
   color: #111;
   border: 1px solid #ccc;
 }
+.vasiverse-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111;
+  color: #f5f5f5;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 9999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+body:not(.dark-mode) .vasiverse-toast {
+  background: #fff;
+  color: #111;
+  border: 1px solid #ccc;
+}
