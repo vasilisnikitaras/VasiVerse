@@ -1349,4 +1349,23 @@ body.dark-mode * {
   from { opacity: 0; transform: translateY(30px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+.darkmode-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #222;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  opacity: 1;
+  transition: opacity 0.4s ease-in-out;
+  z-index: 9999;
+}
+
+body:not(.dark-mode) .darkmode-toast {
+  background: #f0f0f0;
+  color: #111;
+}
 
