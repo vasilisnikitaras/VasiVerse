@@ -10,10 +10,38 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll("section, .container").forEach(el =>
       el.classList.add("dark-mode")
     );
-  }
+  };
 
+toggleDarkMode.addEventListener("click", function () {
+  document.body.classList.toggle("dark-mode");
+  document.querySelectorAll("section, .container").forEach(el =>
+    el.classList.toggle("dark-mode")
+  );
+  const mode = document.body.classList.contains("dark-mode") ? "enabled" : "disabled";
+  localStorage.setItem("darkMode", mode);
+
+  // Toast message
+  const notif = document.createElement("div");
+  notif.className = "darkmode-toast";
+  notif.textContent = mode === "enabled"
+    ? "🌙 Dark Mode Enabled"
+    : "☀️ Light Mode Enabled";
+
+  document.body.appendChild(notif);
+  setTimeout(() => {
+    notif.style.opacity = "0";
+    setTimeout(() => notif.remove(), 500);
+  }, 3000);
+});
+
+
+
+
+
+
+  
   // === Dark Mode Toggle ===
-  toggleDarkMode.addEventListener("click", function () {
+/*  toggleDarkMode.addEventListener("click", function () {
     document.body.classList.toggle("dark-mode");
     document.querySelectorAll("section, .container").forEach(el =>
       el.classList.toggle("dark-mode")
@@ -21,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const mode = document.body.classList.contains("dark-mode") ? "enabled" : "disabled";
     localStorage.setItem("darkMode", mode);
   });
-  
+  */
 
   // === Smooth Scroll for Nav Links ===
 //  document.querySelectorAll("nav a").forEach(link => {
@@ -47,10 +75,6 @@ document.querySelectorAll("nav a").forEach(link => {
     }
   });
 });
-
-
-
-  
 
   // === Back to Top Scroll
   backToTopButton.addEventListener("click", function () {
