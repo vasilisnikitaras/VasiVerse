@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     showToast(mode === "enabled" ? "🌙 Dark Mode Enabled" : "☀️ Light Mode Enabled");
   });
 
-  // === Toast Generator Function ===
+  // ✅ Reliable Toast Generator Function (with forced reflow for smooth fade)
   function showToast(message) {
     const oldToast = document.querySelector(".vasiverse-toast");
     if (oldToast) oldToast.remove();
@@ -33,13 +33,13 @@ document.addEventListener("DOMContentLoaded", function () {
     toast.textContent = message;
     document.body.appendChild(toast);
 
-    requestAnimationFrame(() => {
-      toast.style.opacity = "1";
-    });
+    // 👇 Force reflow to enable transition
+    void toast.offsetWidth;
+    toast.style.opacity = "1";
 
     setTimeout(() => {
       toast.style.opacity = "0";
-      setTimeout(() => toast.remove(), 600);
+      toast.addEventListener("transitionend", () => toast.remove());
     }, 3000);
   }
 
