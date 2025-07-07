@@ -1,17 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ffcc00">
   <meta name="description" content="VasiVerse - Real-time weather forecasts, AI-powered predictions, and tech projects!" />
   <meta name="keywords" content="Weather App, AI Forecasting, Real-time Weather, Tech Projects, Web Development, Vasilis Nikitaras" />
   <meta name="google" content="notranslate">
+
+<!-- 🌐 Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="VasiVerse – Tools for Weather, Privacy & Creativity" />
+<meta property="og:description" content="Real-time forecasts, secure password vault, daily journaling tools — all crafted by Vasilis with privacy in mind." />
+<meta property="og:url" content="https://vasiverse.com" />
+<meta property="og:image" content="https://vasiverse.com/images/preview-card.png" />
+<meta property="og:site_name" content="VasiVerse" />
+
+<!-- 🐦 Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="VasiVerse – Web Tools That Respect You" />
+<meta name="twitter:description" content="Weather forecasts, vault security, and productivity without ads, tracking, or noise." />
+<meta name="twitter:image" content="https://vasiverse.com/images/preview-card.png" />
+
   <title>VasiVerse - Your Hub for Innovation</title>
   <!-- Google AdSense Verification -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7384081751053780" crossorigin="anonymous"></script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "VasiVerse",
+  "url": "https://vasiverse.com",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://vasiverse.com/?s={search_term_string}",
+    "query-input": "required name=search_term_string"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Vasilis Nikitaras"
+  },
+  "description": "Digital playground for weather tools, secure apps, and creative projects built with privacy in mind.",
+  "inLanguage": "en",
+  "publisher": {
+    "@type": "Organization",
+    "name": "VasiVerse"
+  }
+}
+</script>
+  
   <!-- Stylesheets -->
   <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json">
+
 
 <style>
   @media (max-width: 600px) {
@@ -34,13 +76,20 @@
     opacity: 1;
     transform: translateY(0);
   }
-</style>    
+</style>  
+
+<style>
+.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+</style>
+  
 </head>
 <body>
 
-
 <!-- 🛡️ VasiVerse Trust Banner -->
-<div id="trust-banner" style="
+<div id="trust-banner" class="trust-banner" style="
   position: fixed;
   bottom: 20px;
   left: 20px;
@@ -53,14 +102,12 @@
   box-shadow: 0 6px 12px rgba(0,0,0,0.1);
   padding: 1em 1.4em;
   text-align: center;
-  font-family: 'Segoe UI', sans-serif;
-<div id="trust-banner" class="trust-banner">
+  font-family: 'Segoe UI', sans-serif;">
   ✅ <strong>VasiVerse is safe & regularly updated.</strong> Built by 
   <a href="https://github.com/vasilisnikitaras" target="_blank">Vasilis</a> & Copilot with care. No data collection. No tracking. QR codes are 100% secure.
   <button onclick="document.getElementById('trust-banner').style.display='none'">✖ Close</button>
 </div>
 
-  
 <!-- Hamburger icon -->
 <div class="hamburger" onclick="toggleMenu()">☰</div>
 
@@ -76,34 +123,18 @@
 
   <header>
     <h1>Welcome to VasiVerse 🚀</h1>
+
+    <p>Welcome to VasiVerse — a creative space where innovation meets simplicity. Explore tools that help you stay organized, secure your data, track the weather, and dive into unique web projects crafted by Vasilis Nikitaras. Every feature is thoughtfully built with privacy and performance in mind.</p>
+    
     <p>Your hub for weather forecasts, portfolio, and creativity!</p>
-    <button id="dark-mode-toggle">🌙 Toggle Dark Mode</button>
+
+    <!-- <button class="dark-mode-toggle">🌙 Toggle Dark Mode</button> -->
+    <!-- 🌙 Dark Mode Toggle Buttons -->
+    <button id="dark-mode-toggle" class="dark-mode-toggle">🌙 Toggle Dark Mode</button>
+
   </header>
   
-<!-- Old Insider QR block removed for cleaner homepage -->
 
-  <!--
-  <section id="qr-feature" style="
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2em;
-  background: #f4fbff;
-  border-radius: 12px;
-  margin: 3em auto;
-  padding: 2em;
-  max-width: 900px;
-  box-shadow: 0 4px 16px rgba(132, 216, 246, 0.1);">
-  
-  <div>
-    <h2 style="font-size: 1.8em; margin-bottom: 0.5em;">🔓 Insider Access</h2>
-    <p style="font-size: 1.1em; margin-top: 0;">Scan the code to unlock exclusive tools, early experiments, and more.</p>
-  </div>
-
-  <img src="vasiverse-insider-qr.png" alt="VasiVerse QR Code"
-       style="width: 180px; border-radius: 10px; box-shadow: 0 0 8px #84d8f6;">
-</section>
--->
 <nav>
   <ul>
     <li><a href="#weather">🌦️ Weather App</a></li>
@@ -137,7 +168,6 @@
   <p>All tools on VasiVerse are crafted with care and updated regularly. While we strive for accuracy and safety, everything is offered “as-is,” without formal warranty. Some features (like weather forecasts) may depend on third-party APIs or browser behavior.</p>
   <p><strong>Rest assured:</strong> VasiVerse is secure, privacy-respecting, and built without tracking or hidden data collection. Your experience matters most. 🚀</p>
 </section>
-
 
   <section id="monetization">
     <h2>3. Monetization</h2>
@@ -222,13 +252,13 @@
        style="width: 180px; border-radius: 10px; box-shadow: 0 0 8px #84d8f6;">
 </section>
   
-
   <section id="projects">
     <h2>💡 Featured Projects</h2>
     <p>Check out my latest web applications and interactive experiences!</p>
     <a href="https://vasilisnikitaras.github.io/Vasilis-Projects-2025A" target="_blank">🚀 View Projects</a>
 <div class="featured-card">
   <h3>🔐 VaultVerse – Password Manager</h3>
+  <p>Safely store and manage your passwords with offline access, QR unlock, and zero tracking. Built for privacy-first users who value convenience and security.</p>
   <p>Ασφαλής αποθήκευση & διαχείριση κωδικών με offline υποστήριξη και mobile-ready εμπειρία.</p>
   <a href="https://vasiverse.com/vault" target="_blank">🔑 Πρόσβαση στο VaultVerse</a>
 </div>
@@ -256,16 +286,8 @@
     <p style="font-size: 1.05em;">Σκάναρε για πρόσβαση στην ελληνική έκδοση του VaultVerse – άμεσο, ασφαλές, offline.</p>
   </div>
 
-<!-- <img src="vault-gr.png" alt="VaultVerse GR QR Code"> -->
-
     <img src="vault-gr.png" alt="VaultVerse GR QR Code"
      style="width: 140px; border-radius: 10px; box-shadow: 0 0 8px #b8e3c4;">
-
-    
-    
-<!-- <img src="vault-gr.png" ...> -->
-
-   <!--  style="width: 180px; border-radius: 10px; box-shadow: 0 0 8px #b8e3c4;"> -->
 
 </section>
     
@@ -302,14 +324,19 @@
     <p>We carefully select partners who align with our mission of innovation and technology.</p>
 
     <div id="ad-container">
+      
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7384081751053780" crossorigin="anonymous"></script>
+
       <ins class="adsbygoogle"
-           style="display:block; text-align:center;"
-           data-ad-layout="in-article"
-           data-ad-format="fluid"
-           data-ad-client="ca-pub-7384081751053780"
-           data-ad-slot="5631998379"></ins>
-      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+     style="display:block; text-align:center; margin-top: 20px;"
+     data-ad-client="ca-pub-7384081751053780"
+     data-ad-slot="YOUR_SLOT_ID"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+      
     </div>
   </section>
 
@@ -337,20 +364,68 @@
   </article>
 </section>
 
-<footer>
-  <p>
-    © 2025 VasiVerse | Created by Vasilis Nikitaras |
-    <a href="privacy.html">Privacy Policy</a> |
-    <a href="terms.html">Terms of Use</a>
-  </p>
-  <button id="back-to-top">🔝 Back to Top</button>
-</footer>
+    <section id="seo-sitemap">
+  <h2>🔍 SEO Sitemap – VasiVerse Structure</h2>
+  <ul>
+    <li>
+      <strong>Homepage (https://vasiverse.com)</strong><br>
+      - Keywords: Weather Forecast, Web Tools, Vasilis Nikitaras, Minimalist Apps, No Tracking, AI Forecasting<br>
+      - Meta Description: Your digital lab for weather forecasts, productivity tools, and private web experiences.
+    </li>
+    <li>
+      <strong>Weather App (#weather)</strong><br>
+      - Keywords: Real-time Weather, OpenWeather, AQI, Forecasting Tools, Climate Alerts<br>
+      - Meta Description: Stay prepared with real-time forecasts powered by OpenWeather + AI.
+    </li>
+    <li>
+      <strong>VaultVerse (/vault)</strong><br>
+      - Keywords: Password Manager, QR Unlock, Privacy Tool, Secure Storage, Offline Passwords<br>
+      - Meta Description: VaultVerse offers QR-secured password storage with no tracking or cloud sync.
+    </li>
+    <li>
+      <strong>Daily Assist (/daily-assist)</strong><br>
+      - Keywords: To-Do List, Daily Journal, Dark Mode Web Tool, Language Toggle, Offline Task Tracker<br>
+      - Meta Description: Your personal journal and task tracker with simplicity, sync-free privacy, and flair.
+    </li>
+    <li>
+      <strong>Portfolio (#portfolio)</strong><br>
+      - Keywords: Web Projects, Frontend Developer, UX Experiments, Open Source<br>
+      - Meta Description: Explore featured works and digital experiments built by Vasilis Nikitaras.
+    </li>
+    <li>
+      <strong>Featured Projects (#projects)</strong><br>
+      - Keywords: Vasilis Tools, AI Projects, Weather Wizard, QR Auth, Web Playground<br>
+      - Meta Description: A creative showcase of apps and prototypes—from AI to productivity.
+    </li>
+    <li>
+      <strong>Monetization (#ads)</strong><br>
+      - Keywords: AdSense, Ethical Advertising, Sponsored Tools, Creative Partnerships<br>
+      - Meta Description: Learn how VasiVerse monetizes ethically to support independent development.
+    </li>
+    <li>
+      <strong>About (/about.html)</strong><br>
+      - Keywords: Creator Bio, Montreal Developer, Story Behind VasiVerse<br>
+      - Meta Description: Meet Vasilis Nikitaras and discover the mission behind the VasiVerse platform.
+    </li>
+    <li>
+      <strong>Contact (/contact.html)</strong><br>
+      - Keywords: Feedback, Contact Vasilis, UX Suggestions, Collaboration Request<br>
+      - Meta Description: Reach out to the VasiVerse team for support, ideas, or feedback.
+    </li>
+  </ul>
+</section>
 
   <!-- 🔍 Image Modal -->
   <div id="image-modal" class="modal">
     <span class="close">&times;</span>
     <img class="modal-content" id="modal-img" alt="Full Preview">
   </div>
+    
+<section id="about-creator">
+  <h2>👨‍💻 Meet the Creator</h2>
+  <p>Hi! I’m Vasilis Nikitaras, a Montreal-based web developer passionate about crafting minimalist, fast, and privacy-respecting tools. VasiVerse is my digital playground—where creative experiments become helpful apps, and every line of code is written with the user in mind.</p>
+</section>
+    
 
 <!-- Google Translate -->
 <div id="google_translate_element" style="display: none;"></div>
@@ -391,36 +466,144 @@
       backToTopBtn.classList.remove("show");
     }
   });
+
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7384081751053780"
+     crossorigin="anonymous"></script>
+<!-- VasiVerse_ContentAds_2 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7384081751053780"
+     data-ad-slot="6952267561"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-  <footer class="site-footer">
-  <p>Made with ❤️ by <a href="https://github.com/vasilisnikitaras" target="_blank">Vasilis Nikitaras</a></p>
+
+   
+<section id="media-assets" style="padding: 3em 1em; max-width: 1000px; margin: auto;">
+  <h2 style="font-size: 2em; text-align: center;">🎨 VasiVerse Branding Badges</h2>
+  <p style="text-align: center; color: #666; font-style: italic; margin-bottom: 2em;">
+    Download and use freely — all badges handcrafted in Montréal 🍁
+  </p>
+
+  <div style="display: grid; gap: 2em; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+
+    <!-- 🌞 Light Badge -->
+    <div style="text-align: center;">
+      <h3>🌞 Light Mode Badge</h3>
+      <img src="/assets/vasiverse-footer-badge-light.png" alt="Light Mode Badge" style="max-width: 180px;" />
+      <p><a href="/assets/vasiverse-footer-badge-light.png" download>Download PNG</a></p>
+    </div>
+
+    <!-- 🌒 Dark Mode Badge -->
+    <div style="text-align: center;">
+      <h3>🌒 Dark Mode Badge</h3>
+      <img src="/assets/vasiverse-footer-badge-alt.png" alt="Dark Mode Badge" style="max-width: 180px;" />
+      <p><a href="/assets/vasiverse-footer-badge-alt.png" download>Download PNG</a></p>
+    </div>
+
+    <!-- 🍁 Montréal Badge -->
+    <div style="text-align: center;">
+      <h3>🍁 Made in Montréal</h3>
+      <img src="/assets/vasiverse-footer-badge-montreal.png" alt="Montréal Variant" style="max-width: 180px;" />
+      <p><a href="/assets/vasiverse-footer-badge-montreal.png" download>Download PNG</a></p>
+    </div>
+
+    <!-- 🧭 Signature Badge -->
+    <div style="text-align: center;">
+      <h3>🧭 Signature Badge</h3>
+     <!-- <img src="/assets/vasiverse-footer-badge-signature.png" alt="Signature Badge" style="max-width: 180px;" /> -->
+
+      <img src="/assets/vasiverse-footer-badge-signature.png"
+     alt="Signature Badge"
+     style="max-width: 180px; display: block; margin: 0 auto;" />
+
+      <p><a href="/assets/vasiverse-footer-badge-signature.png" download>Download PNG</a></p>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer" style="text-align: center; margin-top: 3em; padding: 2em 1em; background: #f8f9fb;">
+
+  <!-- 📜 Copyright -->
+  <p style="font-size: 0.9em; color: #555;">
+    © 2025 <strong>VasiVerse</strong> | Created by Vasilis Nikitaras |
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="terms.html">Terms of Use</a> |
+    <a href="#media-assets">🎨 Branding Assets</a>
+  </p>
+
+  <!-- 💬 Signature -->
+  <p style="font-size: 0.85em; color: #777;">
+    🛠️ Built with care • <em>No Tracking • 100% Yours</em><br>
+    Made with ❤️ by <a href="https://github.com/vasilisnikitaras" target="_blank">Vasilis</a>
+  </p>
+
+  <!-- 🔝 Back to Top -->
+  <button id="back-to-top" style="margin-top: 1em;">🔝 Back to Top</button>
+
+<!-- 👇 Footer content -->
+<footer>
+  <p style="font-size: 0.9em; color: #555;">
+    © 2025 <strong>VasiVerse</strong> | Created by Vasilis Nikitaras ...
+  </p>
 </footer>
 
-  <!-- Add VaultVerse scroll animation + mobile stacking -->
-  <script>
-  const fadeEls = document.querySelectorAll('.fade-in');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
+  
+</footer>
+  
+<script>
+  // 🔝 Smooth scroll to top
+  const backToTopBtn = document.getElementById("back-to-top");
+
+  backToTopBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
-  fadeEls.forEach(el => observer.observe(el));
+  // 👀 Show/hide button on scroll
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      backToTopBtn.classList.add("show");
+    } else {
+      backToTopBtn.classList.remove("show");
+    }
+  });
 </script>
 
-    
+<!-- Other scripts above... -->
+
 <script>
+  // Trust Banner Fade-Out
   window.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       const banner = document.getElementById("trust-banner");
-      if (banner) banner.style.display = "none";
-    }, 10000); // 10 seconds
+      if (banner) {
+        banner.style.opacity = "0";
+        banner.style.pointerEvents = "none";
+      }
+    }, 15000); // ⏱ Change to 15 seconds if you'd like longer visibility
   });
 </script>
 
-
+    <script>
+  function toggleMenu() {
+    const menu = document.getElementById("mobile-menu");
+    if (menu) {
+      menu.classList.toggle("active");
+    }
+  }
+</script>
+    
+<!-- ...before the closing </body> tag -->
+<script src="script.js" defer></script>
+   
 </body>
 </html>
+
+
+
+
+    
