@@ -4,6 +4,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const searchBtn = document.getElementById("search-btn");
   const weatherOutput = document.getElementById("weather-output");
 
+const darkButtons = document.querySelectorAll('.dark-mode-toggle');
+
+darkButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+  });
+});
+
+  
   // === Load Theme from Storage ===
   const mode = localStorage.getItem("darkMode");
   if (mode === "enabled") {
