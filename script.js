@@ -4,89 +4,69 @@ document.addEventListener("DOMContentLoaded", function () {
   const searchBtn = document.getElementById("search-btn");
   const weatherOutput = document.getElementById("weather-output");
 
-  // === Restore Dark Mode from LocalStorage ===
+  // === Dark Mode: Load from LocalStorage ===
   if (localStorage.getItem("darkMode") === "enabled") {
     document.body.classList.add("dark-mode");
     document.querySelectorAll("section, .container").forEach(el =>
       el.classList.add("dark-mode")
     );
-  };
+  }
 
-toggleDarkMode.addEventListener("click", function () {
-  document.body.classList.toggle("dark-mode");
-  document.querySelectorAll("section, .container").forEach(el =>
-    el.classList.toggle("dark-mode")
-  );
-  const mode = document.body.classList.contains("dark-mode") ? "enabled" : "disabled";
-  localStorage.setItem("darkMode", mode);
-
-  // Toast message
-  const notif = document.createElement("div");
-  notif.className = "darkmode-toast";
-  notif.textContent = mode === "enabled"
-    ? "🌙 Dark Mode Enabled"
-    : "☀️ Light Mode Enabled";
-
-  document.body.appendChild(notif);
-  setTimeout(() => {
-    notif.style.opacity = "0";
-    setTimeout(() => notif.remove(), 500);
-  }, 3000);
-});
-
-
-
-
-
-
-  
-  // === Dark Mode Toggle ===
-/*  toggleDarkMode.addEventListener("click", function () {
+  // === Dark Mode Toggle with Toast ===
+  toggleDarkMode.addEventListener("click", function () {
     document.body.classList.toggle("dark-mode");
     document.querySelectorAll("section, .container").forEach(el =>
       el.classList.toggle("dark-mode")
     );
     const mode = document.body.classList.contains("dark-mode") ? "enabled" : "disabled";
     localStorage.setItem("darkMode", mode);
+    showToast(mode === "enabled" ? "🌙 Dark Mode Enabled" : "☀️ Light Mode Enabled");
   });
-  */
+
+  // === Toast Generator Function ===
+  function showToast(message) {
+    const oldToast = document.querySelector(".vasiverse-toast");
+    if (oldToast) oldToast.remove();
+
+    const toast = document.createElement("div");
+    toast.className = "vasiverse-toast";
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    requestAnimationFrame(() => {
+      toast.style.opacity = "1";
+    });
+
+    setTimeout(() => {
+      toast.style.opacity = "0";
+      setTimeout(() => toast.remove(), 600);
+    }, 3000);
+  }
 
   // === Smooth Scroll for Nav Links ===
-//  document.querySelectorAll("nav a").forEach(link => {
- //   link.addEventListener("click", function (e) {
-  //    e.preventDefault();
- //     const target = document.querySelector(this.getAttribute("href"));
- //     if (target) {
- //       target.scrollIntoView({ behavior: "smooth" });
- //     }
- //   });
-//  }); 
-
-document.querySelectorAll("nav a").forEach(link => {
-  link.addEventListener("click", function (e) {
-    const href = this.getAttribute("href");
-    
-    if (href.startsWith("#")) {
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
+  document.querySelectorAll("nav a").forEach(link => {
+    link.addEventListener("click", function (e) {
+      const href = this.getAttribute("href");
+      if (href.startsWith("#")) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
       }
-    }
+    });
   });
-});
 
-  // === Back to Top Scroll
-  backToTopButton.addEventListener("click", function () {
+  // === Back to Top Button ===
+  backToTopButton.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
-
   window.addEventListener("scroll", () => {
     const scrollY = window.scrollY || document.documentElement.scrollTop;
     backToTopButton.classList.toggle("visible", scrollY > 400);
   });
 
-  // === Weather Fetch by City Name ===
+  // === Weather by City Search ===
   async function fetchWeather() {
     const city = document.getElementById("city-input").value.trim();
     if (!city) {
@@ -96,93 +76,81 @@ document.querySelectorAll("nav a").forEach(link => {
 
     try {
       const apiKey = "1f1742f46396f018ec07cab6f270841a";
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(
-        city
-      )}&appid=${apiKey}&units=metric`;
-
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric`;
       const response = await fetch(url);
-      if (!response.ok) throw new Error("Network response error");
+      if (!response.ok) throw new Error("Network error");
       const data = await response.json();
 
       const condition = data.weather[0].main.toLowerCase();
-      let icon = "🌍";
-      if (condition.includes("clear")) icon = `<div class="weather-icon sunny">☀️</div>`;
-      else if (condition.includes("cloud")) icon = `<div class="weather-icon cloudy">☁️</div>`;
-      else if (condition.includes("rain")) icon = `<div class="weather-icon rainy">🌧️</div>`;
+      const icons = {
+        clear: "☀️",
+        cloud: "☁️",
+        rain: "🌧️"
+      };
+      const icon = icons[condition] || "🌍";
 
       weatherOutput.innerHTML = `
         <h3>📍 ${data.name}, ${data.sys.country}</h3>
-        ${icon}
+        <div class="weather-icon">${icon}</div>
         <p>🌡️ Temperature: ${data.main.temp}°C</p>
         <p>🌤️ Condition: ${data.weather[0].description}</p>
       `;
       weatherOutput.classList.add("show");
 
-      fetchForecast(data.name); // NEW: fetch 3-day forecast
-    } catch (error) {
-      console.error("Weather Fetch Error:", error);
-      weatherOutput.innerHTML = "⚠️ Failed to retrieve weather data.";
+      fetchForecast(data.name);
+    } catch (err) {
+      console.error("Weather error:", err);
+      weatherOutput.innerHTML = "⚠️ Failed to retrieve weather.";
     }
   }
-
   searchBtn.addEventListener("click", fetchWeather);
 
-  // === Auto-Fetch Weather by Geolocation ===
+  // === Auto-Fetch Weather by Location ===
   if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition(
-      async position => {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
+    navigator.geolocation.getCurrentPosition(async position => {
+      const { latitude: lat, longitude: lon } = position.coords;
+      try {
+        const apiKey = "1f1742f46396f018ec07cab6f270841a";
+        const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+        const response = await fetch(url);
+        const data = await response.json();
+        if (!response.ok || !data.name) throw new Error("Invalid location");
 
-        try {
-          const apiKey = "1f1742f46396f018ec07cab6f270841a";
-          const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-          const response = await fetch(url);
-          if (!response.ok) throw new Error("Weather fetch failed");
+        const condition = data.weather[0].main.toLowerCase();
+        const icons = {
+          clear: "☀️",
+          cloud: "☁️",
+          rain: "🌧️"
+        };
+        const icon = icons[condition] || "🌍";
 
-          const data = await response.json();
-          if (data.cod === "404" || data.cod === "400") {
-            weatherOutput.innerHTML = "⚠️ City not found. Please check the spelling.";
-            return;
-          }
+        weatherOutput.innerHTML = `
+          <h3>📍 ${data.name}, ${data.sys.country}</h3>
+          <div class="weather-icon">${icon}</div>
+          <p>🌡️ Temperature: ${data.main.temp}°C</p>
+          <p>🌤️ Condition: ${data.weather[0].description}</p>
+        `;
+        weatherOutput.classList.add("show");
 
-          const condition = data.weather[0].main.toLowerCase();
-          let icon = "🌍";
-          if (condition.includes("clear")) icon = `<div class="weather-icon sunny">☀️</div>`;
-          else if (condition.includes("cloud")) icon = `<div class="weather-icon cloudy">☁️</div>`;
-          else if (condition.includes("rain")) icon = `<div class="weather-icon rainy">🌧️</div>`;
-
-          weatherOutput.innerHTML = `
-            <h3>📍 ${data.name}, ${data.sys.country}</h3>
-            ${icon}
-            <p>🌡️ Temperature: ${data.main.temp}°C</p>
-            <p>🌤️ Condition: ${data.weather[0].description}</p>
-          `;
-          weatherOutput.classList.add("show");
-
-          fetchForecast(data.name); // NEW: show forecast on auto-load too
-        } catch (err) {
-          console.warn("🌐 Auto-location failed:", err);
-        }
-      },
-      error => {
-        console.log("📍 User denied location access.");
+        fetchForecast(data.name);
+      } catch (err) {
+        console.warn("Geolocation failed:", err);
       }
-    );
+    });
   }
 
-  // === 3-Day Forecast Function ===
+  // === 3-Day Weather Forecast ===
   async function fetchForecast(city) {
-    const forecastContainer = document.getElementById("forecast-container");
-    if (!forecastContainer) return;
-    forecastContainer.innerHTML = "⏳ Loading forecast...";
+    const container = document.getElementById("forecast-container");
+    if (!container) return;
+    container.innerHTML = "⏳ Loading forecast...";
 
     try {
       const apiKey = "1f1742f46396f018ec07cab6f270841a";
       const url = `https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric`;
       const response = await fetch(url);
-      if (!response.ok) throw new Error("Forecast fetch failed");
       const data = await response.json();
+      if (!response.ok) throw new Error("Forecast fetch error");
 
       const days = {};
       data.list.forEach(item => {
@@ -191,15 +159,17 @@ document.querySelectorAll("nav a").forEach(link => {
         days[date].push(item);
       });
 
-      const dayKeys = Object.keys(days).slice(1, 4);
+      const keys = Object.keys(days).slice(1, 4);
       let html = '<div class="forecast-grid">';
-      dayKeys.forEach(date => {
+      keys.forEach(date => {
         const day = days[date][0];
         const condition = day.weather[0].main.toLowerCase();
-        let icon = "🌍";
-        if (condition.includes("clear")) icon = "☀️";
-        else if (condition.includes("cloud")) icon = "☁️";
-        else if (condition.includes("rain")) icon = "🌧️";
+        const icons = {
+          clear: "☀️",
+          cloud: "☁️",
+          rain: "🌧️"
+        };
+        const icon = icons[condition] || "🌍";
 
         html += `
           <div class="forecast-card">
@@ -210,16 +180,15 @@ document.querySelectorAll("nav a").forEach(link => {
           </div>
         `;
       });
-
       html += "</div>";
-      forecastContainer.innerHTML = html;
+      container.innerHTML = html;
     } catch (err) {
       console.error("Forecast error:", err);
-      forecastContainer.innerHTML = "⚠️ Unable to load forecast.";
+      container.innerHTML = "⚠️ Unable to load forecast.";
     }
   }
 
-  // === Escape Key Closes Modal ===
+  // === Close Modal on Escape ===
   window.addEventListener("keydown", e => {
     if (e.key === "Escape") {
       const modal = document.getElementById("image-modal");
@@ -229,14 +198,13 @@ document.querySelectorAll("nav a").forEach(link => {
     }
   });
 
-  // === Load AdSense (Optional – Customize IDs) ===
+  // === Register AdSense ===
   function loadAds() {
     const adContainer = document.getElementById("ad-container");
     if (adContainer) {
       adContainer.innerHTML = `
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <ins class="adsbygoogle"
-             style="display:block"
+        <ins class="adsbygoogle" style="display:block"
              data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
              data-ad-slot="YYYYYYYYYY"
              data-ad-format="auto"></ins>
@@ -245,36 +213,12 @@ document.querySelectorAll("nav a").forEach(link => {
     }
   }
 
-  loadAds();if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('service-worker.js')
-    .then(() => console.log('🛰️ VasiVerse Service Worker Registered!'))
-    .catch(err => console.error('Service Worker registration failed:', err));
-}
+  loadAds();
 
+  // === Register Service Worker ===
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(() => console.log('🛰️ VasiVerse SW Registered!'))
+      .catch(err => console.error('Service Worker registration failed:', err));
+  }
 });
-
-
-showToast("🌙 Dark Mode Enabled");
-
-const mode = document.body.classList.contains("dark-mode") ? "enabled" : "disabled";
-showToast(mode === "enabled" ? "🌙 Dark Mode Enabled" : "☀️ Light Mode Enabled");
-
-
-function showToast(message) {
-  const toast = document.createElement("div");
-  toast.className = "vasiverse-toast";
-  toast.textContent = message;
-
-  document.body.appendChild(toast);
-
-  // Trigger fade-in
-  requestAnimationFrame(() => {
-    toast.style.opacity = "1";
-  });
-
-  // Auto-dismiss
-  setTimeout(() => {
-    toast.style.opacity = "0";
-    setTimeout(() => toast.remove(), 600);
-  }, 3000);
-}
