@@ -305,3 +305,7 @@ body:not(.dark-mode) .vasiverse-toast {
   color: #111;
   border: 1px solid #ccc;
 }
+.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
