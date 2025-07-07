@@ -1535,3 +1535,8 @@ body.dark-mode input {
   align-items: center;
 }
 
+  body.dark-mode {
+  background: #121212;
+  color: #f0f0f0;
+}
+
