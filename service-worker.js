@@ -1,33 +1,51 @@
-// service-worker.js
-const cacheName = 'vasiverse-cache-v1';
-const assets = [
-  '/',
-  '/index.html',
-  '/about.html',
-  '/contact.html',
-  '/early-access.html',
-  '/privacy.html',
-  '/terms.html',
-  '/style.css',
-  '/script.js',
-  '/vault/vault.html',
-  '/vault-gr.png',
-  '/vasiverse-insider-qr.png',
-  '/manifest.json'
+const CACHE_NAME = "vasiverse-cache-v1";
+const OFFLINE_URL = "/offline.html"; // optional fallback page
+
+const urlsToCache = [
+  "/",
+  "/index.html",
+  "/style.css",
+  "/script.js",
+  OFFLINE_URL, // only if you create an offline fallback page
 ];
 
-self.addEventListener('install', e => {
-  e.waitUntil(caches.open(cacheName).then(cache => cache.addAll(assets)));
+// Install — cache all required assets
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.addAll(urlsToCache);
+    })
+  );
+  self.skipWaiting();
 });
 
-self.addEventListener('fetch', e => {
-  e.respondWith(caches.match(e.request).then(res => res || fetch(e.request)));
-});
-
-self.addEventListener('activate', e => {
-  e.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.filter(key => key !== cacheName).map(key => caches.delete(key)))
+// Activate — cleanup old caches
+self.addEventListener("activate", (event) => {
+  event.waitUntil(
+    caches.keys().then((keyList) =>
+      Promise.all(
+        keyList.map((key) => {
+          if (key !== CACHE_NAME) return caches.delete(key);
+        })
+      )
     )
+  );
+  self.clients.claim();
+});
+
+// Fetch — serve cached assets, fallback to network
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
+    caches.match(event.request).then((cached) => {
+      return (
+        cached ||
+        fetch(event.request).catch(() => {
+          // If offline and can't fetch, return fallback page (optional)
+          if (event.request.mode === "navigate") {
+            return caches.match(OFFLINE_URL);
+          }
+        })
+      );
+    })
   );
 });
