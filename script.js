@@ -4,38 +4,29 @@ document.addEventListener("DOMContentLoaded", function () {
   const searchBtn = document.getElementById("search-btn");
   const weatherOutput = document.getElementById("weather-output");
 
-  document.getElementById('dark-mode-toggle').addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-});
-
-
-  // === Load Theme from Storage (force both directions) ===
+  // === Load Theme from Storage ===
   const mode = localStorage.getItem("darkMode");
   if (mode === "enabled") {
-    document.body.classList.add("dark-mode");
-    document.querySelectorAll("section, .container").forEach(el =>
-      el.classList.add("dark-mode")
-    );
-  } else {
-    document.body.classList.remove("dark-mode");
-    document.querySelectorAll("section, .container").forEach(el =>
-      el.classList.remove("dark-mode")
-    );
+    applyDarkMode(true);
   }
 
   // === Dark Mode Toggle with Toast ===
   toggleDarkMode.addEventListener("click", function () {
-    document.body.classList.toggle("dark-mode");
+    const isDark = document.body.classList.toggle("dark-mode");
     document.querySelectorAll("section, .container").forEach(el =>
       el.classList.toggle("dark-mode")
     );
-
-    const mode = document.body.classList.contains("dark-mode") ? "enabled" : "disabled";
-    localStorage.setItem("darkMode", mode);
-    showToast(mode === "enabled" ? "🌙 Dark Mode Enabled" : "☀️ Light Mode Enabled");
+    localStorage.setItem("darkMode", isDark ? "enabled" : "disabled");
+    showToast(isDark ? "🌙 Dark Mode Enabled" : "☀️ Light Mode Enabled");
   });
 
-  // === Toast Generator Function (with forced reflow) ===
+  function applyDarkMode(enable) {
+    document.body.classList.toggle("dark-mode", enable);
+    document.querySelectorAll("section, .container").forEach(el =>
+      el.classList.toggle("dark-mode", enable)
+    );
+  }
+
   function showToast(message) {
     const oldToast = document.querySelector(".vasiverse-toast");
     if (oldToast) oldToast.remove();
@@ -55,28 +46,26 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // === Smooth Scroll for Nav Links ===
-  document.querySelectorAll("nav a").forEach(link => {
+  document.querySelectorAll("nav a[href^='#']").forEach(link => {
     link.addEventListener("click", function (e) {
-      const href = this.getAttribute("href");
-      if (href.startsWith("#")) {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) target.scrollIntoView({ behavior: "smooth" });
-      }
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) target.scrollIntoView({ behavior: "smooth" });
     });
   });
 
   // === Back to Top Button ===
-  backToTopButton.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+  backToTopButton.addEventListener("click", () =>
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  );
 
   window.addEventListener("scroll", () => {
-    const scrollY = window.scrollY || document.documentElement.scrollTop;
-    backToTopButton.classList.toggle("visible", scrollY > 400);
+    backToTopButton.classList.toggle("visible", window.scrollY > 400);
   });
 
-  // === Weather by City Search ===
+  // === Weather Search by City ===
+  searchBtn.addEventListener("click", fetchWeather);
+
   async function fetchWeather() {
     const city = document.getElementById("city-input").value.trim();
     if (!city) {
@@ -91,9 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!response.ok) throw new Error("Network error");
       const data = await response.json();
 
-      const condition = data.weather[0].main.toLowerCase();
-      const icons = { clear: "☀️", cloud: "☁️", rain: "🌧️" };
-      const icon = icons[condition] || "🌍";
+      const icon = getWeatherIcon(data.weather[0].main.toLowerCase());
 
       weatherOutput.innerHTML = `
         <h3>📍 ${data.name}, ${data.sys.country}</h3>
@@ -102,7 +89,6 @@ document.addEventListener("DOMContentLoaded", function () {
         <p>🌤️ Condition: ${data.weather[0].description}</p>
       `;
       weatherOutput.classList.add("show");
-
       fetchForecast(data.name);
     } catch (err) {
       console.error("Weather error:", err);
@@ -110,12 +96,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  searchBtn.addEventListener("click", fetchWeather);
+  function getWeatherIcon(condition) {
+    const icons = { clear: "☀️", cloud: "☁️", rain: "🌧️" };
+    return icons[condition] || "🌍";
+  }
 
-  // === Auto-Fetch Weather by Location ===
+  // === Auto Weather by Geolocation ===
   if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition(async position => {
-      const { latitude: lat, longitude: lon } = position.coords;
+    navigator.geolocation.getCurrentPosition(async pos => {
+      const { latitude: lat, longitude: lon } = pos.coords;
       try {
         const apiKey = "1f1742f46396f018ec07cab6f270841a";
         const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
@@ -123,9 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const data = await response.json();
         if (!response.ok || !data.name) throw new Error("Invalid location");
 
-        const condition = data.weather[0].main.toLowerCase();
-        const icons = { clear: "☀️", cloud: "☁️", rain: "🌧️" };
-        const icon = icons[condition] || "🌍";
+        const icon = getWeatherIcon(data.weather[0].main.toLowerCase());
 
         weatherOutput.innerHTML = `
           <h3>📍 ${data.name}, ${data.sys.country}</h3>
@@ -142,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // === 3-Day Weather Forecast ===
+  // === 3-Day Forecast ===
   async function fetchForecast(city) {
     const container = document.getElementById("forecast-container");
     if (!container) return;
@@ -166,10 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let html = '<div class="forecast-grid">';
       keys.forEach(date => {
         const day = days[date][0];
-        const condition = day.weather[0].main.toLowerCase();
-        const icons = { clear: "☀️", cloud: "☁️", rain: "🌧️" };
-        const icon = icons[condition] || "🌍";
-
+        const icon = getWeatherIcon(day.weather[0].main.toLowerCase());
         html += `
           <div class="forecast-card">
             <h4>${new Date(date).toDateString()}</h4>
@@ -191,13 +175,11 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("keydown", e => {
     if (e.key === "Escape") {
       const modal = document.getElementById("image-modal");
-      if (modal && modal.style.display === "block") {
-        modal.style.display = "none";
-      }
+      if (modal?.style.display === "block") modal.style.display = "none";
     }
   });
 
-  // === Register AdSense ===
+  // === Load AdSense ===
   function loadAds() {
     const adContainer = document.getElementById("ad-container");
     if (adContainer) {
