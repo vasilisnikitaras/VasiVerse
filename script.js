@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const backToTopButton = document.getElementById("back-to-top");
   const searchBtn = document.getElementById("search-btn");
 
-  // Dark Mode Toggle
+  // 🌙 Dark Mode Toggle
   if (toggleBtn) {
     toggleBtn.addEventListener("click", () => {
       const isDark = document.body.classList.toggle("dark-mode");
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Toast Notification
+  // 🔔 Toast Notification
   function showToast(message) {
     const oldToast = document.querySelector(".vasiverse-toast");
     if (oldToast) oldToast.remove();
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 3000);
   }
 
-  // Smooth scroll for navigation
+  // 🧭 Smooth Scroll
   document.querySelectorAll("nav a[href^='#']").forEach(link => {
     link.addEventListener("click", function (e) {
       e.preventDefault();
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Back to Top Button
+  // ⬆️ Back to Top
   if (backToTopButton) {
     backToTopButton.addEventListener("click", () =>
       window.scrollTo({ top: 0, behavior: "smooth" })
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Weather City Search (manual)
+  // 🔎 Search Weather by City
   if (searchBtn) {
     searchBtn.addEventListener("click", () => {
       const cityInput = document.getElementById("city-input");
@@ -69,10 +69,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// === AUTO GEOLOCATION WEATHER ON LOAD ===
+// 🌍 === AUTO GEOLOCATION WEATHER ===
 window.onload = function () {
   console.log("🟢 window.onload triggered");
-
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
@@ -84,31 +83,29 @@ window.onload = function () {
       },
       (err) => {
         console.warn("⚠️ Geolocation failed:", err.message);
-        fetchWeatherByCity("New York"); // fallback
+        fetchWeatherByCity("New York");
       }
     );
   } else {
-    console.warn("⚠️ Geolocation not available. Using fallback city.");
+    console.warn("⚠️ Geolocation not available.");
     fetchWeatherByCity("New York");
   }
 };
 
-// === GLOBAL API KEY ===
+// 🔐 API Key (One global)
 const apiKey = "1f1742f46396f018ec07cab6f270841a";
 
-// === FETCH CURRENT WEATHER ===
+// 🌡️ Current Weather by Coords
 function fetchWeatherByCoords(lat, lon) {
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-
   fetch(url)
     .then(res => res.json())
     .then(data => {
-      console.log("🌡️ Current weather:", data);
       const output = document.getElementById("weather-output");
       if (output) {
         output.innerHTML = `
           <p><strong>${data.name}</strong></p>
-          <p>${data.weather[0].description}</p>
+          <p>${getWeatherEmoji(data.weather[0].main)} ${data.weather[0].description}</p>
           <p>🌡️ ${data.main.temp}°C</p>
         `;
       }
@@ -116,18 +113,17 @@ function fetchWeatherByCoords(lat, lon) {
     .catch(err => console.error("Weather fetch error:", err.message));
 }
 
+// 🌆 Current Weather by City
 function fetchWeatherByCity(city) {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-
   fetch(url)
     .then(res => res.json())
     .then(data => {
-      console.log("📦 City weather:", data);
       const output = document.getElementById("weather-output");
       if (output) {
         output.innerHTML = `
           <p><strong>${data.name}</strong></p>
-          <p>${data.weather[0].description}</p>
+          <p>${getWeatherEmoji(data.weather[0].main)} ${data.weather[0].description}</p>
           <p>🌡️ ${data.main.temp}°C</p>
         `;
       }
@@ -135,41 +131,41 @@ function fetchWeatherByCity(city) {
     .catch(err => console.error("City weather fetch error:", err.message));
 }
 
-// === FETCH 5-DAY FORECAST ===
+// 📅 Forecast Function
 function fetchForecast(lat, lon) {
-  console.log("📅 Fetching forecast for:", lat, lon);
-
   const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&units=metric&appid=${apiKey}`;
-
   fetch(url)
-    .then(res => {
-      console.log("🌐 Forecast response status:", res.status);
-      return res.json();
-    })
+    .then(res => res.json())
     .then(data => {
-      console.log("📦 Forecast data:", data);
       const container = document.getElementById("forecast");
-      if (!container) {
-        console.error("❌ forecast container not found");
-        return;
-      }
-
+      if (!container) return;
       container.innerHTML = "<h3>Πρόγνωση 5 Ημερών</h3>";
-
-      const days = data.daily.slice(1, 6); // επόμενες 5 μέρες
+      const days = data.daily.slice(1, 6);
       days.forEach(day => {
         const date = new Date(day.dt * 1000).toLocaleDateString("el-GR", {
           weekday: "long", day: "numeric", month: "short"
         });
-
         container.innerHTML += `
           <div class="forecast-day">
             <p><strong>${date}</strong></p>
-            <p>${day.weather[0].description}</p>
+            <p>${getWeatherEmoji(day.weather[0].main)} ${day.weather[0].description}</p>
             <p>🌡️ ${day.temp.day}°C</p>
           </div>
         `;
       });
     })
     .catch(err => console.error("Forecast fetch error:", err.message));
+}
+
+// 🌈 Emoji Helper
+function getWeatherEmoji(condition) {
+  const c = condition.toLowerCase();
+  if (c.includes("clear")) return "☀️";
+  if (c.includes("cloud")) return "☁️";
+  if (c.includes("rain")) return "🌧️";
+  if (c.includes("snow")) return "❄️";
+  if (c.includes("thunder")) return "⛈️";
+  if (c.includes("drizzle")) return "🌦️";
+  if (c.includes("mist") || c.includes("fog")) return "🌫️";
+  return "🌡️";
 }
