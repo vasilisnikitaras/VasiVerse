@@ -176,3 +176,14 @@ function getWeatherEmoji(condition) {
   if (c.includes("mist") || c.includes("fog")) return "🌫️";
   return "🌡️";
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("dark-mode-toggle");
+  if (!btn) return;
+
+  btn.addEventListener("click", () => {
+    const isDark = document.body.classList.toggle("dark-mode");
+    localStorage.setItem("darkMode", isDark ? "enabled" : "disabled");
+    showToast(isDark ? "🌙 Dark Mode Enabled" : "☀️ Light Mode Enabled");
+  });
+});
