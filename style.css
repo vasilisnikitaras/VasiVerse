@@ -483,3 +483,86 @@ body.dark-mode {
 }
 
 
+
+/*  1. Global Reset Block (optional but highly recommended) */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+ 
+
+
+/*  2. Dark Mode Toggle Mobile Styling   */
+
+@media screen and (max-width: 768px) {
+  .dark-mode-toggle-container {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+    background: var(--card-bg, #fff);
+    border-radius: 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    width: fit-content;
+    height: auto;
+    max-height: 60px;
+    overflow: hidden;
+  }
+
+  .toggle-label {
+    width: 60px;
+    height: 30px;
+    position: relative;
+    background-color: #ccc;
+    border-radius: 50px;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .toggle-label input {
+    display: none;
+  }
+
+  .toggle-slider {
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    top: 2px;
+    left: 2px;
+    background: white;
+    border-radius: 50%;
+    transition: left 0.3s ease;
+  }
+
+  .toggle-label input:checked + .toggle-slider {
+    left: 32px;
+    background: #222;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
