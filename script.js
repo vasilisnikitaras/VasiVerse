@@ -4,7 +4,7 @@ if (localStorage.getItem("darkMode") === "enabled") {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const toggleBtn = document.querySelector(".dark-mode-toggle");
+  const toggleBtn = document.querySelector("#dark-mode-toggle");
   const backToTopButton = document.getElementById("back-to-top");
   const searchBtn = document.getElementById("search-btn");
 
@@ -69,9 +69,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// 🌍 === AUTO GEOLOCATION WEATHER ===
+// 🌍 AUTO GEOLOCATION WEATHER
 window.onload = function () {
   console.log("🟢 window.onload triggered");
+
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
@@ -83,19 +84,19 @@ window.onload = function () {
       },
       (err) => {
         console.warn("⚠️ Geolocation failed:", err.message);
-        fetchWeatherByCity("New York");
+        fetchWeatherByCity("Montreal");
       }
     );
   } else {
     console.warn("⚠️ Geolocation not available.");
-fetchWeatherByCity("Montreal");
+    fetchWeatherByCity("Montreal");
   }
 };
 
-// 🔐 API Key (One global)
+// 🔐 API Key
 const apiKey = "bd1a2e25b5af86632c1c461148512426";
 
-// 🌡️ Current Weather by Coords
+// 🌡️ Weather by Coords
 function fetchWeatherByCoords(lat, lon) {
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
   fetch(url)
@@ -113,7 +114,7 @@ function fetchWeatherByCoords(lat, lon) {
     .catch(err => console.error("Weather fetch error:", err.message));
 }
 
-// 🌆 Current Weather by City
+// 🌆 Weather by City
 function fetchWeatherByCity(city) {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   fetch(url)
@@ -131,8 +132,7 @@ function fetchWeatherByCity(city) {
     .catch(err => console.error("City weather fetch error:", err.message));
 }
 
-
-// 📅 Forecast Function
+// 📅 5-Day Forecast
 function fetchForecast(lat, lon) {
   const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
 
@@ -141,11 +141,10 @@ function fetchForecast(lat, lon) {
     .then(data => {
       const container = document.getElementById("forecast");
       if (!container) return;
-      container.innerHTML = "<h3>Πρόγνωση 5 Ημερών</h3>";
+      container.innerHTML = "<h3 id='forecast-title'></h3>";
 
-      // Take 1 forecast every 8 entries (~24h), starting tomorrow
       const dailyData = data.list.filter((_, i) => i % 8 === 0).slice(1, 6);
-      
+
       dailyData.forEach(day => {
         const date = new Date(day.dt_txt).toLocaleDateString("el-GR", {
           weekday: "long", day: "numeric", month: "short"
@@ -162,10 +161,7 @@ function fetchForecast(lat, lon) {
     .catch(err => console.error("Forecast fetch error:", err.message));
 }
 
-
-// 📅 Forecast Function
-
-// 🌈 Emoji Helper
+// 🌈 Weather Emoji Helper
 function getWeatherEmoji(condition) {
   const c = condition.toLowerCase();
   if (c.includes("clear")) return "☀️";
