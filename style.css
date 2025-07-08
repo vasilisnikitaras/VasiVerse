@@ -412,3 +412,18 @@ body.dark-mode {
     --card-bg: rgba(0, 0, 0, 0.05);
   }
 }
+
+@media (max-width: 768px) {
+  #dark-mode-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    padding: 0.6em 1.2em;
+    font-size: 1rem;
+    border-radius: 8px;
+  }
+}
+
+/* feat: make dark mode toggle floating on mobile */
+
