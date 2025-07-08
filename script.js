@@ -93,7 +93,7 @@ window.onload = function () {
 };
 
 // 🔐 API Key (One global)
-const apiKey = "1f1742f46396f018ec07cab6f270841a";
+const apiKey = "bd1a2e25b5af86632c1c461148512426";
 
 // 🌡️ Current Weather by Coords
 function fetchWeatherByCoords(lat, lon) {
