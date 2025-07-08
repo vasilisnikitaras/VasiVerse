@@ -2,36 +2,23 @@ document.addEventListener("DOMContentLoaded", function () {
   // === DOM Elements ===
   const backToTopButton = document.getElementById("back-to-top");
   const searchBtn = document.getElementById("search-btn");
+  const toggleBtn = document.querySelector(".dark-mode-toggle");
 
-  // === Dark Mode Toggle Buttons ===
-  const darkButtons = document.querySelectorAll(".dark-mode-toggle");
+  // === Load Theme from Storage ===
+  if (localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.add("dark-mode");
+  }
 
-  darkButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
+  // === Dark Mode Toggle ===
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
       const isDark = document.body.classList.toggle("dark-mode");
-
-      document.querySelectorAll("section, .container").forEach(el =>
-        el.classList.toggle("dark-mode")
-      );
-
       localStorage.setItem("darkMode", isDark ? "enabled" : "disabled");
       showToast(isDark ? "🌙 Dark Mode Enabled" : "☀️ Light Mode Enabled");
     });
-  });
-
-  // === Load Theme from Storage ===
-  const mode = localStorage.getItem("darkMode");
-  if (mode === "enabled") {
-    applyDarkMode(true);
   }
 
-  function applyDarkMode(enable) {
-    document.body.classList.toggle("dark-mode", enable);
-    document.querySelectorAll("section, .container").forEach(el =>
-      el.classList.toggle("dark-mode", enable)
-    );
-  }
-
+  // === Toast Notification ===
   function showToast(message) {
     const oldToast = document.querySelector(".vasiverse-toast");
     if (oldToast) oldToast.remove();
@@ -41,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     toast.textContent = message;
     document.body.appendChild(toast);
 
-    void toast.offsetWidth;
+    void toast.offsetWidth; // Force reflow
     toast.style.opacity = "1";
 
     setTimeout(() => {
@@ -60,16 +47,20 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // === Back to Top Button ===
-  backToTopButton.addEventListener("click", () =>
-    window.scrollTo({ top: 0, behavior: "smooth" })
-  );
+  if (backToTopButton) {
+    backToTopButton.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
 
-  window.addEventListener("scroll", () => {
-    backToTopButton.classList.toggle("visible", window.scrollY > 400);
-  });
+    window.addEventListener("scroll", () => {
+      backToTopButton.classList.toggle("visible", window.scrollY > 400);
+    });
+  }
 
-  // === Weather Search by City ===
-  searchBtn.addEventListener("click", fetchWeather);
+  // === Weather Search by City (Placeholder) ===
+  if (searchBtn) {
+    searchBtn.addEventListener("click", fetchWeather);
+  }
 
   async function fetchWeather() {
     const cityInput = document.getElementById("city-input");
@@ -83,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // You can integrate with a real API here
+    // You can integrate a real API here
     weatherOutput.textContent = `Fetching weather for "${city}"...`;
   }
 });
