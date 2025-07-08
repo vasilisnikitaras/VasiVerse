@@ -429,7 +429,7 @@ body.dark-mode {
 
 @media screen and (max-width: 20px) {
   .dark-mode-toggle-container {
-    max-width: 100%;
+    max-width: 10%;
     padding: 10px;
   }
 
