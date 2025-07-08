@@ -91,9 +91,28 @@
 </head>
 <body>
 
-  <!-- trigger rebuild -->
+<header>
+    <h1>VasiVerse Weather</h1>
+  </header>
 
-  
+<!--  <main>
+    <div id="weather-output"></div>
+
+    <!-- ✅ Εδώ προσθέτεις την πρόγνωση -->
+ <!--   <div id="forecast"></div>
+  </main> -->
+
+<main>
+  <div id="weather-output"></div>
+
+  <!-- ➕ Πρόβλεψη 5 ημερών -->
+  <section id="five-day">
+    <h2>Πρόγνωση 5 Ημερών</h2>
+    <div id="forecast"></div>
+  </section>
+</main>
+
+  <!-- trigger rebuild -->
 
 <!-- 🛡️ VasiVerse Trust Banner -->
 <div id="trust-banner" class="trust-banner" style="
@@ -134,6 +153,9 @@
     <p>Welcome to VasiVerse — a creative space where innovation meets simplicity. Explore tools that help you stay organized, secure your data, track the weather, and dive into unique web projects crafted by Vasilis Nikitaras. Every feature is thoughtfully built with privacy and performance in mind.</p>
     
     <p>Your hub for weather forecasts, portfolio, and creativity!</p>
+
+
+    
 
     
     <button class="dark-mode-toggle">🌙 Toggle Dark Mode</button> 
@@ -646,6 +668,8 @@
 
 <!-- ✅ Insert this before </body> -->
 <script src="script.js?v=1.0.3" defer></script>
+
+    
 </body>
 </html>
 
