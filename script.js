@@ -114,6 +114,9 @@ function fetchWeatherByCoords(lat, lon) {
     .catch(err => console.error("Weather fetch error:", err.message));
 }
 
+// fix: updated script.js with Montreal fallback //
+
+
 // 🌆 Weather by City
 function fetchWeatherByCity(city) {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
