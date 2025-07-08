@@ -427,3 +427,25 @@ body.dark-mode {
 
 /* feat: make dark mode toggle floating on mobile */
 
+@media screen and (max-width: 500px) {
+  .dark-mode-toggle-container {
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  .toggle-label {
+    width: 60px;
+    height: 30px;
+  }
+
+  .toggle-slider {
+    width: 26px;
+    height: 26px;
+    top: 2px;
+    left: 2px;
+  }
+
+  .toggle-label input:checked + .toggle-slider {
+    left: 32px;
+  }
+}
