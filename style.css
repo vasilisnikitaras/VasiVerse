@@ -427,7 +427,7 @@ body.dark-mode {
 
 /* feat: make dark mode toggle floating on mobile */
 
-@media screen and (max-width: 200px) {
+@media screen and (max-width: 20px) {
   .dark-mode-toggle-container {
     max-width: 100%;
     padding: 10px;
