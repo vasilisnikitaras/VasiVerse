@@ -88,7 +88,7 @@ window.onload = function () {
     );
   } else {
     console.warn("⚠️ Geolocation not available.");
-    fetchWeatherByCity("New York");
+fetchWeatherByCity("Montreal");
   }
 };
 
@@ -163,36 +163,7 @@ function fetchForecast(lat, lon) {
 }
 
 
-
-
-
-
-
 // 📅 Forecast Function
-//function fetchForecast(lat, lon) {
-//  const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&units=metric&appid=${apiKey}`;
-//  fetch(url)
-//    .then(res => res.json())
-//    .then(data => {
- //     const container = document.getElementById("forecast");
- //     if (!container) return;
- //     container.innerHTML = "<h3>Πρόγνωση 5 Ημερών</h3>";
- //     const days = data.daily.slice(1, 6);
- //     days.forEach(day => {
-    //    const date = new Date(day.dt * 1000).toLocaleDateString("el-GR", {
-    //      weekday: "long", day: "numeric", month: "short"
-   //     });
-   //     container.innerHTML += `
-     //     <div class="forecast-day">
-     //       <p><strong>${date}</strong></p>
-      //      <p>${getWeatherEmoji(day.weather[0].main)} ${day.weather[0].description}</p>
-      //      <p>🌡️ ${day.temp.day}°C</p>
-      //    </div>
-    //    `;
-   //   });
- //   })
-   // .catch(err => console.error("Forecast fetch error:", err.message));
-// }
 
 // 🌈 Emoji Helper
 function getWeatherEmoji(condition) {
