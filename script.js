@@ -1,3 +1,8 @@
+// Restore dark mode class immediately if saved
+if (localStorage.getItem("darkMode") === "enabled") {
+  document.body.classList.add("dark-mode");
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   // === DOM Elements ===
   const toggleBtn = document.querySelector(".dark-mode-toggle");
