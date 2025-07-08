@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const searchBtn = document.getElementById("search-btn");
 
   // === Load Dark Mode from localStorage ===
-  if (localStorage.getItem("darkMode") === "enabled") {
-    document.body.classList.add("dark-mode");
-  }
+  // if (localStorage.getItem("darkMode") === "enabled") {
+  //  document.body.classList.add("dark-mode");
+ // }
 
   // === Dark Mode Toggle ===
   if (toggleBtn) {
