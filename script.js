@@ -131,31 +131,68 @@ function fetchWeatherByCity(city) {
     .catch(err => console.error("City weather fetch error:", err.message));
 }
 
+
 // 📅 Forecast Function
 function fetchForecast(lat, lon) {
-  const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&units=metric&appid=${apiKey}`;
+  const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
   fetch(url)
     .then(res => res.json())
     .then(data => {
       const container = document.getElementById("forecast");
       if (!container) return;
       container.innerHTML = "<h3>Πρόγνωση 5 Ημερών</h3>";
-      const days = data.daily.slice(1, 6);
-      days.forEach(day => {
-        const date = new Date(day.dt * 1000).toLocaleDateString("el-GR", {
+
+      // Take 1 forecast every 8 entries (~24h), starting tomorrow
+      const dailyData = data.list.filter((_, i) => i % 8 === 0).slice(1, 6);
+      
+      dailyData.forEach(day => {
+        const date = new Date(day.dt_txt).toLocaleDateString("el-GR", {
           weekday: "long", day: "numeric", month: "short"
         });
         container.innerHTML += `
           <div class="forecast-day">
             <p><strong>${date}</strong></p>
             <p>${getWeatherEmoji(day.weather[0].main)} ${day.weather[0].description}</p>
-            <p>🌡️ ${day.temp.day}°C</p>
+            <p>🌡️ ${Math.round(day.main.temp)}°C</p>
           </div>
         `;
       });
     })
     .catch(err => console.error("Forecast fetch error:", err.message));
 }
+
+
+
+
+
+
+
+// 📅 Forecast Function
+//function fetchForecast(lat, lon) {
+//  const url = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&units=metric&appid=${apiKey}`;
+//  fetch(url)
+//    .then(res => res.json())
+//    .then(data => {
+ //     const container = document.getElementById("forecast");
+ //     if (!container) return;
+ //     container.innerHTML = "<h3>Πρόγνωση 5 Ημερών</h3>";
+ //     const days = data.daily.slice(1, 6);
+ //     days.forEach(day => {
+    //    const date = new Date(day.dt * 1000).toLocaleDateString("el-GR", {
+    //      weekday: "long", day: "numeric", month: "short"
+   //     });
+   //     container.innerHTML += `
+     //     <div class="forecast-day">
+     //       <p><strong>${date}</strong></p>
+      //      <p>${getWeatherEmoji(day.weather[0].main)} ${day.weather[0].description}</p>
+      //      <p>🌡️ ${day.temp.day}°C</p>
+      //    </div>
+    //    `;
+   //   });
+ //   })
+   // .catch(err => console.error("Forecast fetch error:", err.message));
+// }
 
 // 🌈 Emoji Helper
 function getWeatherEmoji(condition) {
