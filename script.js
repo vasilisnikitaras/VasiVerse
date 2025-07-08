@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
   // === DOM Elements ===
+  const toggleBtn = document.querySelector(".dark-mode-toggle");
   const backToTopButton = document.getElementById("back-to-top");
   const searchBtn = document.getElementById("search-btn");
-  const toggleBtn = document.querySelector(".dark-mode-toggle");
 
-  // === Load Saved Theme ===
+  // === Load Dark Mode from localStorage ===
   if (localStorage.getItem("darkMode") === "enabled") {
     document.body.classList.add("dark-mode");
   }
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     toast.textContent = message;
     document.body.appendChild(toast);
 
-    void toast.offsetWidth; // Reflow
+    void toast.offsetWidth; // Force reflow
     toast.style.opacity = "1";
 
     setTimeout(() => {
@@ -42,9 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
     link.addEventListener("click", function (e) {
       e.preventDefault();
       const target = document.querySelector(this.getAttribute("href"));
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth" });
-      }
+      if (target) target.scrollIntoView({ behavior: "smooth" });
     });
   });
 
@@ -59,24 +57,22 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // === Weather City Search (Placeholder) ===
+  // === Weather Search (Placeholder) ===
   if (searchBtn) {
-    searchBtn.addEventListener("click", fetchWeather);
-  }
+    searchBtn.addEventListener("click", () => {
+      const cityInput = document.getElementById("city-input");
+      const weatherOutput = document.getElementById("weather-output");
 
-  async function fetchWeather() {
-    const cityInput = document.getElementById("city-input");
-    const weatherOutput = document.getElementById("weather-output");
+      if (!cityInput || !weatherOutput) return;
 
-    if (!cityInput || !weatherOutput) return;
+      const city = cityInput.value.trim();
+      if (!city) {
+        weatherOutput.textContent = "Please enter a city name.";
+        return;
+      }
 
-    const city = cityInput.value.trim();
-    if (!city) {
-      weatherOutput.textContent = "Please enter a city name.";
-      return;
-    }
-
-    // Placeholder: Swap in OpenWeather API if needed
-    weatherOutput.textContent = `Fetching weather for "${city}"...`;
+      // Placeholder logic — replace with real API later
+      weatherOutput.textContent = `Fetching weather for "${city}"...`;
+    });
   }
 });
