@@ -879,4 +879,25 @@ html, body {
   }
 }
 
+/* 🧪 Final Test Flow: */
+
+.dark-mode-toggle {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 10000;
+  padding: 6px 12px;
+  font-size: 14px;
+  background: rgba(255,255,255,0.2);
+  color: #222;
+  backdrop-filter: blur(6px);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+  background: rgba(255,255,255,0.3);
+}
 
