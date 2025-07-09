@@ -141,29 +141,24 @@ window.onload = () => {
 function fetchWeatherByCity(city) {
   console.log("Fetching weather for city:", city);
 
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
-    .then(res => {
-      if (!res.ok) {
-        throw new Error(`API error: ${res.status} ${res.statusText}`);
-      }
-      return res.json();
-    })
-    .then(data => {
-      console.log("Weather API response:", data);
-      renderWeather(data);
-    })
-    .catch(err => {
-      console.error("City weather error:", err.message);
-      const output = document.getElementById("weather-output");
-      if (output) {
-        output.textContent = `❌ Could not fetch weather for "${city}". Please try again.`;
-      }
-    });
-}
-
-
-
-
+fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+  .then(res => {
+    if (!res.ok) {
+      throw new Error(`API error: ${res.status} ${res.statusText}`);
+    }
+    return res.json();
+  })
+  .then(data => {
+    console.log("Weather API response:", data);
+    renderWeather(data);
+  })
+  .catch(err => {
+    console.error("City weather error:", err.message);
+    const output = document.getElementById("weather-output");
+    if (output) {
+      output.textContent = `❌ Could not fetch weather for "${city}".`;
+    }
+  });
 
 
 
