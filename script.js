@@ -144,6 +144,12 @@ if (!container) return;
 // ➤ Παίρνεις τα 5 (ή λιγότερα) στοιχεία καιρού
 const daily = data.list.filter((_, i) => i % 8 === 0).slice(1, 6);
 
+// ➤ Πρόσθεσε την κλάση 'visible' λίγο μετά την απόδοση (για animation)
+setTimeout(() => {
+  const titleEl = document.getElementById("forecast-title");
+  if (titleEl) titleEl.classList.add("visible");
+}, 50);
+      
 // ➤ Δημιουργείς ΔΥΝΑΜΙΚΑ τον τίτλο, με βάση το πόσες μέρες γύρισαν
 const forecastTitle = `<h3 id="forecast-title">📅 ${daily.length}-Day Forecast</h3>`;
 container.innerHTML = forecastTitle;
