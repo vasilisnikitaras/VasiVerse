@@ -2,6 +2,53 @@
 if (localStorage.getItem("darkMode") === "enabled") { 
   document.body.classList.add("dark-mode");
 } 
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById("dark-mode-toggle");
+  const backToTopButton = document.getElementById("back-to-top");
+  const searchBtn = document.getElementById("search-btn");
+
+  // 🌙 Dark mode toggle here...
+
+  // 🔎 Paste weather logic right below!
+});
+
+
+
+  // 🔎 Search Weather by City with debug log
+  if (searchBtn) {
+    searchBtn.addEventListener("click", () => {
+      const cityInput = document.getElementById("city-input");
+      const output = document.getElementById("weather-output");
+
+      if (!cityInput || !output) return;
+
+      const city = cityInput.value.trim();
+      console.log("Clicked! City:", city); // ✅ Your debug log
+
+      if (!city) {
+        output.textContent = "Please enter a city name.";
+        return;
+      }
+
+      output.textContent = `Fetching weather for "${city}"...`;
+      fetchWeatherByCity(city);
+    });
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.getElementById("dark-mode-toggle");
   const backToTopButton = document.getElementById("back-to-top");
