@@ -36,7 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       output.textContent = `Fetching weather for "${city}"...`;
-      fetchWeatherByCity(city);
+      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+
     });
   }
 
@@ -188,7 +189,7 @@ function renderWeather(data) {
 }
 // 🗓 5-Day Forecast
 function fetchForecast(lat, lon) {
-fetch("https://api.openweathermap.org/data/2.5/weather?q=Athens&appid=bd1a2e25b5af86632c1c461148512426&units=metric")
+fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
   .then(res => res.json())
   .then(data => console.log("Weather response:", data))
   .catch(err => console.error("Fetch error:", err));
