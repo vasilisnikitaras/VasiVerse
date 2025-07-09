@@ -141,7 +141,12 @@ window.onload = () => {
 function fetchWeatherByCity(city) {
   console.log("Fetching weather for city:", city);
 
-fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+//fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`) //
+
+fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
+
+
+  
   .then(res => {
     if (!res.ok) {
       throw new Error(`API error: ${res.status} ${res.statusText}`);
@@ -175,10 +180,11 @@ function renderWeather(data) {
   const output = document.getElementById("weather-output");
   if (!output) return;
   output.innerHTML = `
-    <p><strong>${data.name}</strong></p>
-    <p>${getWeatherEmoji(data.weather[0].main)} ${data.weather[0].description}</p>
-    <p>🌡️ ${data.main.temp}°C</p>
-  ;
+  <p><strong>${data.name}</strong></p>
+  <p>${getWeatherEmoji(data.weather[0].main)} ${data.weather[0].description}</p>
+  <p>🌡️ ${data.main.temp}°C</p>
+`;
+
 }
 // 🗓 5-Day Forecast
 function fetchForecast(lat, lon) {
