@@ -154,6 +154,16 @@ setTimeout(() => {
 const forecastTitle = `<h3 id="forecast-title">📅 ${daily.length}-Day Forecast</h3>`;
 container.innerHTML = forecastTitle;
 
+const forecastTitle = `<h3 id="forecast-title">📅 ${daily.length}-Day Forecast</h3>`;
+container.innerHTML = forecastTitle;
+
+setTimeout(() => {
+  const titleEl = document.getElementById("forecast-title");
+  if (titleEl) titleEl.classList.add("visible");
+}, 50);
+
+      
+
 // ➤ Τώρα αρχίζεις να προσθέτεις τις κάρτες
 daily.forEach(day => {
   const date = new Date(day.dt_txt).toLocaleDateString("el-GR", {
