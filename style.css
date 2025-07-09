@@ -1018,3 +1018,24 @@ html, body {
   opacity: 1;
   transform: translateY(0);
 }
+
+#forecast-title {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.6s ease;
+  text-align: center;
+  font-size: 1.6em;
+  margin: 2em auto 1em;
+  font-weight: 600;
+  color: #333;
+}
+
+#forecast-title.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dark-mode #forecast-title {
+  color: #ddd;
+}
+
