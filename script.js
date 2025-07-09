@@ -1,4 +1,4 @@
-// === Persisted Dark Mode on Page Load ===
+// === DARK MODE ON LOAD ===
 if (localStorage.getItem("darkMode") === "enabled") {
   document.body.classList.add("dark-mode");
 }
@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const backToTopButton = document.getElementById("back-to-top");
   const searchBtn = document.getElementById("search-btn");
 
-  // 🌙 Dark Mode Toggle
+  // 🌙 Toggle Dark Mode
   if (toggleBtn) {
     toggleBtn.addEventListener("click", () => {
       const isDark = document.body.classList.toggle("dark-mode");
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 🔔 Toast Notification
+  // 🔔 Toast Feedback
   function showToast(message) {
     const old = document.querySelector(".vasiverse-toast");
     if (old) old.remove();
@@ -29,17 +29,17 @@ document.addEventListener("DOMContentLoaded", () => {
       bottom: "20px",
       left: "50%",
       transform: "translateX(-50%)",
-      background: "rgba(0,0,0,0.85)",
+      background: "rgba(0, 0, 0, 0.8)",
       color: "#fff",
       padding: "8px 14px",
       borderRadius: "6px",
       fontSize: "14px",
+      zIndex: "9999",
       opacity: "0",
-      transition: "opacity 0.3s ease",
-      zIndex: "9999"
+      transition: "opacity 0.3s ease"
     });
     document.body.appendChild(toast);
-    requestAnimationFrame(() => toast.style.opacity = "1");
+    requestAnimationFrame(() => (toast.style.opacity = "1"));
     setTimeout(() => {
       toast.style.opacity = "0";
       toast.addEventListener("transitionend", () => toast.remove());
@@ -48,14 +48,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 🧭 Smooth Scroll
   document.querySelectorAll("nav a[href^='#']").forEach(link => {
-    link.addEventListener("click", (e) => {
+    link.addEventListener("click", e => {
       e.preventDefault();
       const target = document.querySelector(link.getAttribute("href"));
       if (target) target.scrollIntoView({ behavior: "smooth" });
     });
   });
 
-  // ⬆️ Back to Top Button
+  // ⬆️ Back to Top
   if (backToTopButton) {
     backToTopButton.addEventListener("click", () =>
       window.scrollTo({ top: 0, behavior: "smooth" })
@@ -65,94 +65,85 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 🔍 Search Weather by City
+  // 🔎 Search Weather by City
   if (searchBtn) {
     searchBtn.addEventListener("click", () => {
       const cityInput = document.getElementById("city-input");
-      const weatherOutput = document.getElementById("weather-output");
-      if (!cityInput || !weatherOutput) return;
+      const output = document.getElementById("weather-output");
+      if (!cityInput || !output) return;
+
       const city = cityInput.value.trim();
       if (!city) {
-        weatherOutput.textContent = "Please enter a city name.";
+        output.textContent = "Please enter a city name.";
         return;
       }
-      weatherOutput.textContent = `Fetching weather for "${city}"...`;
+
+      output.textContent = `Fetching weather for "${city}"...`;
       fetchWeatherByCity(city);
     });
   }
 });
 
-// 🌎 Geolocation Weather on Load
-window.onload = function () {
-  console.log("🟢 window.onload triggered");
+// === WEATHER API & HELPERS ===
+const apiKey = "bd1a2e25b5af86632c1c461148512426";
+
+// 📍 Auto Geolocation on Load
+window.onload = () => {
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        const { latitude: lat, longitude: lon } = pos.coords;
-        console.log("📍 Location:", lat, lon);
-        fetchWeatherByCoords(lat, lon);
-        fetchForecast(lat, lon);
+      pos => {
+        const { latitude, longitude } = pos.coords;
+        fetchWeatherByCoords(latitude, longitude);
+        fetchForecast(latitude, longitude);
       },
-      (err) => {
-        console.warn("⚠️ Geolocation failed:", err.message);
+      err => {
+        console.warn("Geolocation failed:", err.message);
         fetchWeatherByCity("Montreal");
       }
     );
   } else {
-    console.warn("⚠️ Geolocation not supported.");
     fetchWeatherByCity("Montreal");
   }
 };
 
-// 🔐 OpenWeather API Key
-const apiKey = "bd1a2e25b5af86632c1c461148512426";
-
-// 🌤 Weather by Coordinates
-function fetchWeatherByCoords(lat, lon) {
-  const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-  fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      const output = document.getElementById("weather-output");
-      if (output) {
-        output.innerHTML = `
-          <p><strong>${data.name}</strong></p>
-          <p>${getWeatherEmoji(data.weather[0].main)} ${data.weather[0].description}</p>
-          <p>🌡️ ${data.main.temp}°C</p>
-        `;
-      }
-    })
-    .catch(err => console.error("Weather fetch error:", err.message));
-}
-
-// 🏙 Weather by City Name
+// 🌇 Weather by City Name
 function fetchWeatherByCity(city) {
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  fetch(url)
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
     .then(res => res.json())
-    .then(data => {
-      const output = document.getElementById("weather-output");
-      if (output) {
-        output.innerHTML = `
-          <p><strong>${data.name}</strong></p>
-          <p>${getWeatherEmoji(data.weather[0].main)} ${data.weather[0].description}</p>
-          <p>🌡️ ${data.main.temp}°C</p>
-        `;
-      }
-    })
-    .catch(err => console.error("City weather fetch error:", err.message));
+    .then(data => renderWeather(data))
+    .catch(err => console.error("City weather error:", err.message));
 }
 
-// 📅 5-Day Forecast
+// 🗺 Weather by Coordinates
+function fetchWeatherByCoords(lat, lon) {
+  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
+    .then(res => res.json())
+    .then(data => renderWeather(data))
+    .catch(err => console.error("Coords weather error:", err.message));
+}
+
+// 🖼 Display Weather
+function renderWeather(data) {
+  const output = document.getElementById("weather-output");
+  if (!output) return;
+  output.innerHTML = `
+    <p><strong>${data.name}</strong></p>
+    <p>${getWeatherEmoji(data.weather[0].main)} ${data.weather[0].description}</p>
+    <p>🌡️ ${data.main.temp}°C</p>
+  `;
+}
+
+// 🗓 5-Day Forecast
 function fetchForecast(lat, lon) {
-  const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-  fetch(url)
+  fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
     .then(res => res.json())
     .then(data => {
       const container = document.getElementById("forecast");
       if (!container) return;
+
       container.innerHTML = "<h3 id='forecast-title'>5-Day Forecast</h3>";
       const daily = data.list.filter((_, i) => i % 8 === 0).slice(1, 6);
+
       daily.forEach(day => {
         const date = new Date(day.dt_txt).toLocaleDateString("el-GR", {
           weekday: "long", day: "numeric", month: "short"
@@ -166,10 +157,10 @@ function fetchForecast(lat, lon) {
         `;
       });
     })
-    .catch(err => console.error("Forecast fetch error:", err.message));
+    .catch(err => console.error("Forecast error:", err.message));
 }
 
-// 🌈 Weather Condition → Emoji
+// 🌈 Emoji Helper
 function getWeatherEmoji(condition) {
   const c = condition.toLowerCase();
   if (c.includes("clear")) return "☀️";
@@ -178,6 +169,6 @@ function getWeatherEmoji(condition) {
   if (c.includes("snow")) return "❄️";
   if (c.includes("thunder")) return "⛈️";
   if (c.includes("drizzle")) return "🌦️";
-  if (c.includes("mist") || c.includes("fog")) return "🌫️";
+  if (c.includes("fog") || c.includes("mist")) return "🌫️";
   return "🌡️";
 }
