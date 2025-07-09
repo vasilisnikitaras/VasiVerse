@@ -154,8 +154,6 @@ setTimeout(() => {
 const forecastTitle = `<h3 id="forecast-title">📅 ${daily.length}-Day Forecast</h3>`;
 container.innerHTML = forecastTitle;
 
-const forecastTitle = `<h3 id="forecast-title">📅 ${daily.length}-Day Forecast</h3>`;
-container.innerHTML = forecastTitle;
 
 setTimeout(() => {
   const titleEl = document.getElementById("forecast-title");
@@ -198,16 +196,16 @@ function getWeatherEmoji(condition) {
   return "🌡️";
 }
 
-const body = document.body;
+//const body = document.body;
 
 // Ενεργοποίηση dark mode εάν το έχει ορίσει ο χρήστης
-if (localStorage.getItem('darkMode') === 'enabled') {
-  body.classList.add('dark-mode');
-}
+// if (localStorage.getItem('darkMode') === 'enabled') {
+//  body.classList.add('dark-mode');
+// }
 
 // Toggle με click
-toggleBtn?.addEventListener('click', () => {
-  body.classList.toggle('dark-mode');
-  localStorage.setItem('darkMode',
-    body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
-});
+// toggleBtn?.addEventListener('click', () => {
+ // body.classList.toggle('dark-mode');
+//  localStorage.setItem('darkMode',
+  //  body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
+// });
