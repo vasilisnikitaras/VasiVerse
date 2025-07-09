@@ -138,26 +138,33 @@ function fetchForecast(lat, lon) {
   fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
     .then(res => res.json())
     .then(data => {
-      const container = document.getElementById("forecast");
-      if (!container) return;
+     const container = document.getElementById("forecast");
+if (!container) return;
 
-      const numDays = daily.length;
-      container.innerHTML = `<h3 id='forecast-title'>📅 ${numDays}-Day Forecast</h3>`;
+// ➤ Παίρνεις τα 5 (ή λιγότερα) στοιχεία καιρού
+const daily = data.list.filter((_, i) => i % 8 === 0).slice(1, 6);
 
-      const daily = data.list.filter((_, i) => i % 8 === 0).slice(1, 6);
+// ➤ Δημιουργείς ΔΥΝΑΜΙΚΑ τον τίτλο, με βάση το πόσες μέρες γύρισαν
+const forecastTitle = `<h3 id="forecast-title">📅 ${daily.length}-Day Forecast</h3>`;
+container.innerHTML = forecastTitle;
 
-      daily.forEach(day => {
-        const date = new Date(day.dt_txt).toLocaleDateString("el-GR", {
-          weekday: "long", day: "numeric", month: "short"
-        });
-        container.innerHTML += `
-          <div class="forecast-day">
-            <p><strong>${date}</strong></p>
-            <p>${getWeatherEmoji(day.weather[0].main)} ${day.weather[0].description}</p>
-            <p>🌡️ ${Math.round(day.main.temp)}°C</p>
-          </div>
-        `;
-      });
+// ➤ Τώρα αρχίζεις να προσθέτεις τις κάρτες
+daily.forEach(day => {
+  const date = new Date(day.dt_txt).toLocaleDateString("el-GR", {
+    weekday: "long",
+    day: "numeric",
+    month: "short"
+  });
+
+  container.innerHTML += `
+    <div class="forecast-day">
+      <p><strong>${date}</strong></p>
+      <p>${getWeatherEmoji(day.weather[0].main)} ${day.weather[0].description}</p>
+      <p>🌡️ ${Math.round(day.main.temp)}°C</p>
+    </div>
+  `;
+});
+
     })
     .catch(err => console.error("Forecast error:", err.message));
 }
