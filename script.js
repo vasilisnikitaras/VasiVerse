@@ -137,15 +137,6 @@ window.onload = () => {
 };
 
 
-// 🌇 Weather by City Name
-// function fetchWeatherByCity(city) {
-//  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
- //   .then(res => res.json())
- //   .then(data => renderWeather(data))
- //   .catch(err => console.error("City weather error:", err.message));
- //   }
-
-
 // 🌇 Weather by City Name — with debug logs
 function fetchWeatherByCity(city) {
   console.log("Fetching weather for city:", city);
