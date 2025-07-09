@@ -993,3 +993,18 @@ html, body {
 .dark-mode #forecast-title {
   color: #ddd;
 }
+
+
+#forecast-title {
+  text-align: center;
+  font-size: 1.6em;
+  margin: 2em auto 1em;
+  font-weight: 600;
+  color: #333;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode #forecast-title {
+  color: #ddd;
+}
