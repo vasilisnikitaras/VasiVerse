@@ -141,7 +141,9 @@ function fetchForecast(lat, lon) {
       const container = document.getElementById("forecast");
       if (!container) return;
 
-      container.innerHTML = "<h3 id='forecast-title'>5-Day Forecast</h3>";
+      const numDays = daily.length;
+      container.innerHTML = `<h3 id='forecast-title'>📅 ${numDays}-Day Forecast</h3>`;
+
       const daily = data.list.filter((_, i) => i % 8 === 0).slice(1, 6);
 
       daily.forEach(day => {
