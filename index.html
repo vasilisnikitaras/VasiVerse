@@ -126,6 +126,24 @@
   <button class="dark-mode-toggle" aria-label="Toggle Dark Mode">🌙</button>
   </header>
 
+
+<section id="forecast-section" class="fade-in">
+  <h2>🌤️ Live Weather Forecast</h2>
+  <form id="weather-form">
+    <input type="text" id="city-input" placeholder="Enter a city" required />
+    <button type="button" id="search-btn">Get Forecast</button>
+  </form>
+  <div id="weather-output" class="forecast-results"></div>
+  <div id="forecast"></div>
+</section>
+
+
+
+
+
+
+  
+
 <!-- fix: delete static 5 Days Forecast section -->
 <!-- fix: remove static forecast section -->
 <main>
@@ -186,6 +204,9 @@
 <!-- === 5-Day Forecast Below Header === -->
 <section id="forecast-section" class="fade-in">
   <h2>🌤️ Live Weather Forecast</h2>
+
+
+  
   <form id="weather-form">
     <input type="text" id="city-input" placeholder="Enter a city" required />
     <button type="button" id="search-btn">Get Forecast</button>
