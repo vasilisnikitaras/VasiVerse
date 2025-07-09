@@ -904,3 +904,9 @@ html, body {
 .dark-mode-toggle {
   outline: 2px solid limegreen;
 }
+
+.dark-mode-toggle {
+  outline: 2px dashed red !important;
+  background: yellow !important;
+}
+
