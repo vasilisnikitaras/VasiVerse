@@ -1,10 +1,10 @@
-// === DARK MODE ON LOAD ===
+// === Persisted Dark Mode on Page Load ===
 if (localStorage.getItem("darkMode") === "enabled") {
   document.body.classList.add("dark-mode");
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const toggleBtn = document.querySelector("#dark-mode-toggle");
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById("dark-mode-toggle");
   const backToTopButton = document.getElementById("back-to-top");
   const searchBtn = document.getElementById("search-btn");
 
@@ -19,14 +19,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 🔔 Toast Notification
   function showToast(message) {
-    const oldToast = document.querySelector(".vasiverse-toast");
-    if (oldToast) oldToast.remove();
+    const old = document.querySelector(".vasiverse-toast");
+    if (old) old.remove();
     const toast = document.createElement("div");
     toast.className = "vasiverse-toast";
     toast.textContent = message;
+    Object.assign(toast.style, {
+      position: "fixed",
+      bottom: "20px",
+      left: "50%",
+      transform: "translateX(-50%)",
+      background: "rgba(0,0,0,0.85)",
+      color: "#fff",
+      padding: "8px 14px",
+      borderRadius: "6px",
+      fontSize: "14px",
+      opacity: "0",
+      transition: "opacity 0.3s ease",
+      zIndex: "9999"
+    });
     document.body.appendChild(toast);
-    void toast.offsetWidth;
-    toast.style.opacity = "1";
+    requestAnimationFrame(() => toast.style.opacity = "1");
     setTimeout(() => {
       toast.style.opacity = "0";
       toast.addEventListener("transitionend", () => toast.remove());
@@ -35,14 +48,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 🧭 Smooth Scroll
   document.querySelectorAll("nav a[href^='#']").forEach(link => {
-    link.addEventListener("click", function (e) {
+    link.addEventListener("click", (e) => {
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute("href"));
+      const target = document.querySelector(link.getAttribute("href"));
       if (target) target.scrollIntoView({ behavior: "smooth" });
     });
   });
 
-  // ⬆️ Back to Top
+  // ⬆️ Back to Top Button
   if (backToTopButton) {
     backToTopButton.addEventListener("click", () =>
       window.scrollTo({ top: 0, behavior: "smooth" })
@@ -52,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // 🔎 Search Weather by City
+  // 🔍 Search Weather by City
   if (searchBtn) {
     searchBtn.addEventListener("click", () => {
       const cityInput = document.getElementById("city-input");
@@ -69,15 +82,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// 🌍 AUTO GEOLOCATION WEATHER
+// 🌎 Geolocation Weather on Load
 window.onload = function () {
   console.log("🟢 window.onload triggered");
-
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        const lat = pos.coords.latitude;
-        const lon = pos.coords.longitude;
+        const { latitude: lat, longitude: lon } = pos.coords;
         console.log("📍 Location:", lat, lon);
         fetchWeatherByCoords(lat, lon);
         fetchForecast(lat, lon);
@@ -88,15 +99,15 @@ window.onload = function () {
       }
     );
   } else {
-    console.warn("⚠️ Geolocation not available.");
+    console.warn("⚠️ Geolocation not supported.");
     fetchWeatherByCity("Montreal");
   }
 };
 
-// 🔐 API Key
+// 🔐 OpenWeather API Key
 const apiKey = "bd1a2e25b5af86632c1c461148512426";
 
-// 🌡️ Weather by Coords
+// 🌤 Weather by Coordinates
 function fetchWeatherByCoords(lat, lon) {
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
   fetch(url)
@@ -114,10 +125,7 @@ function fetchWeatherByCoords(lat, lon) {
     .catch(err => console.error("Weather fetch error:", err.message));
 }
 
-// fix: updated script.js with Montreal fallback //
-
-
-// 🌆 Weather by City
+// 🏙 Weather by City Name
 function fetchWeatherByCity(city) {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   fetch(url)
@@ -138,17 +146,14 @@ function fetchWeatherByCity(city) {
 // 📅 5-Day Forecast
 function fetchForecast(lat, lon) {
   const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-
   fetch(url)
     .then(res => res.json())
     .then(data => {
       const container = document.getElementById("forecast");
       if (!container) return;
-      container.innerHTML = "<h3 id='forecast-title'></h3>";
-
-      const dailyData = data.list.filter((_, i) => i % 8 === 0).slice(1, 6);
-
-      dailyData.forEach(day => {
+      container.innerHTML = "<h3 id='forecast-title'>5-Day Forecast</h3>";
+      const daily = data.list.filter((_, i) => i % 8 === 0).slice(1, 6);
+      daily.forEach(day => {
         const date = new Date(day.dt_txt).toLocaleDateString("el-GR", {
           weekday: "long", day: "numeric", month: "short"
         });
@@ -164,7 +169,7 @@ function fetchForecast(lat, lon) {
     .catch(err => console.error("Forecast fetch error:", err.message));
 }
 
-// 🌈 Weather Emoji Helper
+// 🌈 Weather Condition → Emoji
 function getWeatherEmoji(condition) {
   const c = condition.toLowerCase();
   if (c.includes("clear")) return "☀️";
@@ -176,14 +181,3 @@ function getWeatherEmoji(condition) {
   if (c.includes("mist") || c.includes("fog")) return "🌫️";
   return "🌡️";
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("dark-mode-toggle");
-  if (!btn) return;
-
-  btn.addEventListener("click", () => {
-    const isDark = document.body.classList.toggle("dark-mode");
-    localStorage.setItem("darkMode", isDark ? "enabled" : "disabled");
-    showToast(isDark ? "🌙 Dark Mode Enabled" : "☀️ Light Mode Enabled");
-  });
-});
