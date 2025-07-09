@@ -196,9 +196,11 @@ function renderWeather(data) {
 }
 // 🗓 5-Day Forecast
 function fetchForecast(lat, lon) {
-  fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
-    .then(res => res.json())
-    .then(data => {
+fetch("https://api.openweathermap.org/data/2.5/weather?q=Athens&appid=bd1a2e25b5af86632c1c461148512426&units=metric")
+  .then(res => res.json())
+  .then(data => console.log("Weather response:", data))
+  .catch(err => console.error("Fetch error:", err));
+
      const container = document.getElementById("forecast");
 if (!container) return;
 // ➤ Παίρνεις τα 5 (ή λιγότερα) στοιχεία καιρού
