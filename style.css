@@ -1110,3 +1110,32 @@ body.dark-mode .dark-mode-toggle {
     padding: 0.3em 0.6em;
   }
 }
+
+/* === 🌙 Dark Mode Floating Toggle === */
+.dark-mode-toggle { ... }
+
+
+.dark-mode-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background: #ffffffdd;
+  border: none;
+  padding: 0.5em 0.9em;
+  border-radius: 999px;
+  font-size: 1.1em;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  cursor: pointer;
+  z-index: 9999;
+  transition: background 0.3s ease;
+}
+.dark-mode-toggle:hover {
+  background: #f1f1f1;
+}
+body.dark-mode .dark-mode-toggle {
+  background: #333333cc;
+  color: #fff;
+}
+body.dark-mode .dark-mode-toggle:hover {
+  background: #444;
+}
