@@ -1139,3 +1139,154 @@ body.dark-mode .dark-mode-toggle {
 body.dark-mode .dark-mode-toggle:hover {
   background: #444;
 }
+
+
+
+
+
+
+/* ======================== */
+/* 🧱 BASE STYLES           */
+/* ======================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+  background-color: #ffffff;
+  color: #222;
+  scroll-behavior: smooth;
+}
+body.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+/* ======================== */
+/* 📐 LAYOUT                */
+/* ======================== */
+header, footer, section {
+  padding: 2em 1em;
+}
+section {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+/* ======================== */
+/* 🎛 COMPONENTS            */
+/* ======================== */
+
+/* Forecast */
+#forecast-section {
+  text-align: center;
+  background: linear-gradient(to right, #e0f7fa, #fffde7);
+}
+#weather-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  margin-bottom: 2em;
+}
+#city-input {
+  padding: 0.8em;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 260px;
+  max-width: 90%;
+}
+#weather-form button {
+  background: #2196f3;
+  color: #fff;
+  padding: 0.6em 1.4em;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+.forecast-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5em;
+}
+.forecast-card {
+  padding: 1em;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s;
+}
+.forecast-card:hover {
+  transform: translateY(-4px);
+}
+.forecast-temp {
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+/* Dark Mode Overrides */
+body.dark-mode header,
+body.dark-mode .forecast-card {
+  background-color: #1e1e1e;
+}
+
+/* ======================== */
+/* ✨ ANIMATIONS            */
+/* ======================== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================================ */
+/* 🛸 UTILITIES & FLOATING ELEMENTS */
+/* ================================ */
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background: rgba(255,255,255,0.92);
+  border: none;
+  padding: 0.5em 0.9em;
+  border-radius: 999px;
+  font-size: 1.1em;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  cursor: pointer;
+  z-index: 9999;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+.dark-mode-toggle:hover {
+  background: #eee;
+  transform: scale(1.05);
+}
+body.dark-mode .dark-mode-toggle {
+  background: rgba(51, 51, 51, 0.9);
+  color: #fff;
+}
+
+/* Back to Top Button */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 0.6em 1.2em;
+  border: none;
+  background: #444;
+  color: white;
+  border-radius: 50px;
+  display: none;
+  z-index: 1000;
+}
+.scroll-top-btn.show {
+  display: block;
+}
