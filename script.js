@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-
   // 🔎 Search Weather by City with debug log
   if (searchBtn) {
     searchBtn.addEventListener("click", () => {
@@ -36,16 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
       fetchWeatherByCity(city);
     });
   }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -142,13 +131,48 @@ window.onload = () => {
     fetchWeatherByCity("Montreal");
   }
 };
+
+
 // 🌇 Weather by City Name
+// function fetchWeatherByCity(city) {
+//  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+ //   .then(res => res.json())
+ //   .then(data => renderWeather(data))
+ //   .catch(err => console.error("City weather error:", err.message));
+ //   }
+
+
+// 🌇 Weather by City Name — with debug logs
 function fetchWeatherByCity(city) {
+  console.log("Fetching weather for city:", city);
+
   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
-    .then(res => res.json())
-    .then(data => renderWeather(data))
-    .catch(err => console.error("City weather error:", err.message));
+    .then(res => {
+      if (!res.ok) {
+        throw new Error(`API error: ${res.status} ${res.statusText}`);
+      }
+      return res.json();
+    })
+    .then(data => {
+      console.log("Weather API response:", data);
+      renderWeather(data);
+    })
+    .catch(err => {
+      console.error("City weather error:", err.message);
+      const output = document.getElementById("weather-output");
+      if (output) {
+        output.textContent = `❌ Could not fetch weather for "${city}". Please try again.`;
+      }
+    });
 }
+
+
+
+
+
+
+
+
 // 🗺 Weather by Coordinates
 function fetchWeatherByCoords(lat, lon) {
   fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
