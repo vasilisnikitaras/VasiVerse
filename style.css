@@ -1008,3 +1008,13 @@ html, body {
 .dark-mode #forecast-title {
   color: #ddd;
 }
+#forecast-title {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.6s ease;
+}
+
+#forecast-title.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
