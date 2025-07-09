@@ -1,3 +1,7 @@
+// ✅ CONFIRM SCRIPT IS RUNNING
+console.log("Script loaded. Ready to go!");
+
+
 // === DARK MODE ON LOAD ===
 if (localStorage.getItem("darkMode") === "enabled") { 
   document.body.classList.add("dark-mode");
