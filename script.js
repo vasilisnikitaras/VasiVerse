@@ -197,3 +197,17 @@ function getWeatherEmoji(condition) {
   if (c.includes("fog") || c.includes("mist")) return "🌫️";
   return "🌡️";
 }
+
+const body = document.body;
+
+// Ενεργοποίηση dark mode εάν το έχει ορίσει ο χρήστης
+if (localStorage.getItem('darkMode') === 'enabled') {
+  body.classList.add('dark-mode');
+}
+
+// Toggle με click
+toggleBtn?.addEventListener('click', () => {
+  body.classList.toggle('dark-mode');
+  localStorage.setItem('darkMode',
+    body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
+});
