@@ -1038,4 +1038,28 @@ html, body {
 .dark-mode #forecast-title {
   color: #ddd;
 }
+#forecast-title {
+  text-align: center;
+  font-size: 1.6em;
+  margin: 2em auto 1em;
+  font-weight: 600;
+  color: #333;
+  letter-spacing: 0.3px;
+  max-width: 100%;
+}
+
+.dark-mode #forecast-title {
+  color: #ddd;
+}
+#forecast-title {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.5s ease;
+  /* τα υπόλοιπα όπως πριν */
+}
+
+#forecast-title.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
