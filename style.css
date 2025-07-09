@@ -808,3 +808,42 @@ html, body {
     fill: #222;
   }
 }
+
+✅ Final Mobile Toggle Button Style (Responsive & Minimal)
+
+@media screen and (max-width: 768px) {
+  .dark-mode-toggle {
+    all: unset;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    border-radius: 50%;
+    font-size: 18px;
+    color: #222;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: background 0.2s ease;
+  }
+
+  .dark-mode-toggle:hover {
+    background: rgba(255, 255, 255, 0.25);
+  }
+}
+
+
+
