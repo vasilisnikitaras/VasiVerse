@@ -2,12 +2,10 @@
 if (localStorage.getItem("darkMode") === "enabled") {
   document.body.classList.add("dark-mode");
 } 
-
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.getElementById("dark-mode-toggle");
   const backToTopButton = document.getElementById("back-to-top");
   const searchBtn = document.getElementById("search-btn");
-
   // 🌙 Toggle Dark Mode
   if (toggleBtn) {
     toggleBtn.addEventListener("click", () => {
@@ -16,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
       showToast(isDark ? "🌙 Dark Mode Enabled" : "☀️ Light Mode Enabled");
     });
   }
-
   // 🔔 Toast Feedback
   function showToast(message) {
     const old = document.querySelector(".vasiverse-toast");
@@ -45,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
       toast.addEventListener("transitionend", () => toast.remove());
     }, 3000);
   }
-
   // 🧭 Smooth Scroll
   document.querySelectorAll("nav a[href^='#']").forEach(link => {
     link.addEventListener("click", e => {
@@ -54,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (target) target.scrollIntoView({ behavior: "smooth" });
     });
   });
-
   // ⬆️ Back to Top
   if (backToTopButton) {
     backToTopButton.addEventListener("click", () =>
@@ -64,29 +59,24 @@ document.addEventListener("DOMContentLoaded", () => {
       backToTopButton.classList.toggle("visible", window.scrollY > 400);
     });
   }
-
   // 🔎 Search Weather by City
   if (searchBtn) {
     searchBtn.addEventListener("click", () => {
       const cityInput = document.getElementById("city-input");
       const output = document.getElementById("weather-output");
       if (!cityInput || !output) return;
-
       const city = cityInput.value.trim();
       if (!city) {
         output.textContent = "Please enter a city name.";
         return;
       }
-
       output.textContent = `Fetching weather for "${city}"...`;
       fetchWeatherByCity(city);
     });
   }
 });
-
 // === WEATHER API & HELPERS ===
 const apiKey = "bd1a2e25b5af86632c1c461148512426";
-
 // 📍 Auto Geolocation on Load
 window.onload = () => {
   if ("geolocation" in navigator) {
@@ -105,7 +95,6 @@ window.onload = () => {
     fetchWeatherByCity("Montreal");
   }
 };
-
 // 🌇 Weather by City Name
 function fetchWeatherByCity(city) {
   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
@@ -113,7 +102,6 @@ function fetchWeatherByCity(city) {
     .then(data => renderWeather(data))
     .catch(err => console.error("City weather error:", err.message));
 }
-
 // 🗺 Weather by Coordinates
 function fetchWeatherByCoords(lat, lon) {
   fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
@@ -121,7 +109,6 @@ function fetchWeatherByCoords(lat, lon) {
     .then(data => renderWeather(data))
     .catch(err => console.error("Coords weather error:", err.message));
 }
-
 // 🖼 Display Weather
 function renderWeather(data) {
   const output = document.getElementById("weather-output");
@@ -130,9 +117,8 @@ function renderWeather(data) {
     <p><strong>${data.name}</strong></p>
     <p>${getWeatherEmoji(data.weather[0].main)} ${data.weather[0].description}</p>
     <p>🌡️ ${data.main.temp}°C</p>
-  `;
+  ;
 }
-
 // 🗓 5-Day Forecast
 function fetchForecast(lat, lon) {
   fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
@@ -140,27 +126,20 @@ function fetchForecast(lat, lon) {
     .then(data => {
      const container = document.getElementById("forecast");
 if (!container) return;
-
 // ➤ Παίρνεις τα 5 (ή λιγότερα) στοιχεία καιρού
 const daily = data.list.filter((_, i) => i % 8 === 0).slice(1, 6);
-
 // ➤ Πρόσθεσε την κλάση 'visible' λίγο μετά την απόδοση (για animation)
 setTimeout(() => {
   const titleEl = document.getElementById("forecast-title");
   if (titleEl) titleEl.classList.add("visible");
 }, 50);
-
 // ➤ Δημιουργείς ΔΥΝΑΜΙΚΑ τον τίτλο, με βάση το πόσες μέρες γύρισαν
 const forecastTitle = `<h3 id="forecast-title">📅 ${daily.length}-Day Forecast</h3>`;
 container.innerHTML = forecastTitle;
-
 setTimeout(() => {
   const titleEl = document.getElementById("forecast-title");
   if (titleEl) titleEl.classList.add("visible");
 }, 50);
-
-      
-
 // ➤ Τώρα αρχίζεις να προσθέτεις τις κάρτες
 daily.forEach(day => {
   const date = new Date(day.dt_txt).toLocaleDateString("el-GR", {
@@ -168,7 +147,6 @@ daily.forEach(day => {
     day: "numeric",
     month: "short"
   });
-
   container.innerHTML += `
     <div class="forecast-day">
       <p><strong>${date}</strong></p>
@@ -177,11 +155,9 @@ daily.forEach(day => {
     </div>
   `;
 });
-
     })
     .catch(err => console.error("Forecast error:", err.message));
 }
-
 // 🌈 Emoji Helper
 function getWeatherEmoji(condition) {
   const c = condition.toLowerCase();
