@@ -1,5 +1,5 @@
 // === DARK MODE ON LOAD ===
-if (localStorage.getItem("darkMode") === "enabled") {
+if (localStorage.getItem("darkMode") === "enabled") { 
   document.body.classList.add("dark-mode");
 } 
 document.addEventListener("DOMContentLoaded", () => {
