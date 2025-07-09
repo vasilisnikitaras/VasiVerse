@@ -1,7 +1,7 @@
 // === DARK MODE ON LOAD ===
 if (localStorage.getItem("darkMode") === "enabled") {
   document.body.classList.add("dark-mode");
-}
+} 
 
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.getElementById("dark-mode-toggle");
