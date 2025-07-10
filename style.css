@@ -1508,5 +1508,10 @@ body {
   transform: rotate(-2deg) scale(1.1);
 }
 
+.forecast-card {
+  background: yellow !important;
+  color: black !important;
+  border: 2px dashed red !important;
+}
 
 
