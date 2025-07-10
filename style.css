@@ -1318,3 +1318,20 @@ body.dark-mode .dark-mode-toggle {
   opacity: 1;
   visibility: visible;
 }
+
+
+
+
+
+
+
+.forecast-card {
+  background: #20232a;
+  color: #fff;
+  border-radius: 8px;
+  padding: 1em;
+  margin: 0.5em;
+  text-align: center;
+  display: inline-block;
+  width: 160px;
+}
