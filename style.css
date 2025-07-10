@@ -1291,12 +1291,6 @@ body.dark-mode .dark-mode-toggle {
   display: block;
 }
 
-
-
-
-
-
-
 .back-to-top {
   position: fixed;
   bottom: 30px;
@@ -1319,7 +1313,7 @@ body.dark-mode .dark-mode-toggle {
   visibility: visible;
 }
 
-
+/*
 
 .forecast-card {
   background: #20232a;
@@ -1331,7 +1325,7 @@ body.dark-mode .dark-mode-toggle {
   display: inline-block;
   width: 160px;
 }
-
+*/
 
 .forecast-grid {
   display: grid;
@@ -1339,14 +1333,14 @@ body.dark-mode .dark-mode-toggle {
   gap: 16px;
   padding: 1rem;
 }
-.forecast-card {
+/* .forecast-card {
   background: #1e1e1e;
   color: #f5f5f5;
   text-align: center;
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
+} */
 .forecast-card img {
   max-width: 80px;
 }
@@ -1357,15 +1351,15 @@ body.dark-mode .dark-mode-toggle {
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 16px;
   padding: 1rem;
-}
-.forecast-card {
+} 
+/*.forecast-card {
   background: #2e2e2e;
   color: #f5f5f5;
   text-align: center;
   padding: 12px;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
+} */
 .forecast-card img {
   max-width: 80px;
   margin: 0 auto;
@@ -1376,27 +1370,23 @@ body.dark-mode .dark-mode-toggle {
   display: none;
 }
 
-
-
 #forecast-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 16px;
   padding: 1rem;
-}
-
+} */
+/*
 .forecast-card {
   background: #2e2e2e;
   color: #f5f5f5;
   text-align: center;
   padding: 12px;
   border-radius: 8px;
-}
+} */
 #forecast-container:empty {
   display: none;
 }
-
-
 
 #forecast-status {
   color: #f5f5f5;
@@ -1404,7 +1394,6 @@ body.dark-mode .dark-mode-toggle {
   text-align: center;
   margin-top: 8px;
 }
-
 
 .status-box {
   color: #f5f5f5;
@@ -1423,9 +1412,6 @@ body.dark-mode .dark-mode-toggle {
   content: "• ";
   color: #bbb;
 }
-
-
-
 
 .status-box {
   color: #f5f5f5;
@@ -1456,8 +1442,6 @@ body.dark-mode .dark-mode-toggle {
   margin-top: 1rem;
 }
 
-
-
 .forecast-card:hover {
   transform: scale(1.05);
 }
@@ -1467,13 +1451,13 @@ body.dark-mode .dark-mode-toggle {
   margin-bottom: 8px;
 }
 
-
+/*
 .forecast-card {
   border: 1px solid limegreen;
   background: black;
   color: white;
 }
-
+*/
 
 body {
   background-color: black;
