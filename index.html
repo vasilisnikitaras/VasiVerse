@@ -747,7 +747,15 @@
 
 <!-- ✅ Insert this before </body> -->
 <script src="script.js?v=1.0.3" defer></script>
-     
+
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    document.body.classList.add("loaded");
+  });
+</script>
+
+    
 </body>
 </html>
 
