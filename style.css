@@ -1516,3 +1516,27 @@ body.light-mode {
   color: #1a1a1a;
 }
 
+@media (prefers-color-scheme: light) {
+  body, section, nav, header, footer,
+  .card, .container, .project-card, .featured-card,
+  .forecast-card, .contact-section, .about-section {
+    background-color: #ffffff;
+    color: #1a1a1a;
+    border-color: #e5e5e5;
+  }
+
+  a {
+    color: #0077cc;
+  }
+
+  button {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+  }
+
+  .forecast-card {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+}
+body.light-mode .card { background: #fff; color: #111; }
