@@ -1396,3 +1396,13 @@ body.dark-mode .dark-mode-toggle {
   display: none;
 }
 
+
+
+#forecast-status {
+  color: #f5f5f5;
+  font-style: italic;
+  text-align: center;
+  margin-top: 8px;
+}
+
+
