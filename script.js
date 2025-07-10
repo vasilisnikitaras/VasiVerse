@@ -227,7 +227,7 @@ window.onload = function() {
 };
 
 function fetchWeatherByCoords(lat, lon) {
-  const apiKey = 'YOUR_API_KEY'; // <-- Replace with your actual OpenWeather API key
+  const apiKey = "bd1a2e25b5af86632c1c461148512426"; // <-- Replace with your actual OpenWeather API key
   fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`)
     .then(res => res.json())
     .then(data => displayForecast(data))
@@ -235,7 +235,10 @@ function fetchWeatherByCoords(lat, lon) {
 }
 
 function fetchWeatherByCity(city) {
-  const apiKey = 'YOUR_API_KEY'; // <-- Replace with your actual key
+
+ // const apiKey = "bd1a2e25b5af86632c1c461148512426"; // ✔️ Quotes needed
+
+  const apiKey = "bd1a2e25b5af86632c1c461148512426"; // <-- Replace with your actual key
   fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`)
     .then(res => res.json())
     .then(data => displayForecast(data))
