@@ -1140,11 +1140,6 @@ body.dark-mode .dark-mode-toggle:hover {
   background: #444;
 }
 
-
-
-
-
-
 /* ======================== */
 /* 🧱 BASE STYLES           */
 /* ======================== */
@@ -1227,9 +1222,7 @@ section {
   font-weight: bold;
 }
 
-/* Dark Mode Overrides */
-body.dark-mode header,
-body.dark-mode .forecast-card {
+.forecast-card {
   background-color: #1e1e1e;
 }
 
@@ -1431,9 +1424,6 @@ body.dark-mode .dark-mode-toggle {
   color: #bbb;
 }
 
-
-
-
 #forecast-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -1492,10 +1482,32 @@ body {
   transform: rotate(-2deg) scale(1.1);
 }
 
+
+/* 🚀 Forecast Card Styling – VasiVerse */
 .forecast-card {
-  background: yellow !important;
-  color: black !important;
-  border: 2px dashed red !important;
+  background: linear-gradient(135deg, #1e1e1e, #2e2e2e);
+  color: #fdfdfd;
+  border: 1px solid limegreen;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 255, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.forecast-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0, 255, 0, 0.3);
+}
+
+.forecast-card img {
+  max-width: 90px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.forecast-card:hover img {
+  transform: rotate(-2deg) scale(1.1);
 }
 
 
