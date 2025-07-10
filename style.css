@@ -1479,6 +1479,9 @@ body {
   background-color: black;
 }
 
+
+/* Weather Cards */
+
 .forecast-card {
   background: linear-gradient(135deg, #1e1e1e, #2e2e2e);
   color: #fdfdfd;
