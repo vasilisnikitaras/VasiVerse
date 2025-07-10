@@ -1351,7 +1351,7 @@ body.dark-mode .dark-mode-toggle {
   max-width: 80px;
 }
 
-/*
+
 #forecast-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -1375,4 +1375,4 @@ body.dark-mode .dark-mode-toggle {
 #weather-output:empty {
   display: none;
 }
-*/
+
