@@ -22,18 +22,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 🔍 City Search
+  // 🔍 City Forecast Search
   if (searchBtn) {
     searchBtn.addEventListener("click", () => {
       const cityInput = document.getElementById("city-input");
       const output = document.getElementById("weather-output");
-      if (!cityInput || !output) return;
+      const container = document.getElementById("forecast-container");
+      if (!cityInput || !output || !container) return;
+
       const city = cityInput.value.trim();
       if (!city) {
         output.textContent = "Please enter a city name.";
         return;
       }
-      output.textContent = `Fetching weather for "${city}"...`;
+
+      output.innerHTML = `🌩️ Loading forecast for <strong>${city}</strong>...`;
+      container.innerHTML = ""; // Clear previous forecast
       fetchWeatherByCity(city);
     });
   }
@@ -69,9 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
       bottom: "20px",
       left: "50%",
       transform: "translateX(-50%)",
-      background: "rgba(0, 0, 0, 0.8)",
+      background: "rgba(0, 0, 0, 0.85)",
       color: "#fff",
-      padding: "8px 14px",
+      padding: "10px 16px",
       borderRadius: "6px",
       fontSize: "14px",
       zIndex: "9999",
@@ -87,12 +91,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// 🌇 Load Weather Automatically
+// 🌇 Load Weather on Page Load
 window.onload = () => {
   const container = document.getElementById("forecast-container");
   if (!container) return console.warn("Missing #forecast-container");
 
   console.log("📍 Detecting location...");
+  container.innerHTML = "🌩️ Loading local forecast...";
+
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(
       pos => {
@@ -111,10 +117,14 @@ window.onload = () => {
   }
 };
 
-// 📡 Fetch by Coordinates
+// 📡 Fetch weather by coordinates
 function fetchWeatherByCoords(lat, lon) {
+  const container = document.getElementById("forecast-container");
+  if (container) container.innerHTML = "🌩️ Loading forecast...";
+
   const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
   console.log("📡 Fetching:", url);
+
   fetch(url)
     .then(res => {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -123,15 +133,18 @@ function fetchWeatherByCoords(lat, lon) {
     .then(data => displayForecast(data))
     .catch(err => {
       console.error("❌ Weather API error:", err.message);
-      const container = document.getElementById("forecast-container");
       if (container) container.textContent = "☁️ Forecast unavailable.";
     });
 }
 
-// 🏙️ Fetch by City Name
+// 🏙️ Fetch weather by city name
 function fetchWeatherByCity(city) {
+  const container = document.getElementById("forecast-container");
+  if (container) container.innerHTML = `🌩️ Loading forecast for <strong>${city}</strong>...`;
+
   const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
   console.log("🏙️ Fetching:", url);
+
   fetch(url)
     .then(res => {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -140,12 +153,11 @@ function fetchWeatherByCity(city) {
     .then(data => displayForecast(data))
     .catch(err => {
       console.error("❌ City Weather error:", err.message);
-      const container = document.getElementById("forecast-container");
       if (container) container.textContent = `⚠️ Could not load forecast for "${city}".`;
     });
 }
 
-// 🖼️ Display Forecast
+// 🖼️ Display forecast cards
 function displayForecast(data) {
   const container = document.getElementById("forecast-container");
   if (!container) return console.warn("Missing container: #forecast-container");
@@ -158,19 +170,22 @@ function displayForecast(data) {
     const temp = Math.round(item.main.temp);
     const icon = item.weather[0].icon;
     const condition = item.weather[0].description;
+    const emoji = getWeatherEmoji(item.weather[0].main);
 
     container.innerHTML += `
       <div class="forecast-card">
         <p><strong>${date.toDateString()}</strong></p>
         <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="${condition}">
-        <p>${getWeatherEmoji(item.weather[0].main)} ${condition}</p>
+        <p>${emoji} ${condition}</p>
         <p>🌡️ ${temp}°C</p>
       </div>
     `;
   });
+
+  console.log("✅ Forecast rendered successfully");
 }
 
-// 🌈 Emoji Helper
+// 🌈 Emoji helper
 function getWeatherEmoji(condition) {
   const c = condition.toLowerCase();
   if (c.includes("clear")) return "☀️";
