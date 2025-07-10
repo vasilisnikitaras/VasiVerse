@@ -184,6 +184,28 @@ function getWeatherEmoji(condition) {
   return "🌡️";
 }
 
+function getWeatherForecast(lat, lon) {
+  const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
+  console.log("Final URL:", url); // ✅ Helpful for debugging!
+
+  fetch(url)
+    .then(response => {
+      if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+      return response.json();
+    })
+    .then(data => {
+      console.log("Forecast data received:", data);
+      displayForecast(data);
+    })
+    .catch(error => {
+      forecastContainer.innerText = "⚠️ Unable to fetch forecast.";
+      console.error("API error:", error.message);
+    });
+}
+
+
+
 // 📍 Auto Load Weather by Geolocation
 window.onload = () => {
   if ("geolocation" in navigator) {
