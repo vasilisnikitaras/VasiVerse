@@ -188,3 +188,66 @@ window.onload = () => {
     fetchWeatherByCity("Montreal");
   }
 };
+
+
+
+
+// === Auto-Location Weather Forecast ===
+window.onload = function() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        fetchWeatherByCoords(lat, lon);
+      },
+      error => {
+        console.warn("Geolocation error:", error.message);
+        fetchWeatherByCity("Montreal"); // fallback
+      }
+    );
+  } else {
+    console.log("Geolocation not supported.");
+    fetchWeatherByCity("Montreal"); // fallback
+  }
+};
+
+function fetchWeatherByCoords(lat, lon) {
+  const apiKey = 'YOUR_API_KEY'; // <-- Replace with your actual OpenWeather API key
+  fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`)
+    .then(res => res.json())
+    .then(data => displayForecast(data))
+    .catch(err => console.error("Weather API error:", err));
+}
+
+function fetchWeatherByCity(city) {
+  const apiKey = 'YOUR_API_KEY'; // <-- Replace with your actual key
+  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`)
+    .then(res => res.json())
+    .then(data => displayForecast(data))
+    .catch(err => console.error("City Weather error:", err));
+}
+
+function displayForecast(data) {
+  const container = document.getElementById('forecast-container');
+  if (!container) return console.warn("Missing container: #forecast-container");
+
+  container.innerHTML = '';
+  // Show 5 days only, spaced 1 per day (~8 data points per day)
+  for (let i = 0; i < data.list.length; i += 8) {
+    const item = data.list[i];
+    const date = new Date(item.dt_txt);
+    const temp = Math.round(item.main.temp);
+    const icon = item.weather[0].icon;
+
+    container.innerHTML += `
+      <div class="forecast-card">
+        <p>${date.toDateString()}</p>
+        <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="Weather Icon">
+        <p>${temp}°C</p>
+      </div>
+    `;
+  }
+}
+
+
