@@ -267,7 +267,6 @@ function displayForecast(data) {
   }
 }
 
-
 // === VasiVerse Auto-Weather Module ===
 const apiKey = "bd1a2e25b5af86632c1c461148512426";
 
@@ -314,6 +313,25 @@ function fetchWeatherByCity(city) {
   fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`)
     .then(res => res.json())
     .then(data => displayForecast(data))
-    .catch(err => console.error("City Weather error
+    .catch(err => console.error("City Weather error:", err));
+}
 
-                                
+// Display 5-day forecast
+function displayForecast(data) {
+  const container = document.getElementById("forecast");
+  container.innerHTML = '';
+  for (let i = 0; i < data.list.length; i += 8) {
+    const item = data.list[i];
+    const date = new Date(item.dt_txt);
+    const temp = Math.round(item.main.temp);
+    const icon = item.weather[0].icon;
+
+    container.innerHTML += `
+      <div class="forecast-card">
+        <p>${date.toDateString()}</p>
+        <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="Weather Icon">
+        <p>${temp}°C</p>
+      </div>
+    `;
+  }
+}
