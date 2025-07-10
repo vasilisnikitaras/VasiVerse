@@ -1581,3 +1581,31 @@ header, .site-header, .title-banner {
   border-bottom: none;
   text-align: center;
 }
+
+
+/* 🚀 VasiVerse Header Rebuild */
+header {
+  background-color: #0077cc; /* Vibrant blue */
+  color: #ffffff;
+  padding: 24px 32px;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  border-bottom: 2px solid #005fa3;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+header h1 {
+  margin: 0;
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+header h1::before {
+  content: '🚀';
+  margin-right: 12px;
+  font-size: 1.6rem;
+  vertical-align: middle;
+}
