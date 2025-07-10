@@ -22,43 +22,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-// 🔍 City Search
+  // 🔍 City Search
   if (searchBtn) {
-  searchBtn.addEventListener("click", () => {
-  const cityInput = document.getElementById("city-input");
-  const output = document.getElementById("weather-output");
-  if (!cityInput || !output) return;
-  const city = cityInput.value.trim();
-  if (!city) {
-  output.textContent = "Please enter a city name.";
-   return;
-  }
-   output.textContent = `Fetching weather for "${city}"...`;
-    fetchWeatherByCity(city);
+    searchBtn.addEventListener("click", () => {
+      const cityInput = document.getElementById("city-input");
+      const output = document.getElementById("weather-output");
+      if (!cityInput || !output) return;
+      const city = cityInput.value.trim();
+      if (!city) {
+        output.textContent = "Please enter a city name.";
+        return;
+      }
+      output.textContent = `Fetching weather for "${city}"...`;
+      fetchWeatherByCity(city);
     });
-   }
-/*
-if (searchBtn) {
-  searchBtn.addEventListener("click", () => {
-    const cityInput = document.getElementById("city-input");
-    const output = document.getElementById("weather-output");
-    if (!cityInput || !output) return;
-
-    const city = cityInput.value.trim();
-    if (!city) {
-      output.textContent = "Please enter a city name.";
-      return;
-    }
-
-    // 🌩️ Show loading message before fetching
-    output.innerHTML = "🌩️ Fetching forecast for <strong>" + city + "</strong>...";
-
-    fetchWeatherByCity(city);
-  });
-}
-
-*/
-
+  }
 
   // ⬆️ Back to Top Button
   if (backToTopButton) {
