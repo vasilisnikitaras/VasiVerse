@@ -1,14 +1,23 @@
 console.log("✅ VasiVerse Weather Script Loaded");
 
 const apiKey = "bd1a2e25b5af86632c1c461148512426";
-let debugMode = false; // 🐛 Toggle this to true for extra logging
+let debugMode = false; // 🐛 Toggle with "D" key
 
-// === DARK MODE ON LOAD ===
+// 🔑 Debug Mode Toggle (Global Listener)
+window.addEventListener("keydown", e => {
+  if (e.key.toLowerCase() === "d") {
+    debugMode = !debugMode;
+    showToast(debugMode ? "🐛 Debug Mode: ON" : "🧼 Debug Mode: OFF");
+    if (debugMode) console.clear();
+  }
+});
+
+// 🌙 Dark Mode on Load
 if (localStorage.getItem("darkMode") === "enabled") {
   document.body.classList.add("dark-mode");
 }
 
-// === DOM READY ===
+// === DOM Ready ===
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.getElementById("dark-mode-toggle");
   const backToTopButton = document.getElementById("back-to-top");
@@ -22,15 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
       showToast(isDark ? "🌙 Dark Mode Enabled" : "☀️ Light Mode Enabled");
     });
   }
-
-  // 🐛 Debug Mode Toggle (press D key)
-  window.addEventListener("keydown", e => {
-    if (e.key === "d") {
-      debugMode = !debugMode;
-      showToast(debugMode ? "🐛 Debug Mode: ON" : "🧼 Debug Mode: OFF");
-      if (debugMode) console.clear();
-    }
-  });
 
   // 🔍 City Forecast Search
   if (searchBtn) {
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       output.innerHTML = `🌩️ Loading forecast for <strong>${city}</strong>...`;
-      container.innerHTML = ""; // Clear previous forecast
+      container.innerHTML = "";
       fetchWeatherByCity(city);
     });
   }
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 🧭 Smooth Scroll Links
+  // 🧭 Smooth Scroll
   document.querySelectorAll("nav a[href^='#']").forEach(link => {
     link.addEventListener("click", e => {
       e.preventDefault();
@@ -70,45 +70,43 @@ document.addEventListener("DOMContentLoaded", () => {
       if (target) target.scrollIntoView({ behavior: "smooth" });
     });
   });
-
-  // 🔔 Toast Function
-  function showToast(message) {
-    const old = document.querySelector(".vasiverse-toast");
-    if (old) old.remove();
-    const toast = document.createElement("div");
-    toast.className = "vasiverse-toast";
-    toast.textContent = message;
-    Object.assign(toast.style, {
-      position: "fixed",
-      bottom: "20px",
-      left: "50%",
-      transform: "translateX(-50%)",
-      background: "rgba(0, 0, 0, 0.85)",
-      color: "#fff",
-      padding: "10px 16px",
-      borderRadius: "6px",
-      fontSize: "14px",
-      zIndex: "9999",
-      opacity: "0",
-      transition: "opacity 0.3s ease"
-    });
-    document.body.appendChild(toast);
-    requestAnimationFrame(() => (toast.style.opacity = "1"));
-    setTimeout(() => {
-      toast.style.opacity = "0";
-      toast.addEventListener("transitionend", () => toast.remove());
-    }, 3000);
-  }
 });
 
-// 🌇 Load Weather on Page Load
+// 🔔 Toast Messages
+function showToast(message) {
+  const old = document.querySelector(".vasiverse-toast");
+  if (old) old.remove();
+  const toast = document.createElement("div");
+  toast.className = "vasiverse-toast";
+  toast.textContent = message;
+  Object.assign(toast.style, {
+    position: "fixed",
+    bottom: "20px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    background: "rgba(0, 0, 0, 0.8)",
+    color: "#fff",
+    padding: "8px 14px",
+    borderRadius: "6px",
+    fontSize: "14px",
+    zIndex: "9999",
+    opacity: "0",
+    transition: "opacity 0.3s ease"
+  });
+  document.body.appendChild(toast);
+  requestAnimationFrame(() => (toast.style.opacity = "1"));
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    toast.addEventListener("transitionend", () => toast.remove());
+  }, 3000);
+}
+
+// 🌇 Auto-Fetch on Page Load
 window.onload = () => {
   const container = document.getElementById("forecast-container");
   if (!container) return console.warn("Missing #forecast-container");
 
-  if (debugMode) console.log("📍 Detecting location...");
   container.innerHTML = "🌩️ Loading local forecast...";
-
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition(
       pos => {
@@ -118,7 +116,7 @@ window.onload = () => {
       },
       err => {
         if (debugMode) console.warn("Geolocation error:", err.message);
-        fetchWeatherByCity("Montreal"); // fallback
+        fetchWeatherByCity("Montreal");
       }
     );
   } else {
@@ -126,7 +124,7 @@ window.onload = () => {
   }
 };
 
-// 📡 Fetch weather by coordinates
+// 📡 Fetch by Coordinates
 function fetchWeatherByCoords(lat, lon) {
   const container = document.getElementById("forecast-container");
   if (container) container.innerHTML = "🌩️ Loading forecast...";
@@ -146,7 +144,7 @@ function fetchWeatherByCoords(lat, lon) {
     });
 }
 
-// 🏙️ Fetch weather by city name
+// 🏙️ Fetch by City
 function fetchWeatherByCity(city) {
   const container = document.getElementById("forecast-container");
   if (container) container.innerHTML = `🌩️ Loading forecast for <strong>${city}</strong>...`;
@@ -166,19 +164,18 @@ function fetchWeatherByCity(city) {
     });
 }
 
-// 🖼️ Display forecast cards
+// 🖼️ Render Forecast Cards
 function displayForecast(data) {
   const container = document.getElementById("forecast-container");
   if (!container) return console.warn("Missing container: #forecast-container");
 
   if (debugMode) {
-    console.log("🧪 Forecast list length:", data.list?.length);
+    console.log("🧪 Forecast entries:", data.list?.length);
     console.log("💾 Full forecast data:", data);
   }
 
   container.innerHTML = '';
   const daily = data.list.filter((_, i) => i % 8 === 0).slice(0, 5);
-
   if (daily.length === 0) {
     container.innerHTML = "⚠️ No forecast data available.";
     return;
@@ -204,7 +201,7 @@ function displayForecast(data) {
   if (debugMode) console.log("✅ Forecast rendered successfully");
 }
 
-// 🌈 Emoji helper
+// 🌈 Emoji Helper
 function getWeatherEmoji(condition) {
   const c = condition.toLowerCase();
   if (c.includes("clear")) return "☀️";
