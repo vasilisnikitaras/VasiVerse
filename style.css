@@ -1474,3 +1474,10 @@ body.dark-mode .dark-mode-toggle {
   max-width: 80px;
   margin-bottom: 8px;
 }
+
+
+.forecast-card {
+  border: 1px solid limegreen;
+  background: black;
+  color: white;
+}
