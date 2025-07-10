@@ -132,7 +132,26 @@
 <h2 id="forecast-title"></h2>
 <div id="forecast"></div>
 
+
+<div id="weather-output"></div>
+<h2 id="forecast-title"></h2>
+<div id="forecast"></div>
+
+  
+
 </main>
+
+<section id="vault">
+  <!-- VaultVerse content will go here -->
+</section>
+
+<section id="daily-assist">
+  <!-- Daily Assist content will go here -->
+</section>
+
+
+
+  
 
   <!-- trigger rebuild -->
 
@@ -754,6 +773,25 @@
     document.body.classList.add("loaded");
   });
 </script>
+
+
+<!-- Mobile Jump Button -->
+<button class="jump-button" onclick="document.getElementById('weather').scrollIntoView({ behavior: 'smooth' })">
+  🔍 Jump to Weather
+</button>
+
+<!-- Mobile Navigation -->
+<nav class="mobile-nav">
+  <a href="#weather">🌦</a>
+  <a href="#vault">🔐</a>
+  <a href="#daily-assist">📓</a>
+  <a href="/contact.html">📬</a>
+</nav>
+
+
+
+
+
 
     
 </body>
