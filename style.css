@@ -1370,11 +1370,12 @@ body.dark-mode .dark-mode-toggle {
   max-width: 80px;
   margin: 0 auto;
 }
-
-#forecast:empty,
+/*
+#forecast:empty, 
 #weather-output:empty {
   display: none;
 }
+*/
 
 
 #weather-output {
