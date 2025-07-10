@@ -268,3 +268,52 @@ function displayForecast(data) {
 }
 
 
+// === VasiVerse Auto-Weather Module ===
+const apiKey = "bd1a2e25b5af86632c1c461148512426";
+
+// Trigger on page load
+window.onload = function () {
+  console.log("Weather script loaded!");
+  const container = document.getElementById("forecast"); // Use 'forecast' as your container ID
+
+  if (!container) {
+    console.warn("Missing container: #forecast");
+    return;
+  }
+
+  console.log("Trying geolocation...");
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        const lat = position.coords.latitude;
+        const lon = position.coords.longitude;
+        console.log("Location found:", lat, lon);
+        fetchWeatherByCoords(lat, lon);
+      },
+      error => {
+        console.warn("Geolocation error:", error.message);
+        fetchWeatherByCity("Montreal"); // Fallback city
+      }
+    );
+  } else {
+    console.log("Geolocation not supported.");
+    fetchWeatherByCity("Montreal");
+  }
+};
+
+// Fetch weather by user location
+function fetchWeatherByCoords(lat, lon) {
+  fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`)
+    .then(res => res.json())
+    .then(data => displayForecast(data))
+    .catch(err => console.error("Weather API error:", err));
+}
+
+// Fallback method
+function fetchWeatherByCity(city) {
+  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`)
+    .then(res => res.json())
+    .then(data => displayForecast(data))
+    .catch(err => console.error("City Weather error
+
+                                
