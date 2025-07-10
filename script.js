@@ -1,4 +1,4 @@
-console.log("Script loaded. Ready to go!");
+console.log("✅ VasiVerse Weather Script Loaded");
 
 const apiKey = "bd1a2e25b5af86632c1c461148512426";
 
@@ -7,12 +7,13 @@ if (localStorage.getItem("darkMode") === "enabled") {
   document.body.classList.add("dark-mode");
 }
 
+// === DOM READY ===
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.getElementById("dark-mode-toggle");
   const backToTopButton = document.getElementById("back-to-top");
   const searchBtn = document.getElementById("search-btn");
 
-  // 🌙 Toggle Dark Mode
+  // 🌙 Dark Mode Toggle
   if (toggleBtn) {
     toggleBtn.addEventListener("click", () => {
       const isDark = document.body.classList.toggle("dark-mode");
@@ -21,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 🔎 Search Weather by City
+  // 🔍 City Search
   if (searchBtn) {
     searchBtn.addEventListener("click", () => {
       const cityInput = document.getElementById("city-input");
@@ -47,30 +48,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 🧭 Smooth Scroll
- // document.querySelectorAll("nav a[href^='#']").forEach(link => {
-//    link.addEventListener("click", e => {
- //     e.preventDefault();
- //     const target = document.querySelector(link.getAttribute("href"));
- //     if (target) target.scrollIntoView({ behavior: "smooth" });
- //   });
-//  }
-
-document.querySelectorAll("nav a[href^='#']").forEach(link => {
+  // 🧭 Smooth Scroll Links
+  document.querySelectorAll("nav a[href^='#']").forEach(link => {
     link.addEventListener("click", e => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute("href"));
-        if (target) target.scrollIntoView({ behavior: "smooth" });
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute("href"));
+      if (target) target.scrollIntoView({ behavior: "smooth" });
     });
-}); // ← THIS LINE closes forEach properly
+  });
 
-
-
-
-
-  
-
-  // 🔔 Toast Notification
+  // 🔔 Toast Function
   function showToast(message) {
     const old = document.querySelector(".vasiverse-toast");
     if (old) old.remove();
@@ -100,75 +87,87 @@ document.querySelectorAll("nav a[href^='#']").forEach(link => {
   }
 });
 
-// 🌇 Weather by City Name
-function fetchWeatherByCity(city) {
-  console.log("Fetching weather for city:", city);
-  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+// 🌇 Load Weather Automatically
+window.onload = () => {
+  const container = document.getElementById("forecast-container");
+  if (!container) return console.warn("Missing #forecast-container");
+
+  console.log("📍 Detecting location...");
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        const { latitude, longitude } = pos.coords;
+        console.log("🔍 Location:", latitude, longitude);
+        fetchWeatherByCoords(latitude, longitude);
+      },
+      err => {
+        console.warn("Geolocation error:", err.message);
+        fetchWeatherByCity("Montreal"); // fallback
+      }
+    );
+  } else {
+    console.log("Geolocation not supported.");
+    fetchWeatherByCity("Montreal");
+  }
+};
+
+// 📡 Fetch by Coordinates
+function fetchWeatherByCoords(lat, lon) {
+  const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  console.log("📡 Fetching:", url);
+  fetch(url)
     .then(res => {
-      if (!res.ok) throw new Error(`API error: ${res.status}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return res.json();
     })
-    .then(data => {
-      renderWeather(data);
-    })
+    .then(data => displayForecast(data))
     .catch(err => {
-      console.error("City weather error:", err.message);
-      const output = document.getElementById("weather-output");
-      if (output) {
-        output.textContent = `❌ Could not fetch weather for "${city}".`;
-      }
+      console.error("❌ Weather API error:", err.message);
+      const container = document.getElementById("forecast-container");
+      if (container) container.textContent = "☁️ Forecast unavailable.";
     });
 }
 
-// 🗺 Weather by Coordinates
-function fetchWeatherByCoords(lat, lon) {
-  fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
-    .then(res => res.json())
-    .then(data => renderWeather(data))
-    .catch(err => console.error("Coords weather error:", err.message));
-}
-
-// 🗓 5-Day Forecast
-function fetchForecast(lat, lon) {
-  fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
-    .then(res => res.json())
-    .then(data => {
-      const container = document.getElementById("forecast");
-      if (!container) return;
-      const daily = data.list.filter((_, i) => i % 8 === 0).slice(1, 6);
-      const forecastTitle = `<h3 id="forecast-title">📅 ${daily.length}-Day Forecast</h3>`;
-      container.innerHTML = forecastTitle;
-      setTimeout(() => {
-        const titleEl = document.getElementById("forecast-title");
-        if (titleEl) titleEl.classList.add("visible");
-      }, 50);
-      daily.forEach(day => {
-        const date = new Date(day.dt_txt).toLocaleDateString("el-GR", {
-          weekday: "long",
-          day: "numeric",
-          month: "short"
-        });
-        container.innerHTML += `
-          <div class="forecast-day">
-            <p><strong>${date}</strong></p>
-            <p>${getWeatherEmoji(day.weather[0].main)} ${day.weather[0].description}</p>
-            <p>🌡️ ${Math.round(day.main.temp)}°C</p>
-          </div>
-        `;
-      });
+// 🏙️ Fetch by City Name
+function fetchWeatherByCity(city) {
+  const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
+  console.log("🏙️ Fetching:", url);
+  fetch(url)
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
     })
-    .catch(err => console.error("Forecast error:", err.message));
+    .then(data => displayForecast(data))
+    .catch(err => {
+      console.error("❌ City Weather error:", err.message);
+      const container = document.getElementById("forecast-container");
+      if (container) container.textContent = `⚠️ Could not load forecast for "${city}".`;
+    });
 }
 
-// 🖼 Display Weather
-function renderWeather(data) {
-  const output = document.getElementById("weather-output");
-  if (!output) return;
-  output.innerHTML = `
-    <p><strong>${data.name}</strong></p>
-    <p>${getWeatherEmoji(data.weather[0].main)} ${data.weather[0].description}</p>
-    <p>🌡️ ${data.main.temp}°C</p>
-  `;
+// 🖼️ Display Forecast
+function displayForecast(data) {
+  const container = document.getElementById("forecast-container");
+  if (!container) return console.warn("Missing container: #forecast-container");
+
+  container.innerHTML = '';
+  const daily = data.list.filter((_, i) => i % 8 === 0).slice(0, 5);
+
+  daily.forEach(item => {
+    const date = new Date(item.dt_txt);
+    const temp = Math.round(item.main.temp);
+    const icon = item.weather[0].icon;
+    const condition = item.weather[0].description;
+
+    container.innerHTML += `
+      <div class="forecast-card">
+        <p><strong>${date.toDateString()}</strong></p>
+        <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="${condition}">
+        <p>${getWeatherEmoji(item.weather[0].main)} ${condition}</p>
+        <p>🌡️ ${temp}°C</p>
+      </div>
+    `;
+  });
 }
 
 // 🌈 Emoji Helper
@@ -182,178 +181,4 @@ function getWeatherEmoji(condition) {
   if (c.includes("drizzle")) return "🌦️";
   if (c.includes("fog") || c.includes("mist")) return "🌫️";
   return "🌡️";
-}
-
-function getWeatherForecast(lat, lon) {
-  const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-
-  console.log("Final URL:", url); // ✅ Helpful for debugging!
-
-  fetch(url)
-    .then(response => {
-      if (!response.ok) throw new Error(`HTTP error ${response.status}`);
-      return response.json();
-    })
-    .then(data => {
-      console.log("Forecast data received:", data);
-      displayForecast(data);
-    })
-    .catch(error => {
-      forecastContainer.innerText = "⚠️ Unable to fetch forecast.";
-      console.error("API error:", error.message);
-    });
-}
-
-
-
-// 📍 Auto Load Weather by Geolocation
-window.onload = () => {
-  if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition(
-      pos => {
-        const { latitude, longitude } = pos.coords;
-        fetchWeatherByCoords(latitude, longitude);
-        fetchForecast(latitude, longitude);
-      },
-      err => {
-        console.warn("Geolocation failed:", err.message);
-        fetchWeatherByCity("Montreal");
-      }
-    );
-  } else {
-    fetchWeatherByCity("Montreal");
-  }
-};
-
-
-
-
-// === Auto-Location Weather Forecast ===
-window.onload = function() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        fetchWeatherByCoords(lat, lon);
-      },
-      error => {
-        console.warn("Geolocation error:", error.message);
-        fetchWeatherByCity("Montreal"); // fallback
-      }
-    );
-  } else {
-    console.log("Geolocation not supported.");
-    fetchWeatherByCity("Montreal"); // fallback
-  }
-};
-
-function fetchWeatherByCoords(lat, lon) {
-  const apiKey = "bd1a2e25b5af86632c1c461148512426"; // <-- Replace with your actual OpenWeather API key
-  fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`)
-    .then(res => res.json())
-    .then(data => displayForecast(data))
-    .catch(err => console.error("Weather API error:", err));
-}
-
-function fetchWeatherByCity(city) {
-
- // const apiKey = "bd1a2e25b5af86632c1c461148512426"; // ✔️ Quotes needed
-
-  const apiKey = "bd1a2e25b5af86632c1c461148512426"; // <-- Replace with your actual key
-  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`)
-    .then(res => res.json())
-    .then(data => displayForecast(data))
-    .catch(err => console.error("City Weather error:", err));
-}
-
-function displayForecast(data) {
-  const container = document.getElementById('forecast-container');
-  if (!container) return console.warn("Missing container: #forecast-container");
-
-  container.innerHTML = '';
-  // Show 5 days only, spaced 1 per day (~8 data points per day)
-  for (let i = 0; i < data.list.length; i += 8) {
-    const item = data.list[i];
-    const date = new Date(item.dt_txt);
-    const temp = Math.round(item.main.temp);
-    const icon = item.weather[0].icon;
-
-    container.innerHTML += `
-      <div class="forecast-card">
-        <p>${date.toDateString()}</p>
-        <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="Weather Icon">
-        <p>${temp}°C</p>
-      </div>
-    `;
-  }
-}
-
-// === VasiVerse Auto-Weather Module ===
-const apiKey = "bd1a2e25b5af86632c1c461148512426";
-
-// Trigger on page load
-window.onload = function () {
-  console.log("Weather script loaded!");
-  const container = document.getElementById("forecast"); // Use 'forecast' as your container ID
-
-  if (!container) {
-    console.warn("Missing container: #forecast");
-    return;
-  }
-
-  console.log("Trying geolocation...");
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        const lat = position.coords.latitude;
-        const lon = position.coords.longitude;
-        console.log("Location found:", lat, lon);
-        fetchWeatherByCoords(lat, lon);
-      },
-      error => {
-        console.warn("Geolocation error:", error.message);
-        fetchWeatherByCity("Montreal"); // Fallback city
-      }
-    );
-  } else {
-    console.log("Geolocation not supported.");
-    fetchWeatherByCity("Montreal");
-  }
-};
-
-// Fetch weather by user location
-function fetchWeatherByCoords(lat, lon) {
-  fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`)
-    .then(res => res.json())
-    .then(data => displayForecast(data))
-    .catch(err => console.error("Weather API error:", err));
-}
-
-// Fallback method
-function fetchWeatherByCity(city) {
-  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`)
-    .then(res => res.json())
-    .then(data => displayForecast(data))
-    .catch(err => console.error("City Weather error:", err));
-}
-
-// Display 5-day forecast
-function displayForecast(data) {
-  const container = document.getElementById("forecast");
-  container.innerHTML = '';
-  for (let i = 0; i < data.list.length; i += 8) {
-    const item = data.list[i];
-    const date = new Date(item.dt_txt);
-    const temp = Math.round(item.main.temp);
-    const icon = item.weather[0].icon;
-
-    container.innerHTML += `
-      <div class="forecast-card">
-        <p>${date.toDateString()}</p>
-        <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="Weather Icon">
-        <p>${temp}°C</p>
-      </div>
-    `;
-  }
 }
