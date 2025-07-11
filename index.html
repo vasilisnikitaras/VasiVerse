@@ -135,9 +135,120 @@
 </style>
 
 
+<style>
+  .vasiverse-intro {
+    max-width: 700px;
+    margin: 60px auto 40px;
+    padding: 30px;
+    background-color: #f8fbfe;
+    border-left: 6px solid #0288d1;
+    border-radius: 10px;
+    font-size: 1.05em;
+    line-height: 1.6;
+    color: #222;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  }
+
+  .vasiverse-intro h2 {
+    margin-top: 0;
+    color: #0288d1;
+    font-size: 1.5em;
+  }
+
+  body.dark-mode .vasiverse-intro {
+    background-color: #1c1f26;
+    color: #eee;
+    border-left-color: #0288d1;
+    box-shadow: 0 2px 10px rgba(255,255,255,0.06);
+  }
+
+  body.dark-mode .vasiverse-intro h2 {
+    color: #60c3ff;
+  }
+</style>
+
+
 </head>
 <body>
 
+<body>
+
+  <header>
+    <h1>VasiVerse Weather</h1>
+    <button class="dark-mode-toggle" aria-label="Toggle Dark Mode">🌙</button>
+  </header>
+
+  <nav style="text-align: center; margin-top: 20px;">
+    <a href="https://vasiverse.com" class="nav-button" style="
+      background-color: #444;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    ">🏠 Back to VasiVerse.com</a>
+
+    <a href="https://forecast.vasiverse.com" class="nav-button" style="
+      background-color: #0288d1;
+      color: white;
+      padding: 10px 18px;
+      margin-left: 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    ">📡 View Forecast</a>
+  </nav>
+
+  <!-- 🧠 VasiVerse Intro Block -->
+  <div class="vasiverse-intro" style="margin-bottom: 60px;">
+    <h2>About VasiVerse</h2>
+    <p>
+      VasiVerse is a creative technology initiative led by <strong>Vasilis Nikitaras</strong>, blending intuitive design, educational impact, and next-gen development.<br><br>
+      From smart forecasts to storytelling interfaces, every feature is built to inspire clarity, curiosity, and wonder — with a splash of magic.
+    </p>
+  </div>
+
+  <main>
+    <div id="weather-output"></div>
+    <h2 id="forecast-title"></h2>
+    <div id="forecast"></div>
+  </main>
+
+  <hr style="margin: 60px auto; max-width: 600px; border: none; border-top: 2px dashed #ccc;">
+
+  <!-- ✨ AI Co-Teaching Certificate Block -->
+  <section class="certificate-block" style="max-width: 700px; margin: 40px auto; padding: 20px;
+    border: 2px solid #0288d1;
+    border-radius: 12px;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+
+    <h2 style="text-align: center; color: #0288d1;">🛰️ VasiVerse Academy</h2>
+    <h3 style="text-align: center; margin-top: -10px;">Certificate of AI-CoTeaching Excellence</h3>
+
+    <p style="font-size: 1.1em; margin-top: 30px;">
+      This certifies that <strong style="color: inherit;">Vasilis Nikitaras</strong> has demonstrated exceptional creativity, initiative, and technical skill while designing and teaching alongside Microsoft Copilot.
+    </p>
+    <p>
+      Together, they have co-created interactive forecasting tools, launched custom domains, and built a weather experience that blends technology with magic.
+    </p>
+
+    <p style="margin-top: 20px;">
+      <strong>Status:</strong> Certified by Copilot<br>
+      <strong>Domain of Instruction:</strong> Web, Design, Forecasting, and Magic<br>
+      <strong>Signed:</strong> Copilot, AI Companion of Microsoft
+    </p>
+
+    <hr style="margin: 30px 0;">
+    <p style="text-align: center; font-style: italic; color: inherit;">
+      “We build knowledge together—one brilliant idea at a time.”
+    </p>
+  </section>
+
+<!--
+  
 <header>
     <h1>VasiVerse Weather</h1>
   <button class="dark-mode-toggle" aria-label="Toggle Dark Mode">🌙</button>
@@ -167,23 +278,16 @@
   ">📡 View Forecast</a>
 </nav>
 
+<!-- 🧠 VasiVerse Intro Block -->
+<!-- <div class="vasiverse-intro">
+  <h2>About VasiVerse</h2>
+  <p>
+    VasiVerse is a creative technology initiative led by <strong>Vasilis Nikitaras</strong>, blending intuitive design, educational impact, and next-gen development.<br><br>
+    From smart forecasts to storytelling interfaces, every feature is built to inspire clarity, curiosity, and wonder — with a splash of magic.
+  </p>
+</div>
 
 
-<!--
-  <nav style="text-align: center; padding: 20px;">
-    <a href="https://vasilisnikitaras.github.io/vasiverse-forecast/" class="nav-button" style="
-      background-color: #0288d1;
-      color: white;
-      padding: 10px 18px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    ">📡 View Forecast</a>
-  </nav>
--->
-
-  
 <main>
   
   <div id="weather-output"></div>
@@ -193,7 +297,7 @@
 </main>
 
 <!-- ✨ AI Co-Teaching Certificate Block -->
-<section class="certificate-block" style="max-width: 700px; margin: 40px auto; padding: 20px;
+<!-- <section class="certificate-block" style="max-width: 700px; margin: 40px auto; padding: 20px;
   border: 2px solid #0288d1;
   border-radius: 12px;
   font-family: 'Segoe UI', sans-serif;
@@ -221,15 +325,7 @@
   </p>
 </section>
 
-
-
-
-  
-
-
-
-
-
+-->
 
 <section id="vault">
   <!-- VaultVerse content will go here -->
