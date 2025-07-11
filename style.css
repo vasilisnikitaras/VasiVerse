@@ -1716,3 +1716,17 @@ body.loaded header h1 {
 }
 
 
+.back-home-button {
+  display: inline-block;
+  margin: 20px auto;
+  padding: 10px 16px;
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 16px;
+  text-align: center;
+}
+.back-home-button:hover {
+  background-color: #555;
+}
