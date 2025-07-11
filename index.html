@@ -167,11 +167,48 @@
   }
 </style>
 
+<head>
+  ...
+  <style>
+    /* Η υπάρχουσα CSS σου εδώ */
+  </style>
 
+  <!-- 👇 Βάλε το mobile style κάτω από τα γενικά styles -->
+  <style>
+    @media screen and (max-width: 600px) {
+      header h1 {
+        font-size: 1.4em;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .nav-button {
+        display: block;
+        margin: 12px auto;
+        width: 85%;
+        font-size: 16px;
+      }
+
+      .vasiverse-intro,
+      .certificate-block {
+        padding: 20px;
+        font-size: 1em;
+      }
+
+      #forecast-title {
+        font-size: 1.3em;
+        margin-top: 30px;
+      }
+
+      section.certificate-block {
+        margin-top: 20px;
+      }
+    }
+  </style>
+  
 </head>
 <body>
 
-<body>
 
   <header>
     <h1>VasiVerse Weather</h1>
