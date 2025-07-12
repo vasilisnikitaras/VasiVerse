@@ -7,6 +7,51 @@
   <link rel="stylesheet" href="style.css" />
   <script defer src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script defer src="https://unpkg.com/scrollreveal"></script>
+
+<style>
+
+/* 🔻 Scroll Hint Styling */
+.scroll-hint {
+  text-align: center;
+  font-size: 1em;
+  color: #888;
+  margin-top: -8px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(5px); }
+  100% { opacity: 0.5; transform: translateY(0); }
+}
+
+/* 🌙 Dark Mode Support */
+body.dark .scroll-hint p {
+  color: #aaa;
+}
+
+/* 📱 Mobile Optimization */
+@media (max-width: 480px) {
+  .scroll-hint {
+    font-size: 0.95em;
+    margin-top: -4px;
+  }
+}
+
+/* 🧢 Optional: Trim header space */
+header {
+  margin-bottom: -10px;
+  padding-bottom: 10px;
+}
+
+
+</style>
+
+
+
+
+
+  
 </head>
 <body>
   <!-- 🌗 Theme Toggle -->
@@ -17,6 +62,19 @@
     <p>Full-stack developer from Montreal, passionate about tools & creative code.</p>
   </header>
 
+
+
+<!-- 👇 Scroll Cue Section -->
+<section class="scroll-hint">
+  <p>👇 Scroll to discover the story</p>
+</section>
+
+
+
+
+
+
+  
   <main>
     <section class="section fade-in">
       <h2>🧠 Who I Am</h2>
