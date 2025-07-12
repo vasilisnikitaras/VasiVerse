@@ -283,6 +283,40 @@
 </style>
 
 
+  <!-- CSS styles (drop in your main page's <style> section) -->
+<style>
+.welcome-card {
+  background: linear-gradient(to right, #1e1e2f, #2d2d44);
+  color: #fff;
+  padding: 2em;
+  border-radius: 10px;
+  text-align: center;
+  margin: 2em 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.welcome-card h2 {
+  margin-bottom: 0.5em;
+  font-size: 2em;
+}
+.welcome-card p {
+  font-size: 1.1em;
+  margin-bottom: 1.2em;
+}
+.cta-buttons .btn {
+  display: inline-block;
+  margin: 0.5em;
+  padding: 0.8em 1.2em;
+  border-radius: 6px;
+  background: #f1c40f;
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+.cta-buttons .btn:hover {
+  background: #ffda44;
+}
+</style>
 
 
   
@@ -499,6 +533,24 @@
     🌙 Toggle Dark Mode
   </button>
 </header>
+
+
+<!-- INSERT your welcome section here -->
+<!-- 🔽 Insert this snippet right below -->
+<section class="welcome-card">
+  <h2>Welcome to VasiVerse 🚀</h2>
+  <p>Explore featured tools, forecasts, and creative projects below.</p>
+  <div class="cta-buttons">
+    <a href="#weather" class="btn">🌦 Try Weather Wizard</a>
+    <a href="#projects" class="btn">🧠 View Projects</a>
+    <a href="#vault" class="btn">🔐 Go to VaultVerse</a>
+  </div>
+</section>
+
+
+
+
+  
 
 <section id="forecast-section" class="fade-in">
   <h2>🌤️ Live Weather Forecast</h2>
