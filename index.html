@@ -28,13 +28,6 @@
 <meta name="apple-mobile-web-app-title" content="VasiVerse" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
-
-
-
-
-
-
-  
   <title>VasiVerse - Your Hub for Innovation</title>
   <!-- Google AdSense Verification -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7384081751053780" crossorigin="anonymous"></script>
@@ -332,9 +325,62 @@
 </style>
 
 
-<style> /* Shrink space between welcome card and weather section */ .welcome-card { margin-bottom: 1.2em; /* reduced from 2em */ } /* Collapse unused forecast containers if empty */ #weather-output:empty, #forecast:empty, #forecast-title:empty, #forecast-container:empty { display: none; } /* Optional: tighten padding in main block */ main { padding-top: 0.5em; padding-bottom: 0.5em; } </style>
+<style> /* Shrink space between welcome card and weather section */
+  .welcome-card { margin-bottom: 1.2em; /* reduced from 2em */ }
+  /* Collapse unused forecast containers if empty */ 
+  #weather-output:empty, #forecast:empty, #forecast-title:empty, #forecast-container:empty
+  { display: none; }
+  /* Optional: tighten padding in main block */
+  main { padding-top: 0.5em; padding-bottom: 0.5em; }
+</style>
 
+<style>
 
+#language-selector {
+  position: relative;
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 999;
+  padding: 10px;
+}
+
+.lang-dropdown input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.lang-dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lang-dropdown li {
+  padding: 12px;
+  font-size: 18px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+</style>
 
 
   
@@ -1159,6 +1205,39 @@
 </nav>
 
 
+<div id="language-selector">
+  <button onclick="toggleLangList()">🌐 Language ▾</button>
+
+  <div id="langList" class="lang-dropdown hidden">
+    <input type="text" placeholder="Search language..." oninput="filterLanguages(this.value)" />
+    <ul>
+      <li onclick="setLanguage('en')">🇬🇧 English</li>
+      <li onclick="setLanguage('fr')">🇫🇷 Français</li>
+      <li onclick="setLanguage('el')">🇬🇷 Ελληνικά</li>
+      <li onclick="setLanguage('ja')">🇯🇵 日本語</li>
+      <!-- Add more languages -->
+    </ul>
+  </div>
+</div>
+
+
+<script>
+  function toggleLangList() {
+    document.getElementById("langList").classList.toggle("hidden");
+  }
+
+  function setLanguage(code) {
+    console.log("Selected language:", code);
+    // You can redirect or reload with ?lang=code or use i18n logic here
+  }
+
+  function filterLanguages(value) {
+    const items = document.querySelectorAll("#langList ul li");
+    items.forEach(li => {
+      li.style.display = li.textContent.toLowerCase().includes(value.toLowerCase()) ? "block" : "none";
+    });
+  }
+</script>
 
 
 
