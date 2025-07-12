@@ -229,7 +229,13 @@ body.dark #back-to-top {
 </style>
 
 
-
+<style>
+@keyframes floatPulse {
+  0%   { transform: translateY(0); opacity: 0.6; }
+  50%  { transform: translateY(-5px); opacity: 1; }
+  100% { transform: translateY(0); opacity: 0.6; }
+}
+</style>
 
   
   
@@ -260,6 +266,20 @@ body.dark #back-to-top {
         I'm Vasilis — I craft digital tools that solve real-world problems with simple code and thoughtful UI.
       </p>
     </section>
+
+
+<section id="learning-block" class="section fade-in" style="text-align:center; margin-top:40px;">
+  <h2 id="learn-title">🎓 Learn & Teach with VasiVerse</h2>
+  <p id="learn-text" style="font-weight:500; font-size:1.05em;">
+    At VasiVerse, we believe education should be open, creative, and free of borders.<br/>
+    We teach through real code, tools, and human–AI collaboration. While we do not offer official certifications, we inspire exploration and growth for every curious mind.
+  </p>
+
+  <img src="learning-together-badge.svg" alt="Learning Together Badge" style="margin:25px auto; max-width:150px; animation: floatPulse 2.5s infinite ease-in-out;"/>
+
+  <button id="lang-toggle" style="margin-top:20px; font-size:1em; padding:8px 12px;">🇬🇷 Ελληνικά / 🇬🇧 English</button>
+</section>
+    
 
     <section class="section fade-in">
       <h2>🚀 What I Build</h2>
@@ -380,13 +400,28 @@ try {
   });
 </script>
 
-  <section class="section fade-in" style="text-align:center; margin-bottom:20px;">
-  <p style="font-weight:500; font-size:1.05em;">✅ All right 😎 Received. We built this page together!</p>
-</section>
-<footer class="site-footer">
-  <p>Made with ❤️ by <a href="https://github.com/vasilisnikitaras" target="_blank">Vasilis Nikitaras</a></p>
+
+<script>
+document.getElementById('lang-toggle').onclick = () => {
+  const title = document.getElementById('learn-title');
+  const text = document.getElementById('learn-text');
+  if (title.innerText.includes('Learn')) {
+    title.innerText = '🎓 Μάθε & Δίδαξε με το VasiVerse';
+    text.innerHTML = `Στο VasiVerse πιστεύουμε ότι η εκπαίδευση πρέπει να είναι ανοιχτή, δημιουργική και χωρίς σύνορα.<br/>
+    Διδάσκουμε με πραγματικό κώδικα, εργαλεία και συνεργασία ανθρώπου–AI. Δεν προσφέρουμε επίσημες πιστοποιήσεις, αλλά εμπνέουμε εξερεύνηση και εξέλιξη σε κάθε περίεργο νου.`;
+  } else {
+    title.innerText = '🎓 Learn & Teach with VasiVerse';
+    text.innerHTML = `At VasiVerse, we believe education should be open, creative, and free of borders.<br/>
+    We teach through real code, tools, and human–AI collaboration. While we do not offer official certifications, we inspire exploration and growth for every curious mind.`;
+  }
+};
+</script>
+
+
+
+ <footer class="site-footer">
+  <p>Made with ❤ by <a href="https://github.com/vasilisnikitaras" target="_blank">Vasilis Nikitaras</a></p>
 </footer>
 
-  
 </body>
 </html>
