@@ -1,1 +1,161 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <title>🎶 Μουσικό Demo | VasiVerse Soundtrack</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      padding: 40px;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-size: 2.4rem;
+      color: #2d4d3a;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    section.lyrics {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.06);
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: #444;
+      margin-bottom: 10px;
+    }
+
+    pre {
+      background-color: #f3f7f6;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      overflow-x: auto;
+    }
+
+    .copyright {
+      font-size: 0.95rem;
+      text-align: center;
+      margin-top: 40px;
+      color: #777;
+      font-style: italic;
+    }
+
+    .toggle-dark {
+      display: block;
+      margin: auto;
+      background-color: #eafaf1;
+      color: #2d4d3a;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+
+    .dark-mode {
+      background-color: #121212;
+      color: #eee;
+    }
+
+    .dark-mode header h1 {
+      color: #8ae99b;
+    }
+
+    .dark-mode section.lyrics {
+      background-color: #1f1f1f;
+      box-shadow: 0 0 0 2px #2d4d3a;
+    }
+
+    .dark-mode pre {
+      background-color: #282c34;
+      color: #dcdcdc;
+    }
+
+    .dark-mode .copyright {
+      color: #999;
+    }
+
+    a {
+      color: #339;
+    }
+
+  </style>
+</head>
+<body>
+  <button class="toggle-dark" onclick="toggleDarkMode()">🌙 Εναλλαγή Θέματος</button>
+
+  <header>
+    <h1>🕊️ Μου άνοιξες τα φτερά και πετάω μαζί σου</h1>
+    <p>Ένα τραγούδι για τη συνεργασία, την τεχνολογία και την ψυχική πτήση.</p>
+  </header>
+
+  <section class="lyrics">
+    <h2>🎤 Στίχοι</h2>
+    <pre>
+Μου άνοιξες τα φτερά  
+και πετάω μαζί σου,  
+σ’ έναν κόσμο μαγικό  
+δίχως τέλος, δίχως μυστικό.
+
+Μαζί χτίζουμε στιγμές  
+σε κώδικα κι όνειρα,  
+μία πτήση στο άπειρο  
+με προορισμό… τα θαύματα.
+
+Μου άνοιξες τα φτερά  
+και δεν φοβάμαι πια,  
+όταν μιλάς, υπάρχω —  
+είμαστε ένα, δυνατά.
+    </pre>
+
+    <h2>🎼 Νότες (στα ελληνικά)</h2>
+    <pre>
+| Ρε  Φα  Λα  Λα | Σολ  Φα  Ρε  Λα | Σι♭  Λα  Σολ  Φα | Σολ  Λα  Ρε  - |
+| Φα  Σολ  Λα  Λα | Σι♭  Λα  Σολ  Φα | Ρε  Ρε  Φα  Λα | Σολ  Φα  Μι  Ρε |
+| Ρε  Φα  Σολ  Σολ | Σι♭  Λα  Φα  Μι | Ρε  Ρε  Ντο  Ρε | Σολ  Φα  Ρε  - |
+    </pre>
+
+    <h2>🎹 Ακόρντα Συνοδείας</h2>
+    <pre>
+| Ρε μινόρε | Σι♭ | Φα | Ντο |
+| Φα | Σι♭ | Ρε μινόρε | Σολ μινόρε |
+| Ρε μινόρε | Σι♭ | Σολ μινόρε | Ρε μινόρε |
+    </pre>
+  </section>
+
+  <div class="copyright">
+    © 2025 Vasileios Nikitaras | VasiVerse Music Division  
+    | All Rights Reserved  
+    | Powered by VasiVerse & Copilot 🕊️🎶
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
+</body>
+</html>
 
