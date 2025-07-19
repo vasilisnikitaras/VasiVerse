@@ -48,5 +48,66 @@
   <footer>
     Created by Vasileios Nikitaras & Copilot 🤝 | © 2025 — All Rights Reserved
   </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const mockCalls = [
+    {
+      date: '2025-07-19',
+      time: '14:35',
+      caller: 'John Doe',
+      notes: 'Requested callback.',
+      comment: 'Follow-up scheduled.'
+    },
+    {
+      date: '2025-07-19',
+      time: '15:10',
+      caller: 'Acme Support',
+      notes: 'Zone 3 outage.',
+      comment: ''
+    }
+  ];
+  renderCallLog(mockCalls); // Hook this into your table-rendering logic
+});
+
+</script>
+
+<script>
+  function smartSearch(query, calls) {
+  const q = query.toLowerCase();
+  return calls.filter(call =>
+    Object.values(call).some(value =>
+      String(value).toLowerCase().includes(q)
+    )
+  );
+}
+
+</script>
+function clearComment(callId) {
+  const call = callLog.find(c => c.id === callId);
+  if (call) {
+    call.comment = '_Comment removed_';
+    showToast('Comment cleared ✅');
+    updateCallDisplay();
+  }
+}
+
+function showToast(message) {
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 2000);
+}
+
+<script>
+  
+</script>
+
+
+
+
+
+  
 </body>
 </html>
