@@ -83,24 +83,26 @@
 }
 
 </script>
-function clearComment(callId) {
-  const call = callLog.find(c => c.id === callId);
-  if (call) {
-    call.comment = '_Comment removed_';
-    showToast('Comment cleared ✅');
-    updateCallDisplay();
-  }
-}
 
-function showToast(message) {
-  const toast = document.createElement('div');
-  toast.className = 'toast';
-  toast.textContent = message;
-  document.body.appendChild(toast);
-  setTimeout(() => toast.remove(), 2000);
-}
-  
+<script>
+  function clearComment(callId) {
+    const call = callLog.find(c => c.id === callId);
+    if (call) {
+      call.comment = '_Comment removed_';
+      showToast('Comment cleared ✅');
+      updateCallDisplay();
+    }
+  }
+
+  function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 2000);
+  }
 </script>
+
 
   
 </body>
