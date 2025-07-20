@@ -598,12 +598,61 @@
   </section>
 
 </main>
+
+
+
+
+
+
+
+  
   
 <section id="weather">
   <h2>🌍 Live Weather Forecast – Your Personal Weather Assistant</h2>
   <p>Stay ahead of the weather with real-time forecasts from VasiVerse!</p>
   ...
   <div id="forecast-container"></div> <!-- ✅ This is what the script uses -->
+
+
+<section id="weather">
+  <h2>🌍 Live Weather Forecast – Your Personal Weather Assistant</h2>
+  <p>Stay ahead of the weather with real-time forecasts from VasiVerse!</p>
+
+  <!-- 🔗 Σύνδεσμος προς πλήρη σελίδα -->
+  <a href="vasiverse-weather.html" target="_blank" rel="noopener" class="nav-button" style="
+    background-color: #0288d1;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 16px;
+    display: inline-block;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  ">🌦️ View Full Forecast</a>
+
+  <!-- 🎛 Forecast Controls -->
+  <div class="controls" style="margin-top: 30px;">
+    <label for="languageSelector">🌐 Choose Language:</label>
+    <select id="languageSelector">
+      <option value="en">English</option>
+      <option value="fr">Français</option>
+      <option value="el">Ελληνικά</option>
+    </select>
+
+    <label for="citySelector">🏙️ Choose City:</label>
+    <select id="citySelector">
+      <option value="quebec">Québec</option>
+      <option value="montreal">Montréal</option>
+      <option value="athens">Athens</option>
+    </select>
+  </div>
+
+  <!-- 📅 Forecast Display -->
+  <div id="forecastDisplay" style="margin-top: 30px;"></div>
+</section>
+
+ 
 
 <!-- 🔗 Σύνδεσμος που οδηγεί στο vasiverse-weather.html -->
 <a href="vasiverse-weather.html" target="_blank" rel="noopener" class="nav-button" style="
@@ -620,6 +669,14 @@
 
   
 
+
+
+
+
+
+
+
+  
     <h3>🔍 How It Works</h3>
     
     <ul>
@@ -1173,6 +1230,68 @@
     });
   }
 </script>
+
+
+
+<!-- 📜 Script for Forecast Logic -->
+<script>
+const translations = {
+  en: { high: "High", low: "Low", forecast: "5-Day Forecast", today: "Today", tomorrow: "Tomorrow" },
+  fr: { high: "Max", low: "Min", forecast: "Prévisions sur 5 jours", today: "Aujourd’hui", tomorrow: "Demain" },
+  el: { high: "Μέγιστη", low: "Ελάχιστη", forecast: "Πρόγνωση 5 ημερών", today: "Σήμερα", tomorrow: "Αύριο" }
+};
+
+const forecastData = {
+  quebec: [
+    { day: "today", emoji: "🌤️", high: 25, low: 14 },
+    { day: "tomorrow", emoji: "🌧️", high: 22, low: 13 },
+    { day: "Wed", emoji: "⛅", high: 24, low: 15 }
+  ],
+  montreal: [
+    { day: "today", emoji: "🌞", high: 27, low: 16 },
+    { day: "tomorrow", emoji: "🌦️", high: 23, low: 14 },
+    { day: "Wed", emoji: "🌩️", high: 21, low: 13 }
+  ],
+  athens: [
+    { day: "today", emoji: "☀️", high: 33, low: 22 },
+    { day: "tomorrow", emoji: "☀️", high: 34, low: 23 },
+    { day: "Wed", emoji: "🌤️", high: 31, low: 21 }
+  ]
+};
+
+function renderForecast() {
+  const lang = document.getElementById("languageSelector").value;
+  const city = document.getElementById("citySelector").value;
+  const display = document.getElementById("forecastDisplay");
+  const t = translations[lang];
+  const data = forecastData[city];
+
+  display.innerHTML = `<h3>${t.forecast} – ${city.charAt(0).toUpperCase() + city.slice(1)}</h3>`;
+  data.forEach(day => {
+    const label = t[day.day] || day.day;
+    display.innerHTML += `
+      <div style="margin:10px 0; background:#f0f8ff; padding:10px; border-radius:6px;">
+        <strong>${label}</strong> ${day.emoji} | ${t.high}: ${day.high}°C – ${t.low}: ${day.low}°C
+      </div>`;
+  });
+}
+
+// 👂 Listeners
+document.getElementById("languageSelector").addEventListener("change", renderForecast);
+document.getElementById("citySelector").addEventListener("change", renderForecast);
+
+// ⏳ Initial render
+window.addEventListener("load", renderForecast);
+</script>
+
+
+
+
+
+
+
+
+    
     
 </body>
 </html>
