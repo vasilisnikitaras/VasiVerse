@@ -1752,3 +1752,38 @@ textarea {
   padding: 10px;
   resize: none; /* option για να μην αλλάζει μέγεθος */
 }
+
+
+
+
+
+
+
+
+
+
+
+.welcome-card {
+  background: linear-gradient(to right, #1e1e2f, #2d2d44);
+  color: #fff;
+  padding: 2em;
+  border-radius: 10px;
+  text-align: center;
+  margin: 2em auto;  /* κεντράρει το container */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  max-width: 800px;  /* επιλογή: περιορίζει το πλάτος ώστε να φαίνεται πιο centered */
+}
+
+
+
+
+
+
+
+
+.welcome-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
