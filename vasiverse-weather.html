@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🌍 VasiVerse Forecast Simulator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: #f4f4f4;
+      color: #111;
+      transition: background 0.3s, color 0.3s;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    select, button {
+      padding: 8px 12px;
+      font-size: 1em;
+    }
+    .forecast {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+    .day {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      text-align: center;
+      padding: 12px;
+    }
+    .icon {
+      font-size: 2em;
+    }
+    #topBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 14px;
+      display: none;
+      cursor: pointer;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #555;
+    }
+    .dark-mode {
+      background: #1b1b1b;
+      color: #eee;
+    }
+    .dark-mode .day {
+      background: #2c2c2c;
+      border-color: #444;
+    }
+    @media(max-width: 600px) {
+      .forecast { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  
+  
+   <a href="https://vasiverse.com" target="_blank" rel="noopener" class="nav-button">🏠 Back to VasiVerse.com</a>
+  
+  <h1 id="title">🌍 Forecast Simulator</h1>
+  <div class="controls">
+    <select id="langSelect">
+      <option value="en">English 🇬🇧</option>
+      <option value="el">Ελληνικά 🇬🇷</option>
+      <option value="fr">Français 🇫🇷</option>
+    </select>
+    <select id="citySelect">
+      <option>Québec</option>
+      <option>Toronto</option>
+      <option>Tokyo</option>
+      <option>Athens</option>
+      <option>Dubai</option>
+      <option>Paris</option>
+      <option>Montreal</option>
+      <option>Melbourne</option>
+    </select>
+    <button onclick="toggleDarkMode()" id="darkBtn">🌙 Toggle Dark Mode</button>
+    <button onclick="scrollToTop()" id="topBtnMain">⬆️ Top</button>
+    <a href="https://vasiverse.com" target="_blank"><button id="backBtn">🏠 Back to VasiVerse.com</button></a>
+  </div>
+
+  <div class="forecast" id="forecastDisplay"></div>
+  <button id="topBtn" onclick="scrollToTop()">⬆️</button>
+  <div class="footer" id="footerTxt">
+    © 2025 Vasilis Nikitaras & Copilot – All rights reserved
+  </div>
+
+  <script>
+    const forecastEl = document.getElementById("forecastDisplay");
+    const citySelect = document.getElementById("citySelect");
+    const langSelect = document.getElementById("langSelect");
+
+    const labels = {
+      en: ["Today", "Tomorrow", "Day After", "Condition", "Temperature", "Wind", "Forecast Simulator", "Toggle Dark Mode", "Back to VasiVerse.com"],
+      el: ["Σήμερα", "Αύριο", "Μεθαύριο", "Συνθήκες", "Θερμοκρασία", "Άνεμος", "Προσομοίωση Καιρού", "Σκοτεινή λειτουργία", "Επιστροφή στο VasiVerse.com"],
+      fr: ["Aujourd’hui", "Demain", "Après-demain", "Conditions", "Température", "Vent", "Simulateur Météo", "Mode Sombre", "Retour à VasiVerse.com"]
+    };
+
+    const icons = ["☀️", "🌤️", "🌧️", "⛈️", "❄️", "🌫️"];
+    const conditions = {
+      en: ["Sunny", "Cloudy", "Rainy", "Storm", "Snow", "Fog"],
+      el: ["Ηλιοφάνεια", "Συννεφιά", "Βροχή", "Καταιγίδα", "Χιόνι", "Ομίχλη"],
+      fr: ["Ensoleillé", "Nuageux", "Pluie", "Orage", "Neige", "Brouillard"]
+    };
+
+    const temps = {
+      Québec: [-10, 22],
+      Toronto: [-5, 25],
+      Tokyo: [10, 30],
+      Athens: [15, 35],
+      Dubai: [28, 45],
+      Paris: [8, 28],
+      Montreal: [-15, 20],
+      Melbourne: [10, 25]
+    };
+
+    function renderForecast() {
+      const city = citySelect.value;
+      const lang = langSelect.value;
+      const [min, max] = temps[city] || [10, 30];
+      const forecast = [0,1,2].map(i => {
+        return {
+          label: labels[lang][i],
+          temp: Math.floor(Math.random() * (max - min + 1)) + min,
+          icon: icons[i],
+          condition: conditions[lang][i],
+          wind: Math.floor(Math.random() * 20 + 5)
+        };
+      });
+      forecastEl.innerHTML = "";
+      forecast.forEach(day => {
+        const div = document.createElement("div");
+        div.className = "day";
+        div.innerHTML = `
+          <div class="icon">${day.icon}</div>
+          <strong>${day.label}</strong><br>
+          🌡️ ${labels[lang][4]}: ${day.temp}°C<br>
+          💨 ${labels[lang][5]}: ${day.wind} km/h<br>
+          📝 ${labels[lang][3]}: ${day.condition}
+        `;
+        forecastEl.appendChild(div);
+      });
+      document.getElementById("title").textContent = "🌍 " + labels[lang][6];
+      document.getElementById("darkBtn").textContent = "🌙 " + labels[lang][7];
+      document.getElementById("backBtn").textContent = "🏠 " + labels[lang][8];
+    }
+
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    langSelect.addEventListener("change", renderForecast);
+    citySelect.addEventListener("change", renderForecast);
+    document.addEventListener("DOMContentLoaded", renderForecast);
+    window.onscroll = () => {
+      document.getElementById("topBtn").style.display = window.scrollY > 200 ? "block" : "none";
+    };
+  </script>
+</body>
+</html>
