@@ -1730,3 +1730,25 @@ body.loaded header h1 {
 .back-home-button:hover {
   background-color: #555;
 }
+
+
+
+
+
+
+
+
+
+/* CSS μέσα στο <head> ή σε εξωτερικό αρχείο */
+.center-container {
+  display: flex;
+  justify-content: center;  /* κεντράρισμα οριζόντια */
+  align-items: center;      /* κεντράρισμα κάθετα */
+  height: 100vh;            /* Ύψος όσο ολόκληρη η σελίδα */
+}
+
+textarea {
+  font-size: 16px;
+  padding: 10px;
+  resize: none; /* option για να μην αλλάζει μέγεθος */
+}
